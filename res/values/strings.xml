@@ -4,5 +4,6 @@
     <string name="app_name">DoItEveryWhere</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_who_to_follow">WhoToFollowActivity</string>
 
 </resources>
