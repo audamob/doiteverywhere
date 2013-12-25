@@ -26,10 +26,7 @@
             android:name="com.audamob.doit.activity.WhoToFollowActivity"
             android:label="@string/title_activity_who_to_follow" >
         </activity>
-        <activity
-            android:name="com.audamob.doit.activity.Test_Aymen_2"
-            android:label="@string/title_activity_test__aymen_2" >
-        </activity>
+        
     </application>
 
 </manifest>
