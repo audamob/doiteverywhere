@@ -14,11 +14,5 @@ public class WhoToFollowActivity extends Activity {
 		setContentView(R.layout.activity_who_to_follow);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.who_to_follow, menu);
-		return true;
-	}
 
 }
