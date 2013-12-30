@@ -43,7 +43,8 @@
             android:layout_below="@+id/FB_Login"
             android:layout_centerHorizontal="true"
             android:background="@drawable/gp_bg"
-            android:layout_marginTop="10dp" >
+            android:layout_marginTop="10dp"
+            android:visibility="invisible" >
 
             <ImageView
                 android:id="@+id/gp_id"
@@ -66,16 +67,13 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_get_profile"
+   <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:layout_alignParentBottom="true"
-        
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="84dp"
-        android:text="Get Informations" />
+        android:id="@+id/sign_in_status"
+        android:text="statut"
+       
+       />
 
 </RelativeLayout>

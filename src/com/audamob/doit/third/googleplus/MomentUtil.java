@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.audamob.doit.third;
+package com.audamob.doit.third.googleplus;
 
 import com.google.android.gms.plus.model.moments.ItemScope;
 

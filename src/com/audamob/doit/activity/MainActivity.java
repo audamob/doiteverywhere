@@ -12,11 +12,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.audamob.doit.R;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.FacebookConnectManager;
-import com.audamob.doit.third.MomentUtil;
+import com.audamob.doit.third.googleplus.MomentUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity implements
 
 	// Buttons
 	RelativeLayout btnFbLogin;
-	Button btnFbGetProfile;
+	
 	AbstractConnectManager facebookAbstractConnectManager;
 	AbstractConnectManager googleAbstractConnectManager;
 	Activity MainActivity_activity;
@@ -65,7 +66,7 @@ public class MainActivity extends Activity implements
 		 */
 
 		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
-		btnFbGetProfile = (Button) findViewById(R.id.btn_get_profile);
+		
 
 		// Instanciate Facebook And Google Connect Manager
 		facebookAbstractConnectManager = new FacebookConnectManager();
@@ -85,16 +86,10 @@ public class MainActivity extends Activity implements
 		/**
 		 * Getting facebook Profile info
 		 * */
-		btnFbGetProfile.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				facebookAbstractConnectManager.getProfileInformation();
-			}
-		});
-
-		RelativeLayout gp_login = (RelativeLayout) findViewById(R.id.GP_Login);
-		gp_login.setOnClickListener(new OnClickListener() {
+	
+		mSignInStatus = (TextView) findViewById(R.id.sign_in_status);
+		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
+		mSignInButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -107,9 +102,9 @@ public class MainActivity extends Activity implements
 				}
 
 				try {
-
+					
 					mConnectionResult.startResolutionForResult(
-							MainActivity_activity, REQUEST_CODE_SIGN_IN);
+					MainActivity_activity, REQUEST_CODE_SIGN_IN);
 				} catch (IntentSender.SendIntentException e) {
 					// Fetch a new result to start.
 					mPlusClient.connect();
@@ -122,94 +117,111 @@ public class MainActivity extends Activity implements
 	/***
 	 * Google+ Implementation
 	 */
-	private static final int DIALOG_GET_GOOGLE_PLAY_SERVICES = 1;
+	 
+   private static final int DIALOG_GET_GOOGLE_PLAY_SERVICES = 1;
 
-	private static final int REQUEST_CODE_SIGN_IN = 1;
-	private static final int REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES = 2;
+   private static final int REQUEST_CODE_SIGN_IN = 1;
+   private static final int REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES = 2;
 
-	private PlusClient mPlusClient;
-	private SignInButton mSignInButton;
+   RelativeLayout mSignInButton ;
+   private PlusClient mPlusClient;
+   private TextView mSignInStatus;
+  
+   private ConnectionResult mConnectionResult;
+   @Override
+   public void onStart() {
+       super.onStart();
+       mPlusClient.connect();
+   }
 
-	private ConnectionResult mConnectionResult;
+   @Override
+   public void onStop() {
+       mPlusClient.disconnect();
+       super.onStop();
+   }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		mPlusClient.connect();
-	}
+  
+   @Override
+   protected Dialog onCreateDialog(int id) {
+       if (id != DIALOG_GET_GOOGLE_PLAY_SERVICES) {
+           return super.onCreateDialog(id);
+       }
 
-	@Override
-	public void onStop() {
-		mPlusClient.disconnect();
-		super.onStop();
-	}
+       int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+       if (available == ConnectionResult.SUCCESS) {
+           return null;
+       }
+       if (GooglePlayServicesUtil.isUserRecoverableError(available)) {
+           return GooglePlayServicesUtil.getErrorDialog(
+                   available, this, REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES);
+       }
+       return new AlertDialog.Builder(this)
+               .setMessage(R.string.plus_generic_error)
+               .setCancelable(true)
+               .create();
+   }
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		Log.d("Test_null", "" + (mConnectionResult == null));
-	}
+   @Override
+   public void onActivityResult(int requestCode, int resultCode, Intent data) {
+       if (requestCode == REQUEST_CODE_SIGN_IN
+               || requestCode == REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES) {
+           if (resultCode == RESULT_OK && !mPlusClient.isConnected()
+                   && !mPlusClient.isConnecting()) {
+               // This time, connect should succeed.
+               mPlusClient.connect();
+           }
+       }
+   }
 
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		if (id != DIALOG_GET_GOOGLE_PLAY_SERVICES) {
-			return super.onCreateDialog(id);
-		}
+   @Override
+   public void onAccessRevoked(ConnectionResult status) {
+       if (status.isSuccess()) {
+           mSignInStatus.setText(R.string.revoke_access_status);
+       } else {
+           mSignInStatus.setText(R.string.revoke_access_error_status);
+           mPlusClient.disconnect();
+       }
+       mPlusClient.connect();
+   }
 
-		int available = GooglePlayServicesUtil
-				.isGooglePlayServicesAvailable(this);
-		if (available == ConnectionResult.SUCCESS) {
-			return null;
-		}
-		if (GooglePlayServicesUtil.isUserRecoverableError(available)) {
-			return GooglePlayServicesUtil.getErrorDialog(available, this,
-					REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES);
-		}
-		return new AlertDialog.Builder(this)
-				.setMessage(R.string.plus_generic_error).setCancelable(true)
-				.create();
-	}
+   @Override
+   public void onConnected(Bundle connectionHint) {
+       String currentPersonName = mPlusClient.getCurrentPerson() != null
+               ? mPlusClient.getCurrentPerson().getDisplayName()
+               : getString(R.string.unknown_person);
+       mSignInStatus.setText(getString(R.string.signed_in_status, currentPersonName));
+       updateButtons(true /* isSignedIn */);
+   }
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_CODE_SIGN_IN
-				|| requestCode == REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES) {
-			if (resultCode == RESULT_OK && !mPlusClient.isConnected()
-					&& !mPlusClient.isConnecting()) {
-				// This time, connect should succeed.
-				mPlusClient.connect();
-			}
-		}
-	}
+   @Override
+   public void onDisconnected() {
+       mSignInStatus.setText(R.string.loading_status);
+       mPlusClient.connect();
+       updateButtons(false /* isSignedIn */);
+   }
 
-	@Override
-	public void onAccessRevoked(ConnectionResult status) {
-		if (status.isSuccess()) {
+   @Override
+   public void onConnectionFailed(ConnectionResult result) {
+       mConnectionResult = result;
+       updateButtons(false /* isSignedIn */);
+   }
 
-		} else {
+   private void updateButtons(boolean isSignedIn) {
+       if (isSignedIn) {
+           mSignInButton.setVisibility(View.INVISIBLE);
+          
+       } else {
+           if (mConnectionResult == null) {
+               // Disable the sign-in button until onConnectionFailed is called with result.
+               mSignInButton.setVisibility(View.INVISIBLE);
+               mSignInStatus.setText(getString(R.string.loading_status));
+           } else {
+               // Enable the sign-in button since a connection result is available.
+               mSignInButton.setVisibility(View.VISIBLE);
+               mSignInStatus.setText(getString(R.string.signed_out_status));
+           }
 
-			mPlusClient.disconnect();
-		}
-		mPlusClient.connect();
-	}
-
-	@Override
-	public void onConnected(Bundle connectionHint) {
-		String currentPersonName = mPlusClient.getCurrentPerson() != null ? mPlusClient
-				.getCurrentPerson().getDisplayName()
-				: getString(R.string.unknown_person);
-	}
-
-	@Override
-	public void onDisconnected() {
-		mPlusClient.connect();
-
-	}
-
-	@Override
-	public void onConnectionFailed(ConnectionResult result) {
-		mConnectionResult = result;
-	}
-
+         
+       }
+   }
 }
