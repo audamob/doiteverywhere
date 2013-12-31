@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
+import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuFromClassActivity;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
@@ -191,6 +192,10 @@ public class MainActivity extends Activity implements
                : getString(R.string.unknown_person);
        mSignInStatus.setText(getString(R.string.signed_in_status, currentPersonName));
        updateButtons(true /* isSignedIn */);
+       
+       Intent i=new Intent(this, SlidingMenuFromClassActivity.class);
+       startActivity(i);
+       this.finish();
    }
 
    @Override

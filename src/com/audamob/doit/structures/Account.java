@@ -5,30 +5,13 @@ import java.io.Serializable;
 public class Account implements Serializable {
 
 	
-	String SongName;
-	String Url;
-	String Featring="";
+	String mDisplayName;
+	String mImageUrl;
 	
-	public Account(String SongName,String url) {
+	public Account(String displayname,String imageurl) {
 		// TODO Auto-generated constructor stub
-		this.SongName=SongName;
-		this.Url=url;
+		this.mDisplayName=displayname;
+		this.mImageUrl=imageurl;
 		
-	}
-	public Account(String SongName,String url,String feat) {
-		// TODO Auto-generated constructor stub
-		this.SongName=SongName;
-		this.Url=url;
-		this.Featring=feat;
-		
-	}
-	public String getName() {
-		return SongName;
-	}
-	public String getUrl() {
-		return Url;
-	}
-	public String getFeatring() {
-		return Featring;
 	}
 }
