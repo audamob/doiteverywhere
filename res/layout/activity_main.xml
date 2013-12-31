@@ -1,5 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+   
+    xmlns:app="http://schemas.android.com/apk/res/com.audamob.doit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" 
@@ -8,7 +10,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" >
+        android:layout_centerInParent="true"
+        android:visibility="invisible" >
 
         <RelativeLayout
             android:id="@+id/FB_Login"
@@ -75,5 +78,19 @@
         android:text="statut"
        
        />
-
+   
+   <de.passsy.holocircularprogressbar.HoloCircularProgressBar
+    android:id="@+id/progressBar_loading"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+     app:stroke_width="10dp"
+    app:progress="0.4"
+    app:marker_progress="0.6"
+    app:progress_color="@android:color/holo_orange_dark"
+    app:progress_background_color="#cccccc"
+   
+    app:marker_visible="false"
+    app:thumb_visible="false"
+  />
+ 
 </RelativeLayout>
