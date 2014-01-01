@@ -1,4 +1,4 @@
-package com.audamob.doit.third;
+package com.audamob.doit.third.facebook;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.audamob.doit.third.AbstractConnectManager;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
 import com.facebook.android.DialogError;

@@ -1,7 +1,7 @@
-package com.audamob.doit.activity.SlidingMenuImplementation.FromClass;
+package com.audamob.doit.activity.SlidingMenu;
 
 import com.audamob.doit.*;
-import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuListItem;
+import com.audamob.doit.model.SlidingMenuListItem;
 
 import android.widget.Toast;
 

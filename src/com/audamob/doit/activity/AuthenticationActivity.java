@@ -17,14 +17,14 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuFromClassActivity;
 import com.audamob.doit.third.AbstractConnectManager;
-import com.audamob.doit.third.FacebookConnectManager;
+import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.plus.PlusClient;
 
-public class MainActivity extends Activity implements
+public class AuthenticationActivity extends Activity implements
 		PlusClient.ConnectionCallbacks, PlusClient.OnConnectionFailedListener,
 		PlusClient.OnAccessRevokedListener {
 

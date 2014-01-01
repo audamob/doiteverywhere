@@ -1,7 +1,7 @@
 package com.audamob.doit.activity.SlidingMenuImplementation;
 
-import com.audamob.doit.activity.SlidingMenuImplementation.FromClass.ActivityBase;
-import com.audamob.doit.activity.SlidingMenuImplementation.FromClass.SlidingMenuBuilderConcrete;
+import com.audamob.doit.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderConcrete;
 import com.audamob.doit.*;
 import android.os.Bundle;
 

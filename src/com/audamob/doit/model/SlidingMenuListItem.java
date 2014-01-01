@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenuImplementation;
+package com.audamob.doit.model;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
