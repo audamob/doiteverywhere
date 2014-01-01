@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenuImplementation;
+package com.audamob.doit.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.audamob.doit.*;
+import com.audamob.doit.model.SlidingMenuListItem;
 /**
  * @author Andrius Baruckis http://www.baruckis.com
  * 

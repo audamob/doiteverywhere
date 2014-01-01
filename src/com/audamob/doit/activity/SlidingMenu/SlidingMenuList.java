@@ -1,11 +1,11 @@
-package com.audamob.doit.activity.SlidingMenuImplementation.FromClass;
+package com.audamob.doit.activity.SlidingMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import com.audamob.doit.R;
-import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuListItem;
+import com.audamob.doit.model.SlidingMenuListItem;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com

@@ -1,8 +1,9 @@
 package com.audamob.doit.activity;
 
-import com.audamob.doit.activity.SlidingMenuImplementation.FromClass.ActivityBase;
-import com.audamob.doit.activity.SlidingMenuImplementation.FromClass.SlidingMenuBuilderConcrete;
 import com.audamob.doit.*;
+import com.audamob.doit.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderConcrete;
+
 import android.os.Bundle;
 
 
@@ -19,7 +20,7 @@ import android.os.Bundle;
  *         on separate list items from the menu.
  * 
  */
-public class MainLauncher extends ActivityBase {
+public class MainContainerActivity extends ActivityBase {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

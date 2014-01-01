@@ -1,4 +1,4 @@
-package com.audamob.doit.structures;
+package com.audamob.doit.model;
 
 import java.io.Serializable;
 

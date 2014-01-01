@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenuImplementation.FromClass;
+package com.audamob.doit.activity.SlidingMenu;
 
 import android.app.ActionBar;
 import android.app.Activity;

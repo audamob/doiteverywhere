@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.audamob.doit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" 
+    tools:context=".AuthenticationActivity" 
     android:background="#f2f2f2">
 
     <RelativeLayout

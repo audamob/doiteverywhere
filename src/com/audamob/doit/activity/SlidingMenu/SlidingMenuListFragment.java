@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenuImplementation.FromClass;
+package com.audamob.doit.activity.SlidingMenu;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.audamob.doit.*;
-import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuListAdapter;
-import com.audamob.doit.activity.SlidingMenuImplementation.SlidingMenuListItem;
+import com.audamob.doit.adapter.SlidingMenuListAdapter;
+import com.audamob.doit.model.SlidingMenuListItem;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
