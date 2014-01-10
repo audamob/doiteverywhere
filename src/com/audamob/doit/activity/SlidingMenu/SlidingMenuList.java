@@ -25,19 +25,23 @@ public final class SlidingMenuList {
 
 		List<SlidingMenuListItem> list = new ArrayList<SlidingMenuListItem>();
 
-		list.add(new SlidingMenuListItem(R.slidingmenu.list_item_angry_id,
-				activity.getResources().getString(
-						R.slidingmenu.list_item_angry_label), activity
-						.getResources().getString(
-								R.slidingmenu.list_item_angry_icon)));
-
-		list.add(new SlidingMenuListItem(R.slidingmenu.list_item_basic_id,
-				activity.getResources().getString(
-						R.slidingmenu.list_item_basic_label), activity
-						.getResources().getString(
-								R.slidingmenu.list_item_basic_icon)));
-
-
+		SlidingMenuListItem MenuItem;
+		MenuItem=new SlidingMenuListItem(0, activity.getResources().getString(R.string.Nearby_text), 
+				activity.getResources().getDrawable(R.drawable.ic_nearby));
+		list.add(MenuItem);
+		
+		MenuItem=new SlidingMenuListItem(1, activity.getResources().getString(R.string.Home_text), 
+				activity.getResources().getDrawable(R.drawable.ic_home));
+		list.add(MenuItem);
+		
+		MenuItem=new SlidingMenuListItem(2, activity.getResources().getString(R.string.Profile_text), 
+				activity.getResources().getDrawable(R.drawable.ic_profile));
+		list.add(MenuItem);
+		
+		MenuItem=new SlidingMenuListItem(3, activity.getResources().getString(R.string.Settings_text), 
+				activity.getResources().getDrawable(R.drawable.ic_settings));
+		list.add(MenuItem);
+		
 		return list;
 	}
 }

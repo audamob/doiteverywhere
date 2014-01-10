@@ -1,8 +1,11 @@
 package com.audamob.doit.activity.SlidingMenu;
 
 import com.audamob.doit.*;
+import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.SlidingMenuListItem;
 
+import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -21,17 +24,20 @@ public class SlidingMenuBuilderConcrete extends SlidingMenuBuilderBase {
 	@Override
 	public void onListItemClick(SlidingMenuListItem selectedSlidingMenuListItem) {
 		switch (selectedSlidingMenuListItem.Id) {
-		case R.slidingmenu.list_item_angry_id:
+		case 0:
 			menu.toggle();
-
-			CharSequence text = "Clicked item “"
-					+ activity.getString(R.slidingmenu.list_item_angry_label)
-					+ "”. "
-					+ activity.getString(R.string.toast_sliding_menu_toggle);
-			Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
-			
 			return;
+
+		case 2:
+			menu.toggle();
+			Intent intentProfile=new Intent(activity, ProfileActivity.class);
+			activity.startActivity(intentProfile);
+			break;
+
+		default:
+			break;
 		}
-		super.onListItemClick(selectedSlidingMenuListItem);
+
+		Log.d("SelectedItem", "-- : " + selectedSlidingMenuListItem.Id);
 	}
 }

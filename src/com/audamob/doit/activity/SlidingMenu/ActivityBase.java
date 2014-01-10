@@ -3,8 +3,10 @@ package com.audamob.doit.activity.SlidingMenu;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
@@ -18,9 +20,9 @@ import android.view.MenuItem;
  *         device back button press behavior.
  * 
  */
-public class ActivityBase extends Activity {
+public class ActivityBase extends FragmentActivity {
 
-	private SlidingMenuBuilderBase slidingMenuBuilderBase;
+	public static SlidingMenuBuilderBase slidingMenuBuilderBase;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class ActivityBase extends Activity {
 			return super.onKeyDown(keyCode, event);
 		}
 	}
-
+	
 	// If sliding menu is showing, we need to hide it on the first back button
 	// press.
 	private void onCustomBackPressed() {
@@ -83,6 +85,7 @@ public class ActivityBase extends Activity {
 				slidingMenuBuilderBase = (SlidingMenuBuilderBase) builder
 						.newInstance();
 				slidingMenuBuilderBase.createSlidingMenu(this);
+				
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -122,4 +125,5 @@ public class ActivityBase extends Activity {
 	public boolean enableHomeIconActionSlidingMenu() {
 		return false;
 	}
+	
 }

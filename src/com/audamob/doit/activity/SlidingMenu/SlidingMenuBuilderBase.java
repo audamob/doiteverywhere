@@ -60,31 +60,7 @@ public abstract class SlidingMenuBuilderBase {
 	// It is our base builder which can be extended, so we can define default
 	// actions, which will be called when we press on separate list items.
 	public void onListItemClick(SlidingMenuListItem selectedSlidingMenuListItem) {
-		CharSequence text;
-		switch (selectedSlidingMenuListItem.Id) {
-		case R.slidingmenu.list_item_angry_id:
-			text = "Clicked item “"
-					+ selectedSlidingMenuListItem.Name
-					+ "”. "
-					+ activity
-							.getString(R.string.toast_sliding_menu_custom_action);
-			Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
-			break;
-		case R.slidingmenu.list_item_basic_id:
-			text = "Clicked item “"
-					+ selectedSlidingMenuListItem.Name
-					+ "”. "
-					+ activity
-							.getString(R.string.toast_sliding_menu_custom_action);
-			Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
-			break;
-		default:
-			text = "Clicked item. "
-					+ activity
-							.getString(R.string.toast_sliding_menu_no_action_default);
-			Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
-			break;
-		}
+	
 	}
 
 }

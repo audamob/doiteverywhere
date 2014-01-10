@@ -62,7 +62,7 @@ public final class UrlImageViewHelper {
         mResources = new Resources(mgr, mMetrics, context.getResources().getConfiguration());
     }
 
-    private static boolean mUseBitmapScaling = true;
+    private static boolean mUseBitmapScaling = false;
     /**
      * Bitmap scaling will use smart/sane values to limit the maximum
      * dimension of the bitmap during decode. This will prevent any dimension of the
@@ -83,7 +83,7 @@ public final class UrlImageViewHelper {
         return mUseBitmapScaling;
     }
 
-    private static Bitmap loadBitmapFromStream(final Context context, final String url, final String filename, final int targetWidth, final int targetHeight) {
+    public static Bitmap loadBitmapFromStream(final Context context, final String url, final String filename, final int targetWidth, final int targetHeight) {
         prepareResources(context);
 
 //        Log.v(Constants.LOGTAG,targetWidth);
@@ -413,7 +413,7 @@ public final class UrlImageViewHelper {
                     scale++;
                 }*/
                 o = new Options();
-                o.inSampleSize = 1;
+                o.inSampleSize = 8;
             }
             stream = new BufferedInputStream(new FileInputStream(filename), 8192);
             final Bitmap bitmap = BitmapFactory.decodeStream(stream, null, o);

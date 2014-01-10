@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/list"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d6d6d6"
-    android:divider="#c0c0c0"
-    android:dividerHeight="2dip"
-    android:paddingLeft="@dimen/sliding_menu_list_padding"
-    android:paddingRight="@dimen/sliding_menu_list_padding" />
+    android:background="#090A0A" >
+
+    <RelativeLayout
+        android:id="@+id/MenuHeaderLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+           
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_image"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/profile_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_name"
+            android:layout_centerHorizontal="true"
+            android:text="@string/View_Profile_text"
+            android:textColor="#444444"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/MenuHeaderLayout"
+        android:divider="#000000"
+        android:dividerHeight="1dip"
+        />
+
+</RelativeLayout>

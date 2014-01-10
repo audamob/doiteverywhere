@@ -1,17 +1,46 @@
 package com.audamob.doit.activity.SlidingMenu;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import android.app.ListFragment;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.audamob.doit.*;
 import com.audamob.doit.adapter.SlidingMenuListAdapter;
+import com.audamob.doit.model.Account;
 import com.audamob.doit.model.SlidingMenuListItem;
+import com.audamob.doit.utils.CacheReadWriteUtil;
+import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.utils.ProfileDataUtil;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
@@ -40,8 +69,30 @@ public class SlidingMenuListFragment extends ListFragment {
 
 		// We pass our taken list to the adapter.
 		SlidingMenuListAdapter adapter = new SlidingMenuListAdapter(
-				getActivity(), R.layout.sliding_menu_holo_light_list_row, slidingMenuList);
+				getActivity(), R.layout.menu_item, slidingMenuList);
 		setListAdapter(adapter);
+
+		ImageView im = (ImageView) getActivity().findViewById(
+				R.id.profile_image);
+
+		Account ac = null;
+		try {
+			ac = CacheReadWriteUtil.restoreAccount(getActivity());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (ac != null) {
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
+					getActivity(), ac.getImageUrl(), ac.getUserId());
+			TextView profile_name=(TextView)getActivity().findViewById(R.id.profile_name);
+			profile_name.setText(ac.getProfileName());
+		}
+		
+
 	}
 
 	// We could define item click actions here, but instead we want our builder
@@ -59,4 +110,5 @@ public class SlidingMenuListFragment extends ListFragment {
 	public void setMenuBuilder(SlidingMenuBuilderBase slidingMenuBuilderBase) {
 		this.slidingMenuBuilderBase = slidingMenuBuilderBase;
 	}
+
 }

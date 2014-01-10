@@ -56,11 +56,9 @@ public class SlidingMenuListAdapter extends ArrayAdapter<SlidingMenuListItem> {
 
 		slidingMenuItemName.setText(slidingMenuListItem.Name);
 
-		int imageResource = context.getResources().getIdentifier(
-				slidingMenuListItem.IconResourceId, null,
-				context.getPackageName());
+		
 
-		slidingMenuItemIcon.setImageResource(imageResource);
+		slidingMenuItemIcon.setImageDrawable(slidingMenuListItem.IconResourceId);
 
 		return row;
 	}

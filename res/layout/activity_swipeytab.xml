@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipeytabs="http://schemas.android.com/apk/res/com.audamob.doit"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+ 
+
+    <com.audamob.doit.activity.SwipeyTabs
+        android:id="@+id/swipeytabs"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="#ffffff"
+        swipeytabs:bottomBarColor="#090A0A"
+       
+        swipeytabs:tabIndicatorHeight="1dip" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+          
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dip" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
