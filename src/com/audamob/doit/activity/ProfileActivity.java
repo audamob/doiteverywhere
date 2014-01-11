@@ -95,5 +95,13 @@ public class ProfileActivity extends ActivityBase {
 
 		return true;
 	}
-
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		
+			
+			  finish();
+		  overridePendingTransition(R.anim.push_down_out_back,R.anim.push_down_in_back);
+	
+	}
 }

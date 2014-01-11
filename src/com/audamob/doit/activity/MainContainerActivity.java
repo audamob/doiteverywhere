@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.audamob.doit.*;
+import com.audamob.doit.UiComponent.SwipeyTabs;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderConcrete;
 import com.audamob.doit.adapter.SwipeyTabsAdapter;
@@ -81,7 +82,7 @@ public class MainContainerActivity extends ActivityBase {
 		TITLES[2] = getResources().getString(R.string.In_Progress_text);
 		TITLES[3] = getResources().getString(R.string.Done_text);
 
-		setContentView(R.layout.activity_swipeytab);
+		setContentView(R.layout.swipeytab_layout);
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
 				R.color.withe)));
@@ -138,7 +139,7 @@ public class MainContainerActivity extends ActivityBase {
 
 		public TextView getTab(final int position, SwipeyTabs root) {
 			TextView view = (TextView) LayoutInflater.from(mContext).inflate(
-					R.layout.swipey_tab_indicator, root, false);
+					R.layout.swipeytab_indicator, root, false);
 			view.setText(TITLES[position]);
 			view.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {

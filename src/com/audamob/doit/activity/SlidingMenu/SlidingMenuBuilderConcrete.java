@@ -32,6 +32,8 @@ public class SlidingMenuBuilderConcrete extends SlidingMenuBuilderBase {
 			menu.toggle();
 			Intent intentProfile=new Intent(activity, ProfileActivity.class);
 			activity.startActivity(intentProfile);
+			activity.overridePendingTransition(
+					R.anim.push_down_in, R.anim.push_down_out);
 			break;
 
 		default:

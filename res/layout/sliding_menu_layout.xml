@@ -44,8 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/MenuHeaderLayout"
-        android:divider="#000000"
+        android:divider="@color/greeclair"
         android:dividerHeight="1dip"
+        android:scrollbars="none"
         />
+ 
 
 </RelativeLayout>

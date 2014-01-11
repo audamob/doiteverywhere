@@ -79,7 +79,7 @@ public class SwipeyTabFragment_1 extends Fragment {
     	@Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-                ViewGroup root = (ViewGroup) inflater.inflate(R.layout.bio, null);
+                ViewGroup root = (ViewGroup) inflater.inflate(R.layout.test_layout, null);
                 final String title = getArguments().getString("title");
                 
                 

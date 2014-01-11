@@ -17,8 +17,13 @@
     <string name="Done_text">Done</string>
     <string name="Profile_text">Profile</string>
     <string name="Settings_text">Settings</string>
-    <string name="Home_text">Home</string>
+    <string name="Stream_text">Stream</string>
     <string name="Profile_title">My Profile</string>
+      <string name="Interested_text">Interested</string>
+       <string name="Explore_text">Explore</string>
+    
+      <string name="Following_text">Following</string>
+    
     
     
     <string name="change_locale">Change Locale</string>

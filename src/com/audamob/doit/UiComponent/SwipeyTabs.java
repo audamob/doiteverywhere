@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.UiComponent;
 
 
 import com.audamob.doit.R;
