@@ -60,7 +60,7 @@ public class AuthenticationActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.authentfication_activity_layout);
 
-	/*	Intent intent = new Intent(AuthenticationActivity.this,
+		/*Intent intent = new Intent(AuthenticationActivity.this,
 				MainContainerActivity.class);
 		startActivity(intent);
 		this.finish();*/

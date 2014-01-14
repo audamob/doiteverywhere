@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.activity.MainContainerActivity;
 import com.audamob.doit.activity.ProfileActivity;
-import com.audamob.doit.activity.StreamFragment;
+import com.audamob.doit.activity.StreamFragmentActivity;
 import com.audamob.doit.model.Account;
 import com.audamob.doit.model.SlidingMenuListItem;
 import com.audamob.doit.utils.CacheReadWriteUtil;
@@ -133,33 +133,37 @@ public class SlidingMenuListFragment extends ListFragment implements
 			ActifSelector(R.id.selector_1);
 			MainContainerActivity.ChangeCurrentFragment(1);
 
-			//menu.toggle();
+			menu.toggle();
 			return;
 
 		case R.id.ItemMenu_2:
 			UpdateUiSelecor();
 			ActifSelector(R.id.selector_2);
 			MainContainerActivity.ChangeCurrentFragment(2);
+			menu.toggle();
 			break;
 		case R.id.ItemMenu_3:
 			UpdateUiSelecor();
 			ActifSelector(R.id.selector_3);
-			//menu.toggle();
-			MainContainerActivity.ChangeCurrentFragment(2);
+
+			MainContainerActivity.ChangeCurrentFragment(3);
+			menu.toggle();
 			return;
 
 		case R.id.ItemMenu_4:
 			UpdateUiSelecor();
 			ActifSelector(R.id.selector_4);
-			//menu.toggle();
-			MainContainerActivity.ChangeCurrentFragment(2);
+
+			MainContainerActivity.ChangeCurrentFragment(4);
+			menu.toggle();
 			return;
 
 		case R.id.ItemMenu_5:
 			UpdateUiSelecor();
 			ActifSelector(R.id.selector_5);
-			//menu.toggle();
-			MainContainerActivity.ChangeCurrentFragment(2);
+
+			MainContainerActivity.ChangeCurrentFragment(5);
+			menu.toggle();
 			return;
 		default:
 			break;

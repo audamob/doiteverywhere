@@ -51,7 +51,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import android.util.*;
 
-public class StreamFragment extends Fragment {
+public class StreamFragmentActivity extends Fragment {
 
 	EditText SearchEdit, SearchEditAlbum;
 
@@ -61,7 +61,7 @@ public class StreamFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.test_layout_1,
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.stream_fragment_layout,
 				null);
 		final String title = getArguments().getString("title");
 

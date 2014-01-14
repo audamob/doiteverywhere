@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 import com.audamob.doit.R;
 import com.audamob.doit.UiComponent.SwipeyTabs;
-import com.audamob.doit.activity.StreamFragment;
+import com.audamob.doit.activity.SettingsFragmentActivity;
+import com.audamob.doit.activity.StreamFragmentActivity;
 import com.audamob.doit.activity.SwipeyTabFragmentActivity;
 
 public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
@@ -63,9 +64,10 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 		switch (NameFragmentCalss) {
 		case 1:
 			return new SwipeyTabFragmentActivity();
-
+		case 5:
+			return new SettingsFragmentActivity();
 		default:
-			return new StreamFragment();
+			return new StreamFragmentActivity();
 
 		}
 	}

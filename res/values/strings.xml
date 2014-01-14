@@ -22,8 +22,10 @@
     <string name="Interested_text">Interested</string>
     <string name="Explore_text">Explore</string>
     <string name="Following_text">Following</string>
-     <string name="Followers_number"> followers</string>
-    
+    <string name="Followers_number"> followers</string>
+    <string name="Suggestion_Text"> Suggestions</string>
+    <string name="Categorie_Text"> Categories</string>
+
     <!--  -->
     <string name="change_locale">Change Locale</string>
     <string name="list_moments_title">Touch a moment to delete</string>

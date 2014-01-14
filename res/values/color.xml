@@ -5,6 +5,8 @@
 	<color name="greeclair">#f5f5f5</color>
 	<color name="dark">#000000</color>
 	<color name="gree">#828282</color>
+	<color name="gree_bg">#F0F0F0</color>
+	
 	
 	<color name="orange">#F22F0F</color>
 	<color name="opacity_blanc">#0fffffff</color>
