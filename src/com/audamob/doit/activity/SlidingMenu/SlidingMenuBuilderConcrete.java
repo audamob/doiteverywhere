@@ -1,12 +1,12 @@
 package com.audamob.doit.activity.SlidingMenu;
 
-import com.audamob.doit.*;
+import android.content.Intent;
+import android.view.View;
+import android.widget.ListView;
+
+import com.audamob.doit.R;
 import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.SlidingMenuListItem;
-
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
@@ -23,6 +23,7 @@ public class SlidingMenuBuilderConcrete extends SlidingMenuBuilderBase {
 	// default ones.
 	@Override
 	public void onListItemClick(SlidingMenuListItem selectedSlidingMenuListItem) {
+		
 		switch (selectedSlidingMenuListItem.Id) {
 		case 0:
 			menu.toggle();
@@ -30,16 +31,15 @@ public class SlidingMenuBuilderConcrete extends SlidingMenuBuilderBase {
 
 		case 2:
 			menu.toggle();
-			Intent intentProfile=new Intent(activity, ProfileActivity.class);
+			Intent intentProfile = new Intent(activity, ProfileActivity.class);
 			activity.startActivity(intentProfile);
-			activity.overridePendingTransition(
-					R.anim.push_down_in, R.anim.push_down_out);
+			activity.overridePendingTransition(R.anim.push_down_in,
+					R.anim.push_down_out);
 			break;
 
 		default:
 			break;
 		}
-
-		Log.d("SelectedItem", "-- : " + selectedSlidingMenuListItem.Id);
 	}
+
 }

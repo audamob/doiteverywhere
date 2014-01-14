@@ -11,7 +11,7 @@
     <string name="loading_text">Initialisation...</string>
     <string name="connection_text">Connection...</string>
     <string name="View_Profile_text">View Profile</string>
-     <string name="Nearby_text">Nearby</string>
+    <string name="Nearby_text">Nearby</string>
     <string name="To_Do_text">To do</string>
     <string name="In_Progress_text">In progress</string>
     <string name="Done_text">Done</string>
@@ -19,13 +19,12 @@
     <string name="Settings_text">Settings</string>
     <string name="Stream_text">Stream</string>
     <string name="Profile_title">My Profile</string>
-      <string name="Interested_text">Interested</string>
-       <string name="Explore_text">Explore</string>
+    <string name="Interested_text">Interested</string>
+    <string name="Explore_text">Explore</string>
+    <string name="Following_text">Following</string>
+     <string name="Followers_number"> followers</string>
     
-      <string name="Following_text">Following</string>
-    
-    
-    
+    <!--  -->
     <string name="change_locale">Change Locale</string>
     <string name="list_moments_title">Touch a moment to delete</string>
     <string name="send_interactive_button_name">Send Interactive Post</string>
@@ -60,8 +59,6 @@
     <string name="empty_string"></string>
     <string name="first_title">Sliding menu from XML</string>
     <string name="second_title">Do It Everywhere</string>
-    
-    
     <string name="contact_email">andrius.baruckis@gmail.com</string>
     <string name="contact_email_subject">Sliding Menu Implementation Example feedback</string>
     <string name="source_code_repository_link">https://github.com/baruckis/Android-SlidingMenuImplementation</string>

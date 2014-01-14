@@ -1,11 +1,16 @@
 package com.audamob.doit.activity.SlidingMenu;
 
 import android.app.Activity;
-import android.widget.Toast;
-import com.audamob.doit.*;
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+
+import com.audamob.doit.R;
+import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.SlidingMenuListItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
@@ -43,7 +48,7 @@ public abstract class SlidingMenuBuilderBase {
 		menu.attachToActivity(activity, SlidingMenu.SLIDING_WINDOW);
 		menu.setMenu(R.layout.sliding_menu_frame);
 
-		SlidingMenuListFragment slidingMenuListFragment = new SlidingMenuListFragment();
+		SlidingMenuListFragment slidingMenuListFragment = new SlidingMenuListFragment(menu);
 		slidingMenuListFragment.setMenuBuilder(this);
 
 		// We replace a FrameLayout, which is a content of sliding menu, with
@@ -51,6 +56,8 @@ public abstract class SlidingMenuBuilderBase {
 		activity.getFragmentManager().beginTransaction()
 				.replace(R.id.sliding_menu_frame, slidingMenuListFragment)
 				.commit();
+		
+		
 	}
 
 	public SlidingMenu getSlidingMenu() {
@@ -60,7 +67,8 @@ public abstract class SlidingMenuBuilderBase {
 	// It is our base builder which can be extended, so we can define default
 	// actions, which will be called when we press on separate list items.
 	public void onListItemClick(SlidingMenuListItem selectedSlidingMenuListItem) {
-	
+
 	}
+
 
 }

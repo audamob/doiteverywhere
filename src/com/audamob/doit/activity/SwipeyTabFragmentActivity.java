@@ -1,11 +1,6 @@
 package com.audamob.doit.activity;
 
-
 import java.io.FileInputStream;
-
-
-
-
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +15,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.audamob.doit.R;
-
+import com.audamob.doit.model.Account;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.R.string;
 import android.content.Context;
@@ -53,42 +49,32 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-
-
 import android.util.*;
-public class SwipeyTabFragment_3 extends Fragment {
-	
-	EditText SearchEdit,SearchEditAlbum;
-	
-	
-	
-	    public static Fragment newInstance(String title) {
-                SwipeyTabFragment_3 f = new SwipeyTabFragment_3();
-                Bundle args = new Bundle();
-                args.putString("title", title);
-                f.setArguments(args);
-                
-                return f;
-        }
-	    
-       
-        ListView ListVideo;
-        
-    	@Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-                ViewGroup root = (ViewGroup) inflater.inflate(R.layout.test_layout, null);
-                final String title = getArguments().getString("title");
-               
-            	return root;
-           
-        	
-        }
-    	 
-    	
-    	  
-   	 
-       
+public class SwipeyTabFragmentActivity extends Fragment {
 
-           	
+	EditText SearchEdit, SearchEditAlbum;
+
+	ListView ListVideo;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.test_layout,
+				null);
+		final String title = getArguments().getString("title");
+
+		return root;
+
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
+
+	
+
 }

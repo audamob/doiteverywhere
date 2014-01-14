@@ -1,46 +1,29 @@
 package com.audamob.doit.activity.SlidingMenu;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.audamob.doit.*;
-import com.audamob.doit.adapter.SlidingMenuListAdapter;
+import com.audamob.doit.R;
+import com.audamob.doit.activity.MainContainerActivity;
+import com.audamob.doit.activity.ProfileActivity;
+import com.audamob.doit.activity.StreamFragment;
 import com.audamob.doit.model.Account;
 import com.audamob.doit.model.SlidingMenuListItem;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
-import com.audamob.doit.utils.ProfileDataUtil;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com
@@ -48,30 +31,41 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
  *         List fragment, which will be used as a content for sliding out menu.
  * 
  */
-public class SlidingMenuListFragment extends ListFragment {
+public class SlidingMenuListFragment extends ListFragment implements
+		OnClickListener {
 	protected List<SlidingMenuListItem> slidingMenuList;
 	private SlidingMenuBuilderBase slidingMenuBuilderBase;
+	SlidingMenu menu;
+
+	public SlidingMenuListFragment(SlidingMenu menu) {
+		// TODO Auto-generated constructor stub
+		this.menu = menu;
+	}
+
+	public void setMenuBuilder(SlidingMenuBuilderBase slidingMenuBuilderBase) {
+		this.slidingMenuBuilderBase = slidingMenuBuilderBase;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// We set here a custom layout which uses holo light theme colors.
-		return inflater.inflate(R.layout.sliding_menu_layout, null);
+		View SlidingMenuLayout = inflater.inflate(R.layout.sliding_menu_layout,
+				null);
+
+		return SlidingMenuLayout;
+
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		// We get a list from our specially created list data class.
-		slidingMenuList = SlidingMenuList.getSlidingMenu(getActivity());
-		if (slidingMenuList == null)
-			return;
+		UI_LoadProfileView();
+		UI_CreateMenuListView();
 
-		// We pass our taken list to the adapter.
-		SlidingMenuListAdapter adapter = new SlidingMenuListAdapter(
-				getActivity(), R.layout.menu_item, slidingMenuList);
-		setListAdapter(adapter);
+	}
 
+	public void UI_LoadProfileView() {
 		ImageView im = (ImageView) getActivity().findViewById(
 				R.id.profile_image);
 
@@ -88,27 +82,107 @@ public class SlidingMenuListFragment extends ListFragment {
 		if (ac != null) {
 			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
 					getActivity(), ac.getImageUrl(), ac.getUserId());
-			TextView profile_name=(TextView)getActivity().findViewById(R.id.profile_name);
+			TextView profile_name = (TextView) getActivity().findViewById(
+					R.id.profile_name);
 			profile_name.setText(ac.getProfileName());
 		}
-		
+
+		TextView MenuHeaderLayout = (TextView) getActivity().findViewById(
+				R.id.profile_view);
+		MenuHeaderLayout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentProfile = new Intent(getActivity(),
+						ProfileActivity.class);
+				getActivity().startActivity(intentProfile);
+				getActivity().overridePendingTransition(R.anim.push_down_in,
+						R.anim.push_down_out);
+			}
+		});
 
 	}
 
-	// We could define item click actions here, but instead we want our builder
-	// to be responsible for that.
+	public void UI_CreateMenuListView() {
+		RelativeLayout ItemMenu_1, ItemMenu_2, ItemMenu_3, ItemMenu_4, ItemMenu_5;
+		ItemMenu_1 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_1);
+		ItemMenu_2 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_2);
+		ItemMenu_3 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_3);
+		ItemMenu_4 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_4);
+		ItemMenu_5 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_5);
+		ItemMenu_1.setOnClickListener(this);
+		ItemMenu_2.setOnClickListener(this);
+		ItemMenu_3.setOnClickListener(this);
+		ItemMenu_4.setOnClickListener(this);
+		ItemMenu_5.setOnClickListener(this);
+
+	}
+
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		l.setSelection(position);
-		SlidingMenuListItem item = slidingMenuList.get(position);
-		slidingMenuBuilderBase.onListItemClick(item);
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.ItemMenu_1:
+			UpdateUiSelecor();
+			ActifSelector(R.id.selector_1);
+			MainContainerActivity.ChangeCurrentFragment(1);
+
+			//menu.toggle();
+			return;
+
+		case R.id.ItemMenu_2:
+			UpdateUiSelecor();
+			ActifSelector(R.id.selector_2);
+			MainContainerActivity.ChangeCurrentFragment(2);
+			break;
+		case R.id.ItemMenu_3:
+			UpdateUiSelecor();
+			ActifSelector(R.id.selector_3);
+			//menu.toggle();
+			MainContainerActivity.ChangeCurrentFragment(2);
+			return;
+
+		case R.id.ItemMenu_4:
+			UpdateUiSelecor();
+			ActifSelector(R.id.selector_4);
+			//menu.toggle();
+			MainContainerActivity.ChangeCurrentFragment(2);
+			return;
+
+		case R.id.ItemMenu_5:
+			UpdateUiSelecor();
+			ActifSelector(R.id.selector_5);
+			//menu.toggle();
+			MainContainerActivity.ChangeCurrentFragment(2);
+			return;
+		default:
+			break;
+		}
 	}
 
-	// We can not provide a builder as an argument inside a fragment
-	// constructor, so that is why we have separate method for that.
-	public void setMenuBuilder(SlidingMenuBuilderBase slidingMenuBuilderBase) {
-		this.slidingMenuBuilderBase = slidingMenuBuilderBase;
+	public void ActifSelector(int Rid) {
+		getActivity().findViewById(Rid).setVisibility(View.VISIBLE);
+	}
+
+	public void UpdateUiSelecor() {
+		RelativeLayout s1, s2, s3, s4, s5;
+		s1 = (RelativeLayout) getActivity().findViewById(R.id.selector_1);
+		s2 = (RelativeLayout) getActivity().findViewById(R.id.selector_2);
+		s3 = (RelativeLayout) getActivity().findViewById(R.id.selector_3);
+		s4 = (RelativeLayout) getActivity().findViewById(R.id.selector_4);
+		s5 = (RelativeLayout) getActivity().findViewById(R.id.selector_5);
+
+		s1.setVisibility(View.INVISIBLE);
+		s2.setVisibility(View.INVISIBLE);
+		s3.setVisibility(View.INVISIBLE);
+		s4.setVisibility(View.INVISIBLE);
+		s5.setVisibility(View.INVISIBLE);
 	}
 
 }

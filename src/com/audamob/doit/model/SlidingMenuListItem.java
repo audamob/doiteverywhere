@@ -10,6 +10,7 @@ public class SlidingMenuListItem {
 	public int Id;
 	public String Name;
 	public Drawable IconResourceId;
+	
 
 	public SlidingMenuListItem() {
 	}
@@ -18,5 +19,6 @@ public class SlidingMenuListItem {
 		this.Id = id;
 		this.Name = name;
 		this.IconResourceId = iconResourceId;
+		
 	}
 }

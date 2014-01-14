@@ -85,7 +85,7 @@
             app:marker_visible="false"
             app:progress="0.0"
             app:progress_background_color="#cccccc"
-            app:progress_color="@android:color/holo_orange_dark"
+            app:progress_color="@color/orange"
             app:stroke_width="8dp"
             app:thumb_visible="false" />
 

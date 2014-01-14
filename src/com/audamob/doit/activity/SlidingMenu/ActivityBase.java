@@ -1,5 +1,7 @@
 package com.audamob.doit.activity.SlidingMenu;
 
+import com.audamob.doit.R;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
@@ -51,7 +53,13 @@ public class ActivityBase extends FragmentActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
+@Override
+public void onBackPressed() {
+	// TODO Auto-generated method stub
+	this.finish();
+	overridePendingTransition(R.anim.push_down_out_back,
+			R.anim.push_down_in_back);
+}
 	// We need to override default behavior of a device back button press if we
 	// want to toggle sliding menu.
 	@Override
@@ -72,6 +80,7 @@ public class ActivityBase extends FragmentActivity {
 				&& slidingMenuBuilderBase.getSlidingMenu().isMenuShowing()) {
 			slidingMenuBuilderBase.getSlidingMenu().toggle();
 		} else {
+			
 			this.onBackPressed();
 		}
 	}

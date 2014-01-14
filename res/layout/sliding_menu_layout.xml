@@ -2,52 +2,317 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#090A0A" >
+    android:background="@color/greefonce" >
 
-    <RelativeLayout
-        android:id="@+id/MenuHeaderLayout"
+    <ScrollView
+        android:id="@+id/CustomList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" >
+        android:scrollbars="none" >
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-           
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/profile_name"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_image"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
-            android:textSize="14dp" />
+            android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/profile_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_name"
-            android:layout_centerHorizontal="true"
-            android:text="@string/View_Profile_text"
-            android:textColor="#444444"
-            android:textSize="12dp" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/MenuHeaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#ffffff"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/profile_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/text_bg_selector"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="13dp"
+                    android:paddingTop="2dp"
+                    android:text="@string/View_Profile_text"
+                    android:textColor="@color/greeclair"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/followersNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_view"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/Followers_number"
+                    android:textColor="@color/greeclair"
+                    android:textSize="12dp" 
+                     android:layout_marginTop="10dp"/>
+
+                <ImageView
+                    android:id="@+id/followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_view"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/followersNumber"
+                    android:src="@drawable/ic_followers" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_1"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/MenuHeaderLayout"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_stream" />
+
+                <TextView
+                    android:id="@+id/row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/selector_1"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Stream_text"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:id="@+id/selector_1"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/orange"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/divider_bg"
+                   android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"  >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/ItemMenu_1"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_nearby" />
+
+                <TextView
+                    android:id="@+id/row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/selector_2"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Nearby_text"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:id="@+id/selector_2"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/orange"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/divider_bg"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"  >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_3"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/ItemMenu_2"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_stream" />
+
+                <TextView
+                    android:id="@+id/row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/selector_3"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Interested_text"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:id="@+id/selector_3"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/orange"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/divider_bg"
+                     android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"  >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_4"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/ItemMenu_3"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_stream" />
+
+                <TextView
+                    android:id="@+id/row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/selector_4"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Explore_text"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:id="@+id/selector_4"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/orange"
+                    android:visibility="visible" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/divider_bg"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"  >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_5"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/ItemMenu_4"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_settings" />
+
+                <TextView
+                    android:id="@+id/row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/selector_5"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Settings_text"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <RelativeLayout
+                    android:id="@+id/selector_5"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/orange"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/divider_bg"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp" >
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/MenuHeaderLayout"
-        android:divider="@color/greeclair"
+        android:layout_height="1dp"
+        android:layout_below="@+id/CustomList"
+        android:divider="@drawable/divider_bg"
         android:dividerHeight="1dip"
-        android:scrollbars="none"
-        />
- 
+        android:scrollbars="none" />
 
 </RelativeLayout>
