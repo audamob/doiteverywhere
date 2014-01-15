@@ -1,11 +1,6 @@
 package com.audamob.doit.activity;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -19,15 +14,12 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-
 import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
@@ -35,7 +27,6 @@ import com.audamob.doit.third.googleplus.MomentUtil;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.plus.PlusClient;
 
 import de.passsy.holocircularprogressbar.HoloCircularProgressBar;

@@ -1,10 +1,12 @@
 package com.audamob.doit.third;
 
+import com.audamob.doit.model.Account;
+
 public interface AbstractConnectManager {
 
 	void login();
 
-	void getProfileInformation();
+	Account getProfileInformation();
 
 	void postToWall();
 

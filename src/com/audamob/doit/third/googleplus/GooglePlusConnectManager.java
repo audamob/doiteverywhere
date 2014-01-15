@@ -1,26 +1,9 @@
 package com.audamob.doit.third.googleplus;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
-import com.facebook.android.AsyncFacebookRunner;
-import com.facebook.android.AsyncFacebookRunner.RequestListener;
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.Facebook.DialogListener;
-import com.facebook.android.FacebookError;
 
 public class GooglePlusConnectManager extends Activity implements
 		AbstractConnectManager {
@@ -32,7 +15,8 @@ public class GooglePlusConnectManager extends Activity implements
 	}
 
 	@Override
-	public void getProfileInformation() {
+	public Account getProfileInformation() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

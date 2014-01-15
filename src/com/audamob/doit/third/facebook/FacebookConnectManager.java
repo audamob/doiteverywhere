@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
@@ -25,17 +26,18 @@ import com.facebook.android.FacebookError;
 public class FacebookConnectManager extends Activity implements
 		AbstractConnectManager {
 
-	// Your Facebook APP ID
-	private static String APP_ID = "308180782571605"; // Replace with your App
-														// ID
+	// Your Facebook APP "Do It EveryWhere" ID
+	private static String APP_ID = "409143109220371";
 
 	// Instance of Facebook Class
-	private Facebook facebook = new Facebook(APP_ID);
+
 	private AsyncFacebookRunner mAsyncRunner;
 	String FILENAME = "AndroidSSO_data";
+	private Facebook facebook;
 	private SharedPreferences mPrefs;
 
 	public FacebookConnectManager() {
+		facebook = new Facebook(APP_ID);
 		mAsyncRunner = new AsyncFacebookRunner(facebook);
 	}
 
@@ -51,17 +53,6 @@ public class FacebookConnectManager extends Activity implements
 
 		if (access_token != null) {
 			facebook.setAccessToken(access_token);
-
-			// btnFbLogin.setVisibility(View.INVISIBLE);
-			//
-			// // Making get profile button visible
-			// btnFbGetProfile.setVisibility(View.VISIBLE);
-			//
-			// // Making post to wall visible
-			// btnPostToWall.setVisibility(View.VISIBLE);
-			//
-			// // Making show access tokens button visible
-			// btnShowAccessTokens.setVisibility(View.VISIBLE);
 
 			Log.d("FB Sessions", "" + facebook.isSessionValid());
 		}
@@ -90,18 +81,6 @@ public class FacebookConnectManager extends Activity implements
 							editor.putLong("access_expires",
 									facebook.getAccessExpires());
 							editor.commit();
-							//
-							// // Making Login button invisible
-							// btnFbLogin.setVisibility(View.INVISIBLE);
-							//
-							// // Making logout Button visible
-							// btnFbGetProfile.setVisibility(View.VISIBLE);
-							//
-							// // Making post to wall visible
-							// btnPostToWall.setVisibility(View.VISIBLE);
-							//
-							// // Making show access tokens button visible
-							// btnShowAccessTokens.setVisibility(View.VISIBLE);
 						}
 
 						@Override
@@ -130,7 +109,8 @@ public class FacebookConnectManager extends Activity implements
 	 * Get Profile information by making request to Facebook Graph API
 	 * */
 	@Override
-	public void getProfileInformation() {
+	public Account getProfileInformation() {
+		final Account account = new Account();
 		mAsyncRunner.request("me", new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {
@@ -142,6 +122,7 @@ public class FacebookConnectManager extends Activity implements
 
 					// getting name of the user
 					final String name = profile.getString("name");
+					account.setDisplayName(name);
 
 					// getting email of the user
 					final String email = profile.getString("email");
@@ -180,6 +161,7 @@ public class FacebookConnectManager extends Activity implements
 			public void onFacebookError(FacebookError e, Object state) {
 			}
 		});
+		return null;
 	}
 
 	/**
