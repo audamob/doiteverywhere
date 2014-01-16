@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.audamob.doit.activity.MainContainerActivity;
 import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
 import com.facebook.android.DialogError;
@@ -26,19 +28,26 @@ import com.facebook.android.FacebookError;
 public class FacebookConnectManager extends Activity implements
 		AbstractConnectManager {
 
-	// Your Facebook APP "Do It EveryWhere" ID
-	private static String APP_ID = "409143109220371";
 
 	// Instance of Facebook Class
-
 	private AsyncFacebookRunner mAsyncRunner;
 	String FILENAME = "AndroidSSO_data";
 	private Facebook facebook;
 	private SharedPreferences mPrefs;
+	private SharedPreferences.Editor editor;
+	private Activity mainActivity;
+	private Activity starterActivity;
 
-	public FacebookConnectManager() {
-		facebook = new Facebook(APP_ID);
+	/**
+	 * Constructor of FacebookConnectManager
+	 * @param mPrefsFromAuthentificationActivity
+	 * @param mainActivity_activity
+	 */
+	public FacebookConnectManager(SharedPreferences mPrefsFromAuthentificationActivity, Activity mainActivity_activity) {
+		facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
 		mAsyncRunner = new AsyncFacebookRunner(facebook);
+		this.mPrefs = mPrefsFromAuthentificationActivity;
+		this.mainActivity = mainActivity_activity;
 	}
 
 	/**
@@ -47,10 +56,11 @@ public class FacebookConnectManager extends Activity implements
 	@Override
 	public void login() {
 
-		mPrefs = getPreferences(MODE_PRIVATE);
-		String access_token = mPrefs.getString("access_token", null);
-		long expires = mPrefs.getLong("access_expires", 0);
-
+		String access_token = this.mPrefs.getString("access_token", null);
+		long expires = this.mPrefs.getLong("access_expires", 0);
+		editor = this.mPrefs.edit();
+		starterActivity = this.mainActivity;
+		
 		if (access_token != null) {
 			facebook.setAccessToken(access_token);
 
@@ -62,7 +72,7 @@ public class FacebookConnectManager extends Activity implements
 		}
 
 		if (!facebook.isSessionValid()) {
-			facebook.authorize(this,
+			facebook.authorize(this.mainActivity,
 					new String[] { "email", "publish_stream" },
 					new DialogListener() {
 
@@ -75,12 +85,21 @@ public class FacebookConnectManager extends Activity implements
 						public void onComplete(Bundle values) {
 							// Function to handle complete event
 							// Edit Preferences and update facebook acess_token
-							SharedPreferences.Editor editor = mPrefs.edit();
+							
 							editor.putString("access_token",
 									facebook.getAccessToken());
 							editor.putLong("access_expires",
 									facebook.getAccessExpires());
 							editor.commit();
+							
+							Log.d("finish - Complete","finish - Complete");
+							//Starting MainActivity
+							Intent intent = new Intent(starterActivity,
+									MainContainerActivity.class);
+							startActivity(intent);
+							
+							//Kill the Authentication Activity
+							starterActivity.finish();
 						}
 
 						@Override
@@ -170,7 +189,7 @@ public class FacebookConnectManager extends Activity implements
 	@Override
 	public void postToWall() {
 		// post on user's wall.
-		facebook.dialog(this, "feed", new DialogListener() {
+		facebook.dialog(this.mainActivity, "feed", new DialogListener() {
 
 			@Override
 			public void onFacebookError(FacebookError e) {
@@ -206,7 +225,7 @@ public class FacebookConnectManager extends Activity implements
 	 * */
 	@Override
 	public void logout() {
-		mAsyncRunner.logout(this, new RequestListener() {
+		mAsyncRunner.logout(this.mainActivity, new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {
 				Log.d("Logout from Facebook", response);
@@ -215,13 +234,8 @@ public class FacebookConnectManager extends Activity implements
 
 						@Override
 						public void run() {
-							// // make Login button visible
-							// btnFbLogin.setVisibility(View.VISIBLE);
-							//
-							// // making all remaining buttons invisible
-							// btnFbGetProfile.setVisibility(View.INVISIBLE);
-							// btnPostToWall.setVisibility(View.INVISIBLE);
-							// btnShowAccessTokens.setVisibility(View.INVISIBLE);
+							//Activities TODO when we Logout the user
+							// For Example : Redirection to the Starter Activity's Page
 						}
 
 					});

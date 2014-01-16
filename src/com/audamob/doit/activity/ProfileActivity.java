@@ -1,25 +1,13 @@
 package com.audamob.doit.activity;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import android.app.ActionBar;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.audamob.doit.R;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.adapter.GridActivtiesProfileAdapter;
-import com.audamob.doit.model.Account;
-import com.audamob.doit.model.DoItActivity;
-import com.audamob.doit.utils.CacheReadWriteUtil;
-import com.audamob.doit.utils.LayoutResizerUtil;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class ProfileActivity extends ActivityBase {
 

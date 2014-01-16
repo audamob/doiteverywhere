@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -37,6 +39,7 @@ public class AuthenticationActivity extends Activity implements
 
 	// Buttons
 	RelativeLayout btnFbLogin;
+	private SharedPreferences mPrefs;
 
 	AbstractConnectManager facebookAbstractConnectManager;
 	AbstractConnectManager googleAbstractConnectManager;
@@ -50,13 +53,11 @@ public class AuthenticationActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.authentfication_activity_layout);
-
-		/*Intent intent = new Intent(AuthenticationActivity.this,
-				MainContainerActivity.class);
-		startActivity(intent);
-		this.finish();*/
 		
+		//Get the preferences of this current AuthenticatioNActivity
+		mPrefs = getPreferences(MODE_PRIVATE);
 		MainActivity_activity = this;
+		
 		/**
 		 * Google +implementation
 		 */
@@ -79,14 +80,12 @@ public class AuthenticationActivity extends Activity implements
 		 * REQUEST_CODE_SIGN_IN); } catch (IntentSender.SendIntentException e) {
 		 * // Fetch a new result to start. mPlusClient.connect(); } } });
 		 */
-		/***
-		 * Google +implementation
-		 */
 
 		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
 
 		// Instanciate Facebook And Google Connect Manager
-		facebookAbstractConnectManager = new FacebookConnectManager();
+		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
+				MainActivity_activity);
 
 		/**
 		 * Login button Click event
@@ -100,9 +99,9 @@ public class AuthenticationActivity extends Activity implements
 			}
 		});
 
-		/**
-		 * Getting facebook Profile info
-		 * */
+		/***
+		 * Google +implementation
+		 */
 
 		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
 		mSignInButton.setOnClickListener(new OnClickListener() {
@@ -245,11 +244,11 @@ public class AuthenticationActivity extends Activity implements
 		}
 
 		if (Person_Account == null) {
-			Log.d("Account",""+mPlusClient.getCurrentPerson().toString());
+			Log.d("Account", "" + mPlusClient.getCurrentPerson().toString());
 			Person_Account = new Account(
 					mPlusClient.getCurrentPerson().getId(), mPlusClient
 							.getCurrentPerson().getDisplayName(),
-					"https://plus.google.com/s2/photos/profile/"
+					ApplicationConstants.GOOGLE_PROFILE_PICTURE_PATH
 							+ mPlusClient.getCurrentPerson().getId()
 							+ "?sz=200", mPlusClient.getCurrentPerson()
 							.getBirthday(), mPlusClient.getCurrentPerson()
