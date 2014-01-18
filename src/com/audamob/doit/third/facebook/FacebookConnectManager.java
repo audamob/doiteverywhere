@@ -35,8 +35,7 @@ public class FacebookConnectManager extends Activity implements
 	private Facebook facebook;
 	private SharedPreferences mPrefs;
 	private SharedPreferences.Editor editor;
-	private Activity mainActivity;
-	private Activity starterActivity;
+	public Activity mainActivity;
 
 	/**
 	 * Constructor of FacebookConnectManager
@@ -59,7 +58,6 @@ public class FacebookConnectManager extends Activity implements
 		String access_token = this.mPrefs.getString("access_token", null);
 		long expires = this.mPrefs.getLong("access_expires", 0);
 		editor = this.mPrefs.edit();
-		starterActivity = this.mainActivity;
 		
 		if (access_token != null) {
 			facebook.setAccessToken(access_token);
@@ -94,12 +92,12 @@ public class FacebookConnectManager extends Activity implements
 							
 							Log.d("finish - Complete","finish - Complete");
 							//Starting MainActivity
-							Intent intent = new Intent(starterActivity,
+							Intent intent = new Intent(mainActivity,
 									MainContainerActivity.class);
 							startActivity(intent);
 							
 							//Kill the Authentication Activity
-							starterActivity.finish();
+							mainActivity.finish();
 						}
 
 						@Override

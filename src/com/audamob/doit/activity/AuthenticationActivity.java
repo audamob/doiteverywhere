@@ -96,6 +96,15 @@ public class AuthenticationActivity extends Activity implements
 			public void onClick(View v) {
 				Log.d("Image Button", "button Clicked");
 				facebookAbstractConnectManager.login();
+				
+				//if connected 
+				Account account = facebookAbstractConnectManager.getProfileInformation();
+				try {
+					CacheReadWriteUtil.saveAccount(account, MainActivity_activity);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
