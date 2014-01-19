@@ -11,6 +11,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ListView;
+
+import com.audamob.doit.adapter.DoItActivitiesListAdapter;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.JSONParser;
@@ -54,8 +57,9 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 
 	private Context currentContext;
 	private String fileName = "activity.json";
-
-	public ActivityServiceManager(Context currentContext, String fileName) {
+    private ListView doListDoItActivities;
+	public ActivityServiceManager(Context currentContext, String fileName, ListView doListDoItActivities) {
+		this.doListDoItActivities=doListDoItActivities;
 		this.currentContext = currentContext;
 		activities = new ArrayList<DoItActivity>();
 		this.fileName = fileName;
@@ -143,5 +147,6 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String file_url) {
 		// dismiss the dialog after getting all products
 		pDialog.dismiss();
+		this.doListDoItActivities.setAdapter(new DoItActivitiesListAdapter(this.currentContext, getActivities()));
 	}
 }

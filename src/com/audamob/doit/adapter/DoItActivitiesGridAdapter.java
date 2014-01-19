@@ -18,12 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.audamob.doit.R;
 
-public class GridActivtiesProfileAdapter extends BaseAdapter {
+public class DoItActivitiesGridAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	Activity activity;
 	ArrayList<DoItActivity> ListDoItActivity;
 
-	public GridActivtiesProfileAdapter(Activity act,
+	public DoItActivitiesGridAdapter(Activity act,
 			ArrayList<DoItActivity> List) {
 		activity=act;
 		ListDoItActivity = new ArrayList<DoItActivity>();

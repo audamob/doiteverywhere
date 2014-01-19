@@ -15,10 +15,13 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.audamob.doit.R;
+import com.audamob.doit.adapter.DoItActivitiesListAdapter;
 import com.audamob.doit.model.User;
+import com.audamob.doit.service.ActivityService;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.R.string;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -53,10 +56,9 @@ import android.util.*;
 
 public class StreamFragmentActivity extends Fragment {
 
-	EditText SearchEdit, SearchEditAlbum;
 
-	ListView ListVideo;
-
+	ListView doListDoItActivities;
+	Activity doActivity;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -64,6 +66,13 @@ public class StreamFragmentActivity extends Fragment {
 		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.stream_fragment_layout,
 				null);
 		final String title = getArguments().getString("title");
+		
+		doActivity=getActivity();
+	     doListDoItActivities=(ListView)getActivity().findViewById(R.id.listdoitactivities);
+		new ActivityService(doActivity,doListDoItActivities);
+		
+	
+		
 
 		return root;
 
