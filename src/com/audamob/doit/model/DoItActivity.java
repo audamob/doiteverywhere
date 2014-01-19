@@ -17,14 +17,14 @@ public class DoItActivity implements Serializable {
 	private String doComments;
 	private String doStartDate;
 	private String doEndDate;
-	private String Location;
+	private String doLocation;
 	
-	public String getLocation() {
-		return Location;
+	public String getDoLocation() {
+		return doLocation;
 	}
 
-	public void setLocation(String location) {
-		Location = location;
+	public void setDoLocation(String location) {
+		doLocation = location;
 	}
 
 	public String getDoIdActivity() {

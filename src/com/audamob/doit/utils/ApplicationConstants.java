@@ -7,5 +7,9 @@ public class ApplicationConstants {
 
 	//Google Constants
 	public final static String GOOGLE_PROFILE_PICTURE_PATH = "https://plus.google.com/s2/photos/profile/";
+	
+	//Service API URLs
+	public static final String ACTIVITIES_JSON_URL = "http://audahub.fr/doiteverywhere/recess/index.php/doitAdmin/api/";
+
 
 }
