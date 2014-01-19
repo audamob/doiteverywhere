@@ -17,8 +17,16 @@ public class DoItActivity implements Serializable {
 	private String doComments;
 	private String doStartDate;
 	private String doEndDate;
+	private String Location;
 	
-	
+	public String getLocation() {
+		return Location;
+	}
+
+	public void setLocation(String location) {
+		Location = location;
+	}
+
 	public String getDoIdActivity() {
 		return doIdActivity;
 	}
