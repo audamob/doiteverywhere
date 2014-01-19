@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.model.DoItActivity;
+import com.audamob.doit.service.ActivityService;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -51,7 +52,7 @@ public class DoItActivityDetails extends ActivityBase {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				//ActivityService activityService=new 
 			}
 		});
 		
