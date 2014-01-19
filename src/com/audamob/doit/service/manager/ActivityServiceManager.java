@@ -3,14 +3,16 @@ package com.audamob.doit.service.manager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -59,9 +61,11 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 
 	private Activity currentContext;
 	private String fileName = "activity.json";
-    private ListView doListDoItActivities;
-	public ActivityServiceManager(Activity currentContext, String fileName, ListView doListDoItActivities) {
-		this.doListDoItActivities=doListDoItActivities;
+	private ListView doListDoItActivities;
+
+	public ActivityServiceManager(Activity currentContext, String fileName,
+			ListView doListDoItActivities) {
+		this.doListDoItActivities = doListDoItActivities;
 		this.currentContext = currentContext;
 		activities = new ArrayList<DoItActivity>();
 		this.fileName = fileName;
@@ -118,6 +122,38 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	}
 
 	/**
+	 * Add New Follower
+	 * 
+	 * @param args
+	 * @return
+	 */
+	public String addNewFollowToActivity(String... args) {
+		String idActivity = args[0];
+		String idFollowers = args[1];
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair(TAG_ID, idActivity));
+		params.add(new BasicNameValuePair(TAG_FOLLOWERS, idFollowers));
+		JSONParser parser = new JSONParser();
+		JSONObject json = parser.makeHttpRequest(
+				ApplicationConstants.ACTIVITIES_JSON_URL + idActivity, "PUT", params);
+
+		try {
+			Integer success = json.getInt("");
+			if (success == 1) {
+				// successfully updated
+				// send result code 100 to notify about activity update
+			} else {
+				// failed to update activity
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+
+	/**
 	 * Before starting background thread Show Progress Dialog
 	 * */
 	@Override
@@ -149,9 +185,10 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String file_url) {
 		// dismiss the dialog after getting all products
 		pDialog.dismiss();
-		Log.d("APIAPI","1 : "+this.currentContext);
-		Log.d("APIAPI","size: "+getActivities().size());
-		Log.d("APIAPI","s "+" "+this.doListDoItActivities);
-		this.doListDoItActivities.setAdapter(new DoItActivitiesListAdapter(this.currentContext, getActivities()));
+		Log.d("APIAPI", "1 : " + this.currentContext);
+		Log.d("APIAPI", "size: " + getActivities().size());
+		Log.d("APIAPI", "s " + " " + this.doListDoItActivities);
+		this.doListDoItActivities.setAdapter(new DoItActivitiesListAdapter(
+				this.currentContext, getActivities()));
 	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -16,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,6 +39,8 @@ public class JSONParser {
 	public JSONObject makeHttpRequest(String url, String method,
 			List<NameValuePair> params) {
 
+		HttpEntity httpEntity;
+
 		// Making HTTP request
 		try {
 
@@ -51,10 +55,29 @@ public class JSONParser {
 
 				HttpResponse httpResponse = httpClient.execute(httpPost);
 				if (httpResponse != null) {
-					HttpEntity httpEntity = httpResponse.getEntity();
+					httpEntity = httpResponse.getEntity();
 					is = httpEntity.getContent();
 				} else {
 					Log.e("JSON Parser", "httpResponse is null ");
+				}
+
+			} else if (method == "PUT") {
+				// request method is PUT
+				// defaultHttpClient
+				DefaultHttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPut = new HttpPost(url);
+				Log.e(" httpPut", httpPut.toString());
+				httpPut.setEntity(new UrlEncodedFormEntity(params));
+
+				HttpResponse httpResponse = httpClient.execute(httpPut);
+				int status = httpResponse.getStatusLine().getStatusCode();
+
+				if (status == HttpStatus.SC_OK) {
+					httpEntity = httpResponse.getEntity();
+					json = httpEntity != null ? EntityUtils.toString(
+							httpEntity, "iso-8859-1") : null;
+				} else {
+					Log.e("Server responded with error status ", "" + status);
 				}
 
 			} else if (method == "GET") {
@@ -66,7 +89,7 @@ public class JSONParser {
 
 				HttpResponse httpResponse = httpClient.execute(httpGet);
 				if (httpResponse != null) {
-					HttpEntity httpEntity = httpResponse.getEntity();
+					httpEntity = httpResponse.getEntity();
 					is = httpEntity.getContent();
 				} else {
 					Log.e("JSON Parser", "httpResponse is null ");
