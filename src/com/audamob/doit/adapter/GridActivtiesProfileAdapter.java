@@ -64,10 +64,10 @@ public class GridActivtiesProfileAdapter extends BaseAdapter {
 		holder.Name.setId(position);
 		Typeface TODO = Typeface.createFromAsset(activity.getAssets(), "DinDisplayProThin.otf");
 		holder.Name.setTypeface(TODO);
-		holder.Name.setText(ListDoItActivity.get(position).getName());
+		holder.Name.setText(ListDoItActivity.get(position).getDoDisplayName());
 		
 		ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(holder.ImageActivity,
-				activity, ListDoItActivity.get(position).getImageUrl());
+				activity, ListDoItActivity.get(position).getDoPicture());
 		
 		holder.id = position;
 
