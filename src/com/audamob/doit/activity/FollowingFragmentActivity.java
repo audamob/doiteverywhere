@@ -15,7 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.audamob.doit.R;
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.R.string;

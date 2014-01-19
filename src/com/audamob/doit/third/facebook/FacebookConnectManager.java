@@ -15,7 +15,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.audamob.doit.activity.MainContainerActivity;
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.utils.ApplicationConstants;
 import com.facebook.android.AsyncFacebookRunner;
@@ -126,8 +126,8 @@ public class FacebookConnectManager extends Activity implements
 	 * Get Profile information by making request to Facebook Graph API
 	 * */
 	@Override
-	public Account getProfileInformation() {
-		final Account account = new Account();
+	public User getProfileInformation() {
+		final User account = new User();
 		mAsyncRunner.request("me", new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {

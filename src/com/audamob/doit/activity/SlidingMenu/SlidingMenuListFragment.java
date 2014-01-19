@@ -19,7 +19,7 @@ import com.audamob.doit.R;
 import com.audamob.doit.activity.MainContainerActivity;
 import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.activity.StreamFragmentActivity;
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.audamob.doit.model.SlidingMenuListItem;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
@@ -69,7 +69,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 		ImageView im = (ImageView) getActivity().findViewById(
 				R.id.profile_image);
 
-		Account ac = null;
+		User ac = null;
 		try {
 			ac = CacheReadWriteUtil.restoreAccount(getActivity());
 		} catch (ClassNotFoundException e) {

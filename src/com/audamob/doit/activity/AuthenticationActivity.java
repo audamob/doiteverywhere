@@ -25,7 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
@@ -107,7 +107,7 @@ public class AuthenticationActivity extends Activity implements
 				facebookAbstractConnectManager.login();
 				
 				//if connected 
-				Account account = facebookAbstractConnectManager.getProfileInformation();
+				User account = facebookAbstractConnectManager.getProfileInformation();
 				try {
 					CacheReadWriteUtil.saveAccount(account, MainActivity_activity);
 				} catch (IOException e) {
@@ -257,7 +257,7 @@ public class AuthenticationActivity extends Activity implements
 	}
 
 	public void CreateAccountGoogle() {
-		Account Person_Account = null;
+		User Person_Account = null;
 		try {
 
 			Person_Account = CacheReadWriteUtil.restoreAccount(this);
@@ -302,7 +302,7 @@ public class AuthenticationActivity extends Activity implements
 					+ mPlusClient.getCurrentPerson().getId() + "?sz=200";
 			String mBirthday = mPlusClient.getCurrentPerson().getBirthday();
 
-			Person_Account = new Account(mId, mDisplayName, mageUrl, mBirthday,
+			Person_Account = new User(mId, mDisplayName, mageUrl, mBirthday,
 					Location, Organisation, Gender, Language);
 
 			try {

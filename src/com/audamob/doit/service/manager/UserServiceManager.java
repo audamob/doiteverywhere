@@ -2,7 +2,7 @@ package com.audamob.doit.service.manager;
 
 import java.util.List;
 
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 
 public class UserServiceManager {
 
@@ -12,7 +12,7 @@ public class UserServiceManager {
 	 * 
 	 * @param user
 	 */
-	public void addNewUser(Account user) {
+	public void addNewUser(User user) {
 
 	}
 
@@ -21,7 +21,7 @@ public class UserServiceManager {
 	 * 
 	 * @return Account
 	 */
-	public Account getUserInformation() {
+	public User getUserInformation() {
 		return null;
 
 	}
@@ -31,7 +31,7 @@ public class UserServiceManager {
 	 * 
 	 * @return List<Account>
 	 */
-	public List<Account> getAllUsers() {
+	public List<User> getAllUsers() {
 		return null;
 
 	}
@@ -41,7 +41,7 @@ public class UserServiceManager {
 	 * @param filter
 	 * @return List<Account>
 	 */
-	public List<Account> getUsersByCreteria(String filter) {
+	public List<User> getUsersByCreteria(String filter) {
 		return null;
 
 	}

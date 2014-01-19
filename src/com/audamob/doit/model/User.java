@@ -2,7 +2,7 @@ package com.audamob.doit.model;
 
 import java.io.Serializable;
 
-public class Account implements Serializable {
+public class User implements Serializable {
 
 	String mId;
 	String mDisplayName;
@@ -14,7 +14,7 @@ public class Account implements Serializable {
 	String Gender;
 	String Language;
 
-	public Account() {
+	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -70,7 +70,7 @@ public class Account implements Serializable {
 		Language = language;
 	}
 
-	public Account(String id, String displayname, String image,
+	public User(String id, String displayname, String image,
 			String birthday, String currentlocation, String postOrganisation,
 			String Gender, String Language) {
 		// TODO Auto-generated constructor stub

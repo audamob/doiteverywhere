@@ -16,7 +16,7 @@ import com.audamob.doit.R;
 import com.audamob.doit.UiComponent.SwipeyTabs;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 
@@ -34,7 +34,7 @@ public class ProfileActivity extends ActivityBase {
 
 		ImageView im = (ImageView) findViewById(R.id.profile_picture);
 
-		Account ac = null;
+		User ac = null;
 		try {
 			ac = CacheReadWriteUtil.restoreAccount(this);
 		} catch (ClassNotFoundException e) { // TODO Auto-generated catch block

@@ -2,7 +2,7 @@ package com.audamob.doit.third.googleplus;
 
 import android.app.Activity;
 
-import com.audamob.doit.model.Account;
+import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 
 public class GooglePlusConnectManager extends Activity implements
@@ -15,7 +15,7 @@ public class GooglePlusConnectManager extends Activity implements
 	}
 
 	@Override
-	public Account getProfileInformation() {
+	public User getProfileInformation() {
 		return null;
 		// TODO Auto-generated method stub
 		
