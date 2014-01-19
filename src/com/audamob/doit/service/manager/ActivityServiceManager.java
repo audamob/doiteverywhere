@@ -7,6 +7,8 @@ import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -25,7 +27,7 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	private ArrayList<DoItActivity> activities;
 
 	public ArrayList<DoItActivity> getActivities() {
-		return activities;
+		return this.activities;
 	}
 
 	public void setActivities(ArrayList<DoItActivity> activities) {
@@ -55,10 +57,10 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	private static final String TAG_START_DATE = "start_date";
 	private static final String TAG_END_DATE = "end_date";
 
-	private Context currentContext;
+	private Activity currentContext;
 	private String fileName = "activity.json";
     private ListView doListDoItActivities;
-	public ActivityServiceManager(Context currentContext, String fileName, ListView doListDoItActivities) {
+	public ActivityServiceManager(Activity currentContext, String fileName, ListView doListDoItActivities) {
 		this.doListDoItActivities=doListDoItActivities;
 		this.currentContext = currentContext;
 		activities = new ArrayList<DoItActivity>();
@@ -147,6 +149,9 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String file_url) {
 		// dismiss the dialog after getting all products
 		pDialog.dismiss();
+		Log.d("APIAPI","1 : "+this.currentContext);
+		Log.d("APIAPI","size: "+getActivities().size());
+		Log.d("APIAPI","s "+" "+this.doListDoItActivities);
 		this.doListDoItActivities.setAdapter(new DoItActivitiesListAdapter(this.currentContext, getActivities()));
 	}
 }
