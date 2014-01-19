@@ -4,58 +4,41 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	String mId;
+	String mDisplayName;
+	String mImageUrl;
+	String mBirthday;
+	String mCurrentLocation;
 
-	private String mId;
-	private String mDisplayName;
-	private String mImageUrl;
-	private String mBirthday;
-	private String mCurrentLocation;
-	private String mNickName;
+	String PosteOrganisation;
+	String Gender;
+	String Language;
 
-	/**
-	 * Default Constructor
-	 */
 	public Account() {
-
-	}
-
-	public Account(String id, String displayname, String image,
-			String birthday, String currentlocation, String nickname) {
 		// TODO Auto-generated constructor stub
-		this.mId = id;
-		this.mDisplayName = displayname;
-		this.mImageUrl = image;
-		this.mBirthday = birthday;
-		this.mCurrentLocation = currentlocation;
-		this.mNickName = nickname;
-
 	}
 
-	public String getId() {
+	public String getmId() {
 		return mId;
 	}
 
-	public void setId(String mId) {
+	public void setmId(String mId) {
 		this.mId = mId;
 	}
 
-	public String getDisplayName() {
+	public String getmDisplayName() {
 		return mDisplayName;
 	}
 
-	public void setDisplayName(String mDisplayName) {
+	public void setmDisplayName(String mDisplayName) {
 		this.mDisplayName = mDisplayName;
 	}
 
-	public String getImageUrl() {
+	public String getmImageUrl() {
 		return mImageUrl;
 	}
 
-	public void setImageUrl(String mImageUrl) {
+	public void setmImageUrl(String mImageUrl) {
 		this.mImageUrl = mImageUrl;
 	}
 
@@ -75,12 +58,64 @@ public class Account implements Serializable {
 		this.mCurrentLocation = mCurrentLocation;
 	}
 
-	public String getmNickName() {
-		return mNickName;
+	public void setPosteOrganisation(String posteOrganisation) {
+		PosteOrganisation = posteOrganisation;
 	}
 
-	public void setmNickName(String mNickName) {
-		this.mNickName = mNickName;
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+
+	public void setLanguage(String language) {
+		Language = language;
+	}
+
+	public Account(String id, String displayname, String image,
+			String birthday, String currentlocation, String postOrganisation,
+			String Gender, String Language) {
+		// TODO Auto-generated constructor stub
+		this.mId = id;
+		this.mDisplayName = displayname;
+		this.mImageUrl = image;
+		this.mBirthday = birthday;
+		this.mCurrentLocation = currentlocation;
+
+		this.PosteOrganisation = postOrganisation;
+		this.Gender = Gender;
+		this.Language = Language;
+
+	}
+
+	public String getLanguage() {
+		return this.Language;
+	}
+
+	public String getGender() {
+		return this.Gender;
+	}
+
+	public String getPosteOrganisation() {
+		return this.PosteOrganisation;
+	}
+
+	public String getUserId() {
+		return mId;
+	}
+
+	public String getProfileName() {
+		return mDisplayName;
+	}
+
+	public String getImageUrl() {
+		return mImageUrl;
+	}
+
+	public String getProfileBirthday() {
+		return mBirthday;
+	}
+
+	public String getProfileLocation() {
+		return mCurrentLocation;
 	}
 
 }

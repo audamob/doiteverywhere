@@ -139,7 +139,7 @@ public class FacebookConnectManager extends Activity implements
 
 					// getting name of the user
 					final String name = profile.getString("name");
-					account.setDisplayName(name);
+					account.setmDisplayName(name);
 
 					// getting email of the user
 					final String email = profile.getString("email");

@@ -2,8 +2,6 @@ package com.audamob.doit.model;
 
 import java.io.Serializable;
 
-import com.google.android.gms.plus.model.people.Person.Image;
-
 public class DoItActivity implements Serializable {
 
 	

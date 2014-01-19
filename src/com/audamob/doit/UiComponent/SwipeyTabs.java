@@ -1,24 +1,33 @@
 package com.audamob.doit.UiComponent;
 
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.text.TextUtils.TruncateAt;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.audamob.doit.R;
+import com.audamob.doit.R.drawable;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderBase;
 import com.audamob.doit.adapter.SwipeyTabsAdapter;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+import android.app.Activity;
+import android.content.Context;
+
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Build;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils.TruncateAt;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import android.widget.RelativeLayout;
 
 public class SwipeyTabs extends ViewGroup implements OnPageChangeListener {
 

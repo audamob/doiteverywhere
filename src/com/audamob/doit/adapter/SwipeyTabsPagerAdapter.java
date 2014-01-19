@@ -4,10 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 
 import com.audamob.doit.R;
 import com.audamob.doit.UiComponent.SwipeyTabs;
+import com.audamob.doit.activity.FollowingFragmentActivity;
 import com.audamob.doit.activity.SettingsFragmentActivity;
 import com.audamob.doit.activity.StreamFragmentActivity;
 import com.audamob.doit.activity.SwipeyTabFragmentActivity;
@@ -33,12 +32,12 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 		this.mContext = context;
 		this.mViewPager = mviewPager;
 		this.fragmentType = classFragment;
-		Log.d("ID_Tabs","Id : "+2);
+		
 	}
 
 	@Override
 	public Fragment getItem(int position) {
-		return CreateSwipeyTab(TabTitles[position], fragmentType);
+		return CreateSwipeyTab(TabTitles[position],position, fragmentType);
 
 	}
 
@@ -48,10 +47,10 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 	 * @param NameTab
 	 * @return
 	 */
-	public Fragment CreateSwipeyTab(String NameTab, int NameFragmentCalss) {
+	public Fragment CreateSwipeyTab(String NameTab,int position, int NameFragmentCalss) {
 
-		Fragment f = GetClassFragment(NameFragmentCalss);
-		Log.d("ID_Tabs","Id : "+4);
+		Fragment f = GetClassFragment(NameFragmentCalss,position);
+		
 		Bundle args = new Bundle();
 		args.putString("title", NameTab);
 		f.setArguments(args);
@@ -59,13 +58,20 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 
 	}
 
-	public Fragment GetClassFragment(int NameFragmentCalss) {
-		Log.d("ID_Tabs","Id : "+3);
+	public Fragment GetClassFragment(int NameFragmentCalss,int position) {
+		
 		switch (NameFragmentCalss) {
 		case 1:
 			return new SwipeyTabFragmentActivity();
 		case 5:
 			return new SettingsFragmentActivity();
+		case 6:
+			switch (position) {
+			case 0:
+				return new FollowingFragmentActivity();
+			default:
+				return new FollowingFragmentActivity();
+			}
 		default:
 			return new StreamFragmentActivity();
 

@@ -81,10 +81,10 @@ public class SlidingMenuListFragment extends ListFragment implements
 		}
 		if (ac != null) {
 			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
-					getActivity(), ac.getImageUrl(), ac.getId());
+					getActivity(), ac.getImageUrl(), ac.getUserId());
 			TextView profile_name = (TextView) getActivity().findViewById(
 					R.id.profile_name);
-			profile_name.setText(ac.getDisplayName());
+			profile_name.setText(ac.getProfileName());
 		}
 
 		TextView MenuHeaderLayout = (TextView) getActivity().findViewById(

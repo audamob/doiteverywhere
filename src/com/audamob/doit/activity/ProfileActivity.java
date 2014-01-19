@@ -1,13 +1,24 @@
 package com.audamob.doit.activity;
 
+import java.io.IOException;
+
 import android.app.ActionBar;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.audamob.doit.R;
+import com.audamob.doit.UiComponent.SwipeyTabs;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
+import com.audamob.doit.model.Account;
+import com.audamob.doit.utils.CacheReadWriteUtil;
+import com.audamob.doit.utils.ImageLoaderUtil;
 
 public class ProfileActivity extends ActivityBase {
 
@@ -22,31 +33,43 @@ public class ProfileActivity extends ActivityBase {
 				R.color.withe)));
 
 		ImageView im = (ImageView) findViewById(R.id.profile_picture);
+
+		Account ac = null;
+		try {
+			ac = CacheReadWriteUtil.restoreAccount(this);
+		} catch (ClassNotFoundException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) { // TODO Auto-generated
+			e.printStackTrace();
+		}
+
+		ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
+				this, ac.getImageUrl(), ac.getUserId());
+	
+		/*UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
+				im.getLayoutParams().height, im, ac.getImageUrl());*/
+		Typeface TODO = Typeface.createFromAsset(getAssets(),
+				"DinDisplayProThin.otf");
+		TextView AccountName, AccountAge, AccountLocation, AccountOrganisation;
+		AccountName = (TextView) findViewById(R.id.profile_name_p);
+		AccountAge = (TextView) findViewById(R.id.profile_age_p);
+		AccountLocation = (TextView) findViewById(R.id.profile_location_p);
+
+		AccountOrganisation = (TextView) findViewById(R.id.profile_Activity_p);
+
+		AccountName.setText(ac.getProfileName() + ",");
+		AccountAge.setText(ac.getProfileBirthday());
+		AccountLocation.setText(ac.getProfileLocation());
+
+		AccountOrganisation.setText(ac.getPosteOrganisation());
+		AccountAge.setTypeface(TODO);
+		AccountLocation.setTypeface(TODO);
+
+		AccountOrganisation.setTypeface(TODO);
+		CreateProfileTab(6);
+
 		/*
-		 * Account ac = null; try { ac =
-		 * CacheReadWriteUtil.restoreAccount(this); } catch
-		 * (ClassNotFoundException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated
-		 * catch block e.printStackTrace(); }
-		 * 
-		 * im.getLayoutParams().height =
-		 * LayoutResizerUtil.getpercent(LayoutResizerUtil.getDisplayHightInPx(
-		 * this), 60, this); im.requestLayout();
-		 * 
-		 * UrlImageViewHelper.setUrlDrawableCustom( im.getLayoutParams().width,
-		 * im.getLayoutParams().height,im, ac.getImageUrl()); Typeface TODO =
-		 * Typeface.createFromAsset(getAssets(), "DinDisplayProThin.otf");
-		 * TextView AccountName, AccountAge,AccountLocation;
-		 * AccountName=(TextView)findViewById(R.id.profile_name_p);
-		 * AccountAge=(TextView)findViewById(R.id.profile_age_p);
-		 * AccountLocation=(TextView)findViewById(R.id.profile_location_p);
-		 * 
-		 * AccountName.setText(ac.getProfileName()+",");
-		 * AccountAge.setText(ac.getProfileBirthday());
-		 * AccountLocation.setText(ac.getProfileLocation());
-		 * 
-		 * AccountAge.setTypeface(TODO); AccountLocation.setTypeface(TODO);
-		 * AccountName.setTypeface(TODO); GridView
+		 * GridView
 		 * GridActivities=(GridView)findViewById(R.id.GridView_DoneActivity);
 		 * ArrayList<DoItActivity> ListDoneActivities=new
 		 * ArrayList<DoItActivity>(); ListDoneActivities.add(new
@@ -58,6 +81,34 @@ public class ProfileActivity extends ActivityBase {
 		 * GridActivtiesProfileAdapter(this, ListDoneActivities);
 		 * GridActivities.setAdapter(AdapterGrid);
 		 */
+	}
+
+	public void CreateProfileTab(int i) {
+		SwipeyTabs mTabs;
+		final ViewPager mViewPager;
+
+		FragmentManager fragmentManager;
+		mViewPager = (ViewPager) findViewById(R.id.viewpagerProfile);
+		mTabs = (SwipeyTabs) findViewById(R.id.swipeytabsProfile);
+		fragmentManager = getSupportFragmentManager();
+
+		try {
+			mViewPager.removeAllViews();
+		} catch (Exception e) {
+		}
+
+		String[] TITLES = { getResources().getString(R.string.Suggestion_Text),
+				getResources().getString(R.string.Nearby_text),
+				getResources().getString(R.string.Following_text
+						),
+				getResources().getString(R.string.Follower_Text) };
+
+		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(this,
+				fragmentManager, TITLES, mViewPager, i);
+		mViewPager.setAdapter(adapter);
+		mTabs.setAdapter(adapter);
+		mViewPager.setOnPageChangeListener(mTabs);
+
 	}
 
 	@Override

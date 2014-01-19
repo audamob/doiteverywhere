@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import com.audamob.doit.R;
@@ -44,7 +45,7 @@ public class MainContainerActivity extends ActivityBase {
 				R.color.withe)));
 		activity = this;
 		setContentView(R.layout.swipeytab_layout);
-		ChangeCurrentFragment(5);
+		ChangeCurrentFragment(4);
 
 	}
 

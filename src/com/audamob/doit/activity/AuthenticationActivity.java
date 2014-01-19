@@ -2,6 +2,10 @@ package com.audamob.doit.activity;
 
 import java.io.IOException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
@@ -25,7 +29,6 @@ import com.audamob.doit.model.Account;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
-import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -39,8 +42,7 @@ public class AuthenticationActivity extends Activity implements
 
 	// Buttons
 	RelativeLayout btnFbLogin;
-	private SharedPreferences mPrefs;
-
+    private SharedPreferences mPrefs;
 	AbstractConnectManager facebookAbstractConnectManager;
 	AbstractConnectManager googleAbstractConnectManager;
 	Activity MainActivity_activity;
@@ -48,16 +50,20 @@ public class AuthenticationActivity extends Activity implements
 	private ObjectAnimator mProgressBarAnimator;
 	RelativeLayout Login_Layout, Progress_Layout;
 	TextView Text_Loading;
-
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.authentfication_activity_layout);
-		
-		//Get the preferences of this current AuthenticatioNActivity
+
+		/*
+		 * Intent intent = new Intent(AuthenticationActivity.this,
+		 * MainContainerActivity.class); startActivity(intent); this.finish();
+		 */
+			//Get the preferences of this current AuthenticatioNActivity
 		mPrefs = getPreferences(MODE_PRIVATE);
 		MainActivity_activity = this;
-		
 		/**
 		 * Google +implementation
 		 */
@@ -80,10 +86,13 @@ public class AuthenticationActivity extends Activity implements
 		 * REQUEST_CODE_SIGN_IN); } catch (IntentSender.SendIntentException e) {
 		 * // Fetch a new result to start. mPlusClient.connect(); } } });
 		 */
+		/***
+		 * Google +implementation
+		 */
 
 		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
 
-		// Instanciate Facebook And Google Connect Manager
+	// Instanciate Facebook And Google Connect Manager
 		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
 				MainActivity_activity);
 
@@ -107,10 +116,9 @@ public class AuthenticationActivity extends Activity implements
 				}
 			}
 		});
-
-		/***
-		 * Google +implementation
-		 */
+		/**
+		 * Getting facebook Profile info
+		 * */
 
 		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
 		mSignInButton.setOnClickListener(new OnClickListener() {
@@ -240,6 +248,15 @@ public class AuthenticationActivity extends Activity implements
 		String currentPersonName = mPlusClient.getCurrentPerson() != null ? mPlusClient
 				.getCurrentPerson().getDisplayName()
 				: getString(R.string.unknown_person);
+		CreateAccountGoogle();
+		Intent intent = new Intent(AuthenticationActivity.this,
+				MainContainerActivity.class);
+		startActivity(intent);
+		this.finish();
+
+	}
+
+	public void CreateAccountGoogle() {
 		Account Person_Account = null;
 		try {
 
@@ -253,17 +270,41 @@ public class AuthenticationActivity extends Activity implements
 		}
 
 		if (Person_Account == null) {
-			Log.d("Account", "" + mPlusClient.getCurrentPerson().toString());
-			Person_Account = new Account(
-					mPlusClient.getCurrentPerson().getId(), mPlusClient
-							.getCurrentPerson().getDisplayName(),
-					ApplicationConstants.GOOGLE_PROFILE_PICTURE_PATH
-							+ mPlusClient.getCurrentPerson().getId()
-							+ "?sz=200", mPlusClient.getCurrentPerson()
-							.getBirthday(), mPlusClient.getCurrentPerson()
-							.getCurrentLocation(), mPlusClient
-							.getCurrentPerson().getNickname());
-			Log.d("Account", "Url : " + mPlusClient.getCurrentPerson().getUrl());
+			// Log.d("Account", "" + mPlusClient.getCurrentPerson().toString());
+			String Location = "";
+			String Gender = "";
+			String Language = "";
+			String Organisation = "";
+			try {
+				Log.d("Account",""+mPlusClient.getCurrentPerson()
+						.toString());
+				JSONObject json = new JSONObject(mPlusClient.getCurrentPerson()
+						.toString());
+				JSONArray j = json.getJSONArray("placesLived");
+				Location = j.getJSONObject(0).getString("value");
+
+				Gender = json.getString("gender");
+				Language = json.getString("language");
+				JSONArray jOrganisations = json.getJSONArray("organizations");
+				JSONObject JSONOrgatnisation = jOrganisations
+						.getJSONObject((jOrganisations.length() - 1));
+				Organisation = JSONOrgatnisation.getString("title") + " : "
+						+ JSONOrgatnisation.getString("name");
+			
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String mId = mPlusClient.getCurrentPerson().getId();
+			String mDisplayName = mPlusClient.getCurrentPerson()
+					.getDisplayName();
+			String mageUrl = "https://plus.google.com/s2/photos/profile/"
+					+ mPlusClient.getCurrentPerson().getId() + "?sz=200";
+			String mBirthday = mPlusClient.getCurrentPerson().getBirthday();
+
+			Person_Account = new Account(mId, mDisplayName, mageUrl, mBirthday,
+					Location, Organisation, Gender, Language);
+
 			try {
 				CacheReadWriteUtil.saveAccount(Person_Account, this);
 			} catch (IOException e) {
@@ -272,11 +313,6 @@ public class AuthenticationActivity extends Activity implements
 			}
 
 		}
-		Intent intent = new Intent(AuthenticationActivity.this,
-				MainContainerActivity.class);
-		startActivity(intent);
-		this.finish();
-
 	}
 
 	@Override
