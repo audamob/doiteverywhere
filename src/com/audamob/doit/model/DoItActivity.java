@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class DoItActivity implements Serializable {
 
+	private String doIdActivity;
 	
 	private String doDisplayName;
 	private String doPicture;
@@ -11,7 +12,61 @@ public class DoItActivity implements Serializable {
 	private int doNbreFollowers;
 	private String doDescription;
 	private String doState;
+	private String doVideos;
+	private String doImages;
+	private String doComments;
+	private String doStartDate;
+	private String doEndDate;
 	
+	
+	public String getDoIdActivity() {
+		return doIdActivity;
+	}
+
+	public void setDoIdActivity(String doIdActivity) {
+		this.doIdActivity = doIdActivity;
+	}
+
+	public String getDoVideos() {
+		return doVideos;
+	}
+
+	public void setDoVideos(String doVideos) {
+		this.doVideos = doVideos;
+	}
+
+	public String getDoImages() {
+		return doImages;
+	}
+
+	public void setDoImages(String doImages) {
+		this.doImages = doImages;
+	}
+
+	public String getDoComments() {
+		return doComments;
+	}
+
+	public void setDoComments(String doComments) {
+		this.doComments = doComments;
+	}
+
+	public String getDoStartDate() {
+		return doStartDate;
+	}
+
+	public void setDoStartDate(String doStartDate) {
+		this.doStartDate = doStartDate;
+	}
+
+	public String getDoEndDate() {
+		return doEndDate;
+	}
+
+	public void setDoEndDate(String doEndDate) {
+		this.doEndDate = doEndDate;
+	}
+
 	public DoItActivity() {
 		// TODO Auto-generated constructor stub
 	}
