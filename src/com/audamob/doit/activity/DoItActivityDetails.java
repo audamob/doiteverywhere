@@ -1,32 +1,27 @@
 package com.audamob.doit.activity;
 
-import java.io.IOException;
-
 import android.app.ActionBar;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.UiComponent.SwipeyTabs;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.model.DoItActivity;
-import com.audamob.doit.model.User;
-import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
-import com.google.android.gms.internal.dp;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class DoItActivityDetails extends ActivityBase {
 
 	TextView doDisplayName,doCategoryName,doNbreFollowers,doDescription;
-	ImageView doPicture;
+	ImageView doPicture,categoryimage;
+	RelativeLayout followButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,7 +36,7 @@ public class DoItActivityDetails extends ActivityBase {
 		doNbreFollowers=(TextView)findViewById(R.id.doNbreFollowers);
 		doDescription=(TextView)findViewById(R.id.doDescription);
 		doPicture=(ImageView)findViewById(R.id.doPicture);
-		
+		categoryimage=(ImageView)findViewById(R.id.categoryimage);
 		doDisplayName.setTypeface(TODO);
 		
 		DoItActivity doitActivity=(DoItActivity) getIntent().getSerializableExtra("DoItActivity");
@@ -50,7 +45,15 @@ public class DoItActivityDetails extends ActivityBase {
 		doCategoryName.setText(doitActivity.getDoCategoryName());
 		doNbreFollowers.setText(""+doitActivity.getDoNbreFollowers().split(",").length);
 		doDescription.setText(doitActivity.getDoDescription());
-		
+		followButton=(RelativeLayout)findViewById(R.id.followButton);
+		followButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		UrlImageViewHelper.setUrlDrawableCustom(
 				doPicture.getLayoutParams().width,
@@ -58,7 +61,8 @@ public class DoItActivityDetails extends ActivityBase {
 				doPicture,
 				doitActivity.getDoPicture());
 		
-		
+		ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(categoryimage,
+				this, "http://upload.wikimedia.org/wikipedia/de/archive/6/65/20110312135854!Extreme_Activity_Logo.jpg");
 	
 
 	}

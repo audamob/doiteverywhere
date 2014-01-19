@@ -1,23 +1,21 @@
 package com.audamob.doit.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.widget.ListView;
 
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.manager.ActivityServiceManager;
 
 public class ActivityService {
-	
+
 	ActivityServiceManager doActivityServiceManager;
-	
-	
-	public ActivityService(Activity context,ListView doListDoItActivities) {
-		doActivityServiceManager = new ActivityServiceManager(context, "activity.json",doListDoItActivities);
-		doActivityServiceManager.execute();		
+
+	public ActivityService(Activity context, ListView doListDoItActivities) {
+		doActivityServiceManager = new ActivityServiceManager(context,
+				"activity.json", doListDoItActivities);
+		doActivityServiceManager.execute();
 	}
 
 	public void addNewActivity() {
@@ -28,8 +26,12 @@ public class ActivityService {
 
 	}
 
+	/**
+	 * Get All Activities in the selected Category
+	 * @return ArrayList<DoItActivity>
+	 */
 	public ArrayList<DoItActivity> getAllActivities() {
-		
+
 		ArrayList<DoItActivity> activities = new ArrayList<DoItActivity>();
 		activities = doActivityServiceManager.getActivities();
 		return activities;
@@ -40,7 +42,14 @@ public class ActivityService {
 
 	}
 
-	public void addNewFollowToActivity() {
+	/**
+	 * Add New Follow to the selected Activity
+	 * @param activityId
+	 * @param followersId
+	 */
+	public void addNewFollowToActivity(String activityId, String followersId) {
+
+		doActivityServiceManager.addNewFollowToActivity(activityId, followersId);
 
 	}
 
