@@ -279,7 +279,7 @@ public class SwipeyTabs extends ViewGroup implements OnPageChangeListener {
 		}
 
 		int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-		final int maxWidth = (int) (widthSize * 0.6);
+		final int maxWidth = (int) (widthSize);
 
 		final int count = mAdapter.getCount();
 

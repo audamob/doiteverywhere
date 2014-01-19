@@ -2,17 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="3dp"
-    android:paddingTop="5dp"
+    android:layout_marginBottom="1dp"
     android:orientation="vertical"
-     android:id="@+id/itemdoitactivity" 
-     android:background="@drawable/selector_bg_item">
+    android:paddingTop="5dp"
+        >
 
     <RelativeLayout
-       
+        
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_item_border"
+      >
+      
+    <RelativeLayout
+        android:id="@+id/itemdoitactivity"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-       >
+         android:background="@drawable/selector_bg_item"
+      >
 
         <RelativeLayout
             android:id="@+id/Layoutimage"
@@ -33,7 +40,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dp"
-            android:background="#fff"
             android:padding="20dp" >
 
             <RelativeLayout
@@ -99,5 +105,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
-
+</RelativeLayout>
 </RelativeLayout>
