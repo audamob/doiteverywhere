@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Text;
 
+import com.audamob.doit.activity.DoItActivityDetails;
+import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.utils.ImageLoaderUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,22 +20,24 @@ import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.audamob.doit.R;
+import com.google.android.gms.internal.ac;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class DoItActivitiesListAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
-	Context activity;
+	Activity activity;
 	ArrayList<DoItActivity> ListDoItActivity;
 
-	public DoItActivitiesListAdapter(Context act,
-			ArrayList<DoItActivity> List) {
+	public DoItActivitiesListAdapter(Activity act,
+			ArrayList<DoItActivity> doActivitiesList) {
 		activity=act;
 		ListDoItActivity = new ArrayList<DoItActivity>();
 		mInflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		ListDoItActivity = List;
+		ListDoItActivity = doActivitiesList;
 	}
 
 	public int getCount() {
@@ -65,17 +70,43 @@ public class DoItActivitiesListAdapter extends BaseAdapter {
 					.findViewById(R.id.Content);
 			holder.NbrFollowers = (TextView) convertView
 					.findViewById(R.id.nbrfollowers);
-			
+			holder.ItemDoItActivity= (RelativeLayout) convertView
+					.findViewById(R.id.itemdoitactivity);
 			
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolderDoItActivity) convertView.getTag();
 		}
+		
+		Typeface TODO = Typeface.createFromAsset(activity.getAssets(), "DinDisplayProThin.otf");
+		
 		holder.PictureDoItActivity.setId(position);
 		holder.NameDoItActivity.setId(position);
-		Typeface TODO = Typeface.createFromAsset(activity.getAssets(), "DinDisplayProThin.otf");
+		holder.CategoryDoItACtivity.setId(position);
+		holder.DescriptionDoItActivity.setId(position);
+		holder.NbrFollowers.setId(position);
+		holder.ItemDoItActivity.setId(position);
+		
 		holder.NameDoItActivity.setTypeface(TODO);
 		holder.NameDoItActivity.setText(ListDoItActivity.get(position).getDoDisplayName());
+		holder.DescriptionDoItActivity.setText(ListDoItActivity.get(position).getDoDescription());
+		holder.NbrFollowers.setText(""+ListDoItActivity.get(position).getDoNbreFollowers().split(",").length);
+		holder.CategoryDoItACtivity.setText(ListDoItActivity.get(position).getDoCategoryName());
+		
+		holder.ItemDoItActivity.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentDetailsDOItActivity = new Intent(activity,
+						DoItActivityDetails.class);
+				intentDetailsDOItActivity.putExtra("DoItActivity",ListDoItActivity.get(position) );
+				activity.startActivity(intentDetailsDOItActivity);
+				activity.overridePendingTransition(R.anim.push_down_in,
+						R.anim.push_down_out);
+			}
+		});
+		
 		
 		UrlImageViewHelper.setUrlDrawableCustom(
 				holder.PictureDoItActivity.getLayoutParams().width,
@@ -97,5 +128,6 @@ class ViewHolderDoItActivity {
 	TextView CategoryDoItACtivity;
 	TextView NbrFollowers;
 	TextView DescriptionDoItActivity;
+	RelativeLayout ItemDoItActivity;
 	int idDoItActivity;
 }

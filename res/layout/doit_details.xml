@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E5E5" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/sweipy_simulation"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+                 android:background="#fff" >
+
+            <TextView
+                android:id="@+id/doDisplayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:text="News"
+                android:textColor="#706D6F"
+                android:textSize="20dip"
+                android:textStyle="normal" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/sweipy_simulation"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="10dip" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dip"
+                    android:background="#fff" >
+
+                    <ImageView
+                        android:id="@+id/doPicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:adjustViewBounds="true"
+                        android:background="#D1D1D1"
+                        android:scaleType="centerCrop" />
+
+                    <RelativeLayout
+                        android:id="@+id/headerArcticle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dip"
+                        android:layout_below="@+id/doPicture"
+                        android:layout_marginLeft="10dip"
+                        android:layout_marginTop="20dip" >
+
+                        <TextView
+                            android:id="@+id/doCategoryName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dip"
+                            android:text="test"
+                            android:textColor="#444444"
+                            android:textSize="15dip"
+                            android:textStyle="bold" />
+                         <TextView
+                            android:id="@+id/doNbreFollowers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dip"
+                            android:layout_toRightOf="@+id/doCategoryName"
+                            android:text="test"
+                            android:textColor="#444444"
+                            android:textSize="15dip"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/doDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                      android:layout_below="@+id/headerArcticle"
+                        android:layout_margin="10dip"
+                        android:lineSpacingExtra="5dip"
+                        android:textColor="#444444"
+                        android:textSize="15dip" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</RelativeLayout>

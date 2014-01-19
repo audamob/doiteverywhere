@@ -16,6 +16,7 @@ import java.util.List;
 
 import com.audamob.doit.R;
 import com.audamob.doit.adapter.DoItActivitiesListAdapter;
+import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.model.User;
 import com.audamob.doit.service.ActivityService;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -68,12 +69,10 @@ public class StreamFragmentActivity extends Fragment {
 		final String title = getArguments().getString("title");
 		
 		doActivity=getActivity();
-	     doListDoItActivities=(ListView)getActivity().findViewById(R.id.listdoitactivities);
+	     doListDoItActivities=(ListView)root.findViewById(R.id.listdoitactivities);
+	     
 		new ActivityService(doActivity,doListDoItActivities);
 		
-	
-		
-
 		return root;
 
 	}

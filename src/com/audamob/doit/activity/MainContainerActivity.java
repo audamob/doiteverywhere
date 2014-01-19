@@ -45,7 +45,7 @@ public class MainContainerActivity extends ActivityBase {
 				R.color.withe)));
 		activity = this;
 		setContentView(R.layout.swipeytab_layout);
-		ChangeCurrentFragment(4);
+		ChangeCurrentFragment(2);
 
 	}
 

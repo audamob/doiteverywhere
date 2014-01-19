@@ -62,6 +62,10 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 		
 		switch (NameFragmentCalss) {
 		case 1:
+			return new StreamFragmentActivity();
+		case 2:
+			return new SwipeyTabFragmentActivity();
+		case 3:
 			return new SwipeyTabFragmentActivity();
 		case 5:
 			return new SettingsFragmentActivity();
@@ -72,8 +76,11 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 			default:
 				return new FollowingFragmentActivity();
 			}
+		
+		
+		
 		default:
-			return new StreamFragmentActivity();
+			return new SwipeyTabFragmentActivity();
 
 		}
 	}
