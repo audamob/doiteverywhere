@@ -9,7 +9,7 @@ public class DoItActivity implements Serializable {
 	private String doDisplayName;
 	private String doPicture;
 	private String doCategoryName;
-	private int doNbreFollowers;
+	private String doNbreFollowers;
 	private String doDescription;
 	private String doState;
 	private String doVideos;
@@ -17,8 +17,16 @@ public class DoItActivity implements Serializable {
 	private String doComments;
 	private String doStartDate;
 	private String doEndDate;
+	private String Location;
 	
-	
+	public String getLocation() {
+		return Location;
+	}
+
+	public void setLocation(String location) {
+		Location = location;
+	}
+
 	public String getDoIdActivity() {
 		return doIdActivity;
 	}
@@ -72,7 +80,7 @@ public class DoItActivity implements Serializable {
 	}
 	
 	public DoItActivity(String doDisplayName, String doPicture,
-			String doCategoryName, int doNbreFollowers, String doDescription,
+			String doCategoryName, String doNbreFollowers, String doDescription,
 			String doState) {
 		super();
 		this.doDisplayName = doDisplayName;
@@ -101,10 +109,10 @@ public class DoItActivity implements Serializable {
 	public void setDoCategoryName(String doCategoryName) {
 		this.doCategoryName = doCategoryName;
 	}
-	public int getDoNbreFollowers() {
+	public String getDoNbreFollowers() {
 		return doNbreFollowers;
 	}
-	public void setDoNbreFollowers(int doNbreFollowers) {
+	public void setDoNbreFollowers(String doNbreFollowers) {
 		this.doNbreFollowers = doNbreFollowers;
 	}
 	public String getDoDescription() {
