@@ -18,6 +18,11 @@ public class ActivityService {
 		doActivityServiceManager.execute();
 	}
 
+
+	public ActivityService(Activity currentContext) {
+		doActivityServiceManager = new ActivityServiceManager(currentContext);
+	}
+	
 	public void addNewActivity() {
 
 	}

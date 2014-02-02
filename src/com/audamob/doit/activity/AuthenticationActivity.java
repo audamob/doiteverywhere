@@ -55,7 +55,7 @@ public class AuthenticationActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.authentfication_activity_layout);
+		setContentView(R.layout.layout_authentfication_activity);
 
 		/*
 		 * Intent intent = new Intent(AuthenticationActivity.this,

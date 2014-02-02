@@ -26,7 +26,7 @@ public class SwipeyTabFragmentActivity extends Fragment {
 			Bundle savedInstanceState) {
 
 		ViewGroup root = (ViewGroup) inflater.inflate(
-				R.layout.swipey_tab_fragment_layout, null);
+				R.layout.layout_swipey_tab_fragment, null);
 		final String title = getArguments().getString("title");
 		
 

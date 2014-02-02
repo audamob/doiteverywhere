@@ -61,7 +61,7 @@ public class FollowingFragmentActivity extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.following_fragment_layout,
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.layout_following_fragment,
 				null);
 		final String title = getArguments().getString("title");
 

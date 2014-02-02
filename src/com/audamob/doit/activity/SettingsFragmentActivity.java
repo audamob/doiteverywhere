@@ -61,7 +61,7 @@ public class SettingsFragmentActivity extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.settings_fragment_layout,
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.layout_settings_fragment,
 				null);
 		final String title = getArguments().getString("title");
 

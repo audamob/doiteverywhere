@@ -26,7 +26,7 @@ public class ProfileActivity extends ActivityBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.profile_activity);
+		setContentView(R.layout.layout_profile_activity);
 
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(

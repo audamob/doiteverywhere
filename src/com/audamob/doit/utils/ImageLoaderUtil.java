@@ -51,7 +51,9 @@ public class ImageLoaderUtil {
 
 		public void handleMessage(Message msg) {
 			try {
-				mImageView.setImageBitmap(mBitmap_profile);
+				RoundedAvatarDrawable rAvatar=new RoundedAvatarDrawable(mBitmap_profile);
+			
+				mImageView.setImageDrawable(rAvatar);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -62,7 +64,9 @@ public class ImageLoaderUtil {
 
 		public void handleMessage(Message msg) {
 			try {
-				mImageView.setImageBitmap(mBitmap_activity);
+				RoundedAvatarDrawable rAvatar=new RoundedAvatarDrawable(mBitmap_activity);
+				
+				mImageView.setImageDrawable(rAvatar);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -78,13 +82,13 @@ public class ImageLoaderUtil {
 		}
 
 		public void run() {
-			//String imageURL = "https://plus.google.com/s2/photos/profile/117212352335398744452?sz=50";
+			//
 			Bitmap bm = getUserPic(mStringUrl,
 					mImageView.getLayoutParams().width,
 					mImageView.getLayoutParams().height,
 					mUserID);
 			mBitmap_profile = bm;
-         Log.d("RoundedPicture","117212352335398744452::"+mUserID);
+        
 			Message msg = mHandler.obtainMessage();
 			Bundle b = new Bundle();
 			msg.setData(b);
@@ -96,17 +100,19 @@ public class ImageLoaderUtil {
 				String userID) {
 			String imageURL;
 			Bitmap bitmap = null;
-			int measuredWidth = (width / 2) - 5;
-			int measuredHieght = (height * 70) / 100;
-			Log.d("", "Loading Picture");
+			int measuredWidth = width;
+			int measuredHieght = height;
+			
 			imageURL = "https://plus.google.com/s2/photos/profile/" + userID
 					+ "?width=" + measuredWidth + "&height=" + measuredHieght;
 
 			try {
 				bitmap = BitmapFactory.decodeStream((InputStream) new URL(
 						imageURL).getContent());
-				bitmap = GraphicsUtil.GetBitmapClippedCircle(bitmap);
-				bitmap = GraphicsUtil.addRoundedBorder(bitmap);
+				
+			//	bitmap=GraphicsUtil.getRoundedBitmap(bitmap);
+				/*bitmap = GraphicsUtil.GetBitmapClippedCircle(bitmap);
+				bitmap = GraphicsUtil.addRoundedBorder(bitmap);*/
 			} catch (Exception e) {
 				Log.d("TAG", "Loading Picture FAILED");
 				e.printStackTrace();

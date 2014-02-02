@@ -72,6 +72,10 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 
 	}
 
+	public ActivityServiceManager(Activity currentContext) {
+		this.currentContext = currentContext;
+	}
+
 	/**
 	 * Get Places from Json File
 	 */
@@ -135,7 +139,8 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 		params.add(new BasicNameValuePair(TAG_FOLLOWERS, idFollowers));
 		JSONParser parser = new JSONParser();
 		JSONObject json = parser.makeHttpRequest(
-				ApplicationConstants.ACTIVITIES_JSON_URL + idActivity, "PUT", params);
+				ApplicationConstants.ACTIVITIES_JSON_URL + "/activity"
+						+ idActivity, "PUT", params);
 
 		try {
 			Integer success = json.getInt("");

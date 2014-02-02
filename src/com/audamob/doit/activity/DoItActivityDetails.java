@@ -1,6 +1,7 @@
 package com.audamob.doit.activity;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,7 +16,9 @@ import com.audamob.doit.R;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.ActivityService;
+import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
+import com.facebook.android.Util;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class DoItActivityDetails extends ActivityBase {
@@ -23,13 +26,18 @@ public class DoItActivityDetails extends ActivityBase {
 	TextView doDisplayName,doCategoryName,doNbreFollowers,doDescription;
 	ImageView doPicture,categoryimage;
 	RelativeLayout followButton;
+	Activity context;
+	DoItActivity doitActivity;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.doit_details);
+		setContentView(R.layout.layout_doit_details);
 		Typeface TODO = Typeface.createFromAsset(getAssets(), "DinDisplayProThin.otf");
 		ActionBar bar = getActionBar();
+		context = this;
+		
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
 				R.color.withe)));
 		doDisplayName=(TextView)findViewById(R.id.doDisplayName);
@@ -40,7 +48,7 @@ public class DoItActivityDetails extends ActivityBase {
 		categoryimage=(ImageView)findViewById(R.id.categoryimage);
 		doDisplayName.setTypeface(TODO);
 		
-		DoItActivity doitActivity=(DoItActivity) getIntent().getSerializableExtra("DoItActivity");
+		doitActivity=(DoItActivity) getIntent().getSerializableExtra("DoItActivity");
 		
 		doDisplayName.setText(doitActivity.getDoDisplayName());
 		doCategoryName.setText(doitActivity.getDoCategoryName());
@@ -52,7 +60,14 @@ public class DoItActivityDetails extends ActivityBase {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//ActivityService activityService=new 
+				ActivityService activityService = new ActivityService(context);
+				try {
+					activityService.addNewFollowToActivity(doitActivity.getDoIdActivity(), CacheReadWriteUtil.restoreAccount(context).getmId());
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
 			}
 		});
 		

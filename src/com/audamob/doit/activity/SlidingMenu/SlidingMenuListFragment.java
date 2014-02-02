@@ -50,7 +50,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// We set here a custom layout which uses holo light theme colors.
-		View SlidingMenuLayout = inflater.inflate(R.layout.sliding_menu_layout,
+		View SlidingMenuLayout = inflater.inflate(R.layout.layout_sliding_menu,
 				null);
 
 		return SlidingMenuLayout;

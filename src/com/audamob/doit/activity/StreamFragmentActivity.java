@@ -64,7 +64,7 @@ public class StreamFragmentActivity extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.stream_fragment_layout,
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.layout_stream_fragment,
 				null);
 		final String title = getArguments().getString("title");
 		

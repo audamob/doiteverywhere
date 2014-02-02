@@ -169,8 +169,8 @@
                                 android:layout_height="60dp"
                                 android:layout_below="@+id/stat"
                                 android:id="@+id/followButton"
-                                android:background="@drawable/orangeroundedcorner"
-                                >"
+                                android:background="@drawable/follow_pressed"
+                                >
 
                                 <TextView
                                     android:layout_width="wrap_content"
