@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.audamob.doit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/flat_clouds"
     tools:context=".AuthenticationActivity" >
 
     <RelativeLayout
@@ -85,7 +85,7 @@
             app:marker_visible="false"
             app:progress="0.0"
             app:progress_background_color="#cccccc"
-            app:progress_color="@color/orange"
+            app:progress_color="@color/flat_orange"
             app:stroke_width="8dp"
             app:thumb_visible="false" />
 

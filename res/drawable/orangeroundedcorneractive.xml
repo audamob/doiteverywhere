@@ -3,7 +3,7 @@
     <!-- White Top color -->
     <item android:bottom="3px">
         <shape android:shape="rectangle">
-            <solid android:color="@color/flat_orange" />
+            <solid android:color="@color/flat_silver" />
             <corners android:radius="5dp" />
         </shape>
     </item>

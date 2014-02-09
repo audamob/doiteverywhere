@@ -1,127 +1,138 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.audamob.doit.utils.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:swipeytabs="http://schemas.android.com/apk/res/com.audamob.doit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F0F0"
-    android:paddingLeft="1dp"
-    android:paddingRight="1dp"
-    android:paddingTop="1dp" >
+    android:id="@+id/scroll_view"
+    android:background="@color/flat_clouds"
+  >
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <RelativeLayout
-            android:id="@+id/layout_image_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
-            <RelativeLayout
-                android:id="@+id/layout_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/profile_picture"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                    android:layout_gravity="center" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/layout_1" >
-
-                <TextView
-                    android:id="@+id/profile_name_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/greefonce"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/profile_age_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/profile_name_p"
-                    android:textColor="@color/greefonce"
-                    android:textSize="15dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_2"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/layout_1" >
-
-                <TextView
-                    android:id="@+id/profile_Activity_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/greefonce"
-                    android:textSize="17dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_3"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/layout_1" >
-
-                <TextView
-                    android:id="@+id/profile_location_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text=""
-                    android:textColor="@color/greefonce"
-                    android:textSize="16dp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
         <LinearLayout
-            android:id="@+id/TabsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_image_info"
             android:orientation="vertical" >
 
-            <com.audamob.doit.UiComponent.SwipeyTabs
-                android:id="@+id/swipeytabsProfile"
-                android:layout_width="fill_parent"
-                android:layout_height="40dip"
-                android:background="#f0f0f0"
-                swipeytabs:bottomBarColor="@color/orange"
-                swipeytabs:tabIndicatorHeight="1dip" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" >
+            <RelativeLayout
+                android:id="@+id/layout_image_info"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp" >
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:id="@+id/layout_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/viewpagerProfile"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="0dip" />
+                    <ImageView
+                        android:id="@+id/profile_picture"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
                 </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 
-</RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/layout_1" >
+
+                    <TextView
+                        android:id="@+id/profile_name_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/flat_asbestos"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/profile_age_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/profile_name_p"
+                        android:textColor="@color/flat_asbestos"
+                        android:textSize="15dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/layout_1" >
+
+                    <TextView
+                        android:id="@+id/profile_Activity_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/flat_asbestos"
+                        android:textSize="17dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/layout_1" >
+
+                    <TextView
+                        android:id="@+id/profile_location_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text=""
+                        android:textColor="@color/flat_asbestos"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sticky_height" />
+
+          
+        </LinearLayout>
+          <LinearLayout
+                android:id="@+id/sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+              
+                android:orientation="vertical" >
+
+                <com.audamob.doit.UiComponent.SwipeyTabs
+                    android:id="@+id/swipeytabsProfile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/flat_clouds"
+                    swipeytabs:bottomBarColor="@color/flat_orange"
+                    swipeytabs:tabIndicatorHeight="1dip" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewpagerProfile"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="0dip" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+    </FrameLayout>
+
+</com.audamob.doit.utils.ObservableScrollView>

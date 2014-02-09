@@ -2,11 +2,11 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:state_checked="true" 
 		
-		android:drawable="@color/orange" />
+		android:drawable="@color/flat_orange" />
 		
 	<item android:state_checked="false" 
 		
-		android:drawable="@color/dark" />
+		android:drawable="@color/flat_orange" />
 		
 	
 </selector>

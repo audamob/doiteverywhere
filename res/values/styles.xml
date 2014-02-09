@@ -44,5 +44,46 @@
     <style name="AppTheme" parent="android:Theme.Holo">
     
     <item name="circularProgressBarStyle">@style/CircularProgressBar</item>
+    
+    
+    
+    
+    
+
     </style>
+    
+    
+    
+    
+    
+    
+    <style name="Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+    </style>
+
+    <style name="Item.Top">
+        <item name="android:background">@color/flat_asbestos</item>
+    </style>
+
+    <style name="Item.Sticky">
+        <item name="android:background">@drawable/sticky_item_background</item>
+        <item name="android:textColor">@color/flat_orange</item>
+        <item name="android:layout_height">@dimen/sticky_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:textAllCaps">true</item>
+      
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Item.Bottom">
+        <item name="android:background">@color/flat_silver</item>
+    </style>
+
+    <style name="Item.Bottom.Alt">
+        <item name="android:background">@color/flat_silver</item>
+    </style>
+    
 </resources>

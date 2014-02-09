@@ -3,13 +3,19 @@ package com.audamob.doit.activity;
 import java.io.IOException;
 
 import android.app.ActionBar;
+import android.graphics.LayerRasterizer;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
@@ -19,18 +25,43 @@ import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.model.User;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.utils.LayoutResizerUtil;
+import com.audamob.doit.utils.ObservableScrollView;
 
-public class ProfileActivity extends ActivityBase {
+public class ProfileActivity extends ActivityBase implements
+		ObservableScrollView.Callbacks {
+
+	private LinearLayout mStickyView;
+	private View mPlaceholderView;
+	private ObservableScrollView mObservableScrollView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_profile_activity);
+		mObservableScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
+		mObservableScrollView.setCallbacks(this);
+
+		mPlaceholderView = findViewById(R.id.placeholder);
+
+		mStickyView = (LinearLayout) findViewById(R.id.sticky);
+
+		mStickyView.getLayoutParams().height = LayoutResizerUtil
+				.getDisplayHightInPx(this);
+		mStickyView.requestLayout();
+
+		mObservableScrollView.getViewTreeObserver().addOnGlobalLayoutListener(
+				new ViewTreeObserver.OnGlobalLayoutListener() {
+					@Override
+					public void onGlobalLayout() {
+						onScrollChanged(mObservableScrollView.getScrollY());
+					}
+				});
 
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
-				R.color.withe)));
+				R.color.flat_clouds)));
 
 		ImageView im = (ImageView) findViewById(R.id.profile_picture);
 
@@ -43,11 +74,18 @@ public class ProfileActivity extends ActivityBase {
 			e.printStackTrace();
 		}
 
-		ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
-				this, ac.getImageUrl(), ac.getUserId());
-	
-		/*UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
-				im.getLayoutParams().height, im, ac.getImageUrl());*/
+		try {
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, this,
+					ac.getImageUrl(), ac.getUserId());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		/*
+		 * UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
+		 * im.getLayoutParams().height, im, ac.getImageUrl());
+		 */
+
 		Typeface TODO = Typeface.createFromAsset(getAssets(),
 				"DinDisplayProThin.otf");
 		TextView AccountName, AccountAge, AccountLocation, AccountOrganisation;
@@ -56,31 +94,23 @@ public class ProfileActivity extends ActivityBase {
 		AccountLocation = (TextView) findViewById(R.id.profile_location_p);
 
 		AccountOrganisation = (TextView) findViewById(R.id.profile_Activity_p);
+		try {
 
-		AccountName.setText(ac.getProfileName() + ",");
-		AccountAge.setText(ac.getProfileBirthday());
-		AccountLocation.setText(ac.getProfileLocation());
+			AccountName.setText(ac.getProfileName() + ",");
+			AccountAge.setText(ac.getProfileBirthday());
+			AccountLocation.setText(ac.getProfileLocation());
 
-		AccountOrganisation.setText(ac.getPosteOrganisation());
-		AccountAge.setTypeface(TODO);
-		AccountLocation.setTypeface(TODO);
+			AccountOrganisation.setText(ac.getPosteOrganisation());
+			AccountAge.setTypeface(TODO);
+			AccountLocation.setTypeface(TODO);
 
-		AccountOrganisation.setTypeface(TODO);
+			AccountOrganisation.setTypeface(TODO);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		CreateProfileTab(6);
 
-		/*
-		 * GridView
-		 * GridActivities=(GridView)findViewById(R.id.GridView_DoneActivity);
-		 * ArrayList<DoItActivity> ListDoneActivities=new
-		 * ArrayList<DoItActivity>(); ListDoneActivities.add(new
-		 * DoItActivity("Surfing",
-		 * "http://www.funfix.com/images/icons/icon_black_locations.png"));
-		 * ListDoneActivities.add(new DoItActivity("SkyDiving",
-		 * "http://hotspottagger.com/images/markers/surfing_icon.png"));
-		 * GridActivtiesProfileAdapter AdapterGrid=new
-		 * GridActivtiesProfileAdapter(this, ListDoneActivities);
-		 * GridActivities.setAdapter(AdapterGrid);
-		 */
 	}
 
 	public void CreateProfileTab(int i) {
@@ -99,8 +129,7 @@ public class ProfileActivity extends ActivityBase {
 
 		String[] TITLES = { getResources().getString(R.string.Suggestion_Text),
 				getResources().getString(R.string.Nearby_text),
-				getResources().getString(R.string.Following_text
-						),
+				getResources().getString(R.string.Following_text),
 				getResources().getString(R.string.Follower_Text) };
 
 		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(this,
@@ -131,10 +160,28 @@ public class ProfileActivity extends ActivityBase {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-
 		finish();
 		overridePendingTransition(R.anim.push_down_out_back,
 				R.anim.push_down_in_back);
+
+	}
+
+	@Override
+	public void onScrollChanged(int scrollY) {
+		// TODO Auto-generated method stub
+		mStickyView
+				.setTranslationY(Math.max(mPlaceholderView.getTop(), scrollY));
+	}
+
+	@Override
+	public void onDownMotionEvent() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onUpOrCancelMotionEvent() {
+		// TODO Auto-generated method stub
 
 	}
 }

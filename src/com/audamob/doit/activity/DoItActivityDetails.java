@@ -39,7 +39,7 @@ public class DoItActivityDetails extends ActivityBase {
 		context = this;
 		
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
-				R.color.withe)));
+				R.color.flat_clouds)));
 		doDisplayName=(TextView)findViewById(R.id.doDisplayName);
 		doCategoryName=(TextView)findViewById(R.id.doCategoryName);
 		doNbreFollowers=(TextView)findViewById(R.id.doNbreFollowers);

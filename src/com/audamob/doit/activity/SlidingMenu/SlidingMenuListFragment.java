@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,29 @@ public class SlidingMenuListFragment extends ListFragment implements
 	public void UI_LoadProfileView() {
 		ImageView im = (ImageView) getActivity().findViewById(
 				R.id.profile_image);
-
+		TextView profile_name = (TextView) getActivity().findViewById(
+				R.id.profile_name);
+		Typeface TODO = Typeface.createFromAsset(getActivity().getAssets(),
+				"DinDisplayProThin.otf");
+		TextView row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_1);
+		row_title.setTypeface(TODO);
+		row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_2);
+		row_title.setTypeface(TODO);
+		row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_3);
+		row_title.setTypeface(TODO);
+		row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_4);
+		row_title.setTypeface(TODO);
+		row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_5);
+		row_title.setTypeface(TODO);
+		
+		profile_name.setTypeface(TODO);
+		row_title.setTypeface(TODO);
+		
 		User ac = null;
 		try {
 			ac = CacheReadWriteUtil.restoreAccount(getActivity());
@@ -82,8 +105,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 		if (ac != null) {
 			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
 					getActivity(), ac.getImageUrl(), ac.getUserId());
-			TextView profile_name = (TextView) getActivity().findViewById(
-					R.id.profile_name);
+		
 			profile_name.setText(ac.getProfileName());
 		}
 

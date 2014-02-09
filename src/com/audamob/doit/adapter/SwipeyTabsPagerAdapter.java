@@ -32,12 +32,12 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 		this.mContext = context;
 		this.mViewPager = mviewPager;
 		this.fragmentType = classFragment;
-		
+
 	}
 
 	@Override
 	public Fragment getItem(int position) {
-		return CreateSwipeyTab(TabTitles[position],position, fragmentType);
+		return CreateSwipeyTab(TabTitles[position], position, fragmentType);
 
 	}
 
@@ -47,10 +47,11 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 	 * @param NameTab
 	 * @return
 	 */
-	public Fragment CreateSwipeyTab(String NameTab,int position, int NameFragmentCalss) {
+	public Fragment CreateSwipeyTab(String NameTab, int position,
+			int NameFragmentCalss) {
 
-		Fragment f = GetClassFragment(NameFragmentCalss,position);
-		
+		Fragment f = GetClassFragment(NameFragmentCalss, position);
+
 		Bundle args = new Bundle();
 		args.putString("title", NameTab);
 		f.setArguments(args);
@@ -58,8 +59,8 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 
 	}
 
-	public Fragment GetClassFragment(int NameFragmentCalss,int position) {
-		
+	public Fragment GetClassFragment(int NameFragmentCalss, int position) {
+
 		switch (NameFragmentCalss) {
 		case 1:
 			return new StreamFragmentActivity();
@@ -76,9 +77,7 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 			default:
 				return new FollowingFragmentActivity();
 			}
-		
-		
-		
+
 		default:
 			return new SwipeyTabFragmentActivity();
 

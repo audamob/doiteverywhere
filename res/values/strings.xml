@@ -22,17 +22,21 @@
     <string name="Interested_text">Interested</string>
     <string name="Explore_text">Explore</string>
     <string name="Following_text">Following</string>
-    <string name="Followers_number"> followers</string>
+    <string name="Followers_number"> Followers</string>
     <string name="Suggestion_Text"> Suggestions</string>
     <string name="Categorie_Text"> Categories</string>
-    
     <string name="Suggestion_Text"> Suggestion</string>
-      <string name="Details_Text"> Details</string>
-       <string name="Posts_Text"> Posts</string>
-       <string name="Follow"> Follow</string>
-       <string name="Follower_Text"> Followers</string>
-       <string name="Followers"> Followers</string>
-       
+    <string name="Details_Text"> Details</string>
+    <string name="Posts_Text"> Posts</string>
+    <string name="Follow"> Follow</string>
+    <string name="Follower_Text"> Followers</string>
+    <string name="Followers"> Followers</string>
+    
+    
+    <!-- Content Description -->
+    <string name="profile"> profile</string>
+    
+
     <!--  -->
     <string name="change_locale">Change Locale</string>
     <string name="list_moments_title">Touch a moment to delete</string>

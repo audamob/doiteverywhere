@@ -42,7 +42,7 @@ public class MainContainerActivity extends ActivityBase {
 		super.onCreate(savedInstanceState);
 		ActionBar bar = getActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
-				R.color.withe)));
+				R.color.flat_clouds)));
 		activity = this;
 		setContentView(R.layout.swipeytab_layout);
 		ChangeCurrentFragment(2);
