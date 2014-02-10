@@ -51,6 +51,12 @@
             android:label="@string/Details_Text"
             android:logo="@drawable/ic_action_back"
             android:theme="@style/CustomUpIndicatorTheme" />
+            <activity
+            android:name="com.audamob.doit.activity.TestActivity"
+           />
+            <activity
+            android:name="com.audamob.doit.activity.TestActivityA"
+           />
     </application>
 
 </manifest>
