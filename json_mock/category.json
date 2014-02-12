@@ -1,0 +1,22 @@
+{
+    "category": {
+        "id_category": null,
+        "name": null,
+        "description": null,
+        "location": null
+    },
+    "categorySet": [
+        {
+            "id_category": "1",
+            "name": "Xtream Sensation",
+            "description": "Xtream Sensation",
+            "location": "Paris"
+        },
+        {
+            "id_category": "2",
+            "name": "Les incontournables",
+            "description": "Les incontournables",
+            "location": "Paris"
+        }
+    ]
+}

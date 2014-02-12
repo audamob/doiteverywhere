@@ -1,0 +1,32 @@
+{
+    "user": {
+        "id_user": null,
+        "id_facebook": null,
+        "id_google": null,
+        "name": null,
+        "location": null,
+        "gender": null
+    },
+    "userSet": [
+        {
+            "id_user": "1",
+            "id_facebook": "1",
+            "id_google": "1",
+            "name": "Houssem",
+            "location": "Paris",
+            "gender": "Male",
+            "degree": "",
+            "followers": ""
+        },
+        {
+            "id_user": "2",
+            "id_facebook": "1",
+            "id_google": "1",
+            "name": "aymen",
+            "location": "paris",
+            "gender": "male",
+            "degree": "",
+            "followers": ""
+        }
+    ]
+}
