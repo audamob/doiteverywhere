@@ -139,7 +139,7 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	private String readFromFile(String fileName) {
 		
 		String fileContent = "";
-
+/*
 		try (BufferedReader br = new BufferedReader(new FileReader(
 				PATH+fileName))) {
 
@@ -152,7 +152,7 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+*/
 		return fileContent;
 	}
 

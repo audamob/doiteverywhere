@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- SlidingMenu -->
-    <dimen name="sliding_menu_shadow_width">5dp</dimen>
+    <dimen name="sliding_menu_shadow_width">6dp</dimen>
     <dimen name="sliding_menu_offset">150dp</dimen>
     <dimen name="sliding_menu_list_padding">10dp</dimen>
 

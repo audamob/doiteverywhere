@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.audamob.doit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/flat_clouds"
+    android:background="@drawable/bg_blurred_3"
     tools:context=".AuthenticationActivity" >
 
     <RelativeLayout

@@ -88,6 +88,7 @@ public class DoItActivitiesListAdapter extends BaseAdapter {
 		holder.ItemDoItActivity.setId(position);
 		
 		holder.NameDoItActivity.setTypeface(TODO);
+		holder.DescriptionDoItActivity.setTypeface(TODO);
 		holder.NameDoItActivity.setText(ListDoItActivity.get(position).getDoDisplayName());
 		holder.DescriptionDoItActivity.setText(ListDoItActivity.get(position).getDoDescription());
 		holder.NbrFollowers.setText(""+ListDoItActivity.get(position).getDoNbreFollowers().split(",").length);

@@ -88,6 +88,9 @@ public class SlidingMenuListFragment extends ListFragment implements
 		row_title=(TextView) getActivity().findViewById(
 				R.id.row_title_5);
 		row_title.setTypeface(TODO);
+		row_title=(TextView) getActivity().findViewById(
+				R.id.row_title_6);
+		row_title.setTypeface(TODO);
 		
 		profile_name.setTypeface(TODO);
 		row_title.setTypeface(TODO);
@@ -109,9 +112,8 @@ public class SlidingMenuListFragment extends ListFragment implements
 			profile_name.setText(ac.getProfileName());
 		}
 
-		TextView MenuHeaderLayout = (TextView) getActivity().findViewById(
-				R.id.profile_view);
-		MenuHeaderLayout.setOnClickListener(new OnClickListener() {
+		
+		im.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -127,7 +129,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 	}
 
 	public void UI_CreateMenuListView() {
-		RelativeLayout ItemMenu_1, ItemMenu_2, ItemMenu_3, ItemMenu_4, ItemMenu_5;
+		RelativeLayout ItemMenu_1, ItemMenu_2, ItemMenu_3, ItemMenu_4, ItemMenu_5,ItemMenu_6;
 		ItemMenu_1 = (RelativeLayout) getActivity().findViewById(
 				R.id.ItemMenu_1);
 		ItemMenu_2 = (RelativeLayout) getActivity().findViewById(
@@ -138,11 +140,14 @@ public class SlidingMenuListFragment extends ListFragment implements
 				R.id.ItemMenu_4);
 		ItemMenu_5 = (RelativeLayout) getActivity().findViewById(
 				R.id.ItemMenu_5);
+		ItemMenu_6 = (RelativeLayout) getActivity().findViewById(
+				R.id.ItemMenu_6);
 		ItemMenu_1.setOnClickListener(this);
 		ItemMenu_2.setOnClickListener(this);
 		ItemMenu_3.setOnClickListener(this);
 		ItemMenu_4.setOnClickListener(this);
 		ItemMenu_5.setOnClickListener(this);
+		ItemMenu_6.setOnClickListener(this);
 
 	}
 
@@ -186,6 +191,10 @@ public class SlidingMenuListFragment extends ListFragment implements
 
 			MainContainerActivity.ChangeCurrentFragment(5);
 			menu.toggle();
+			return;
+		case R.id.ItemMenu_6:
+			
+			
 			return;
 		default:
 			break;

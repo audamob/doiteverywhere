@@ -3,6 +3,7 @@ package com.audamob.doit.service;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.audamob.doit.model.DoItActivity;
@@ -53,7 +54,7 @@ public class ActivityService {
 	 * @param followersId
 	 */
 	public void addNewFollowToActivity(String activityId, String followersId) {
-
+		Log.e("FOLLOW"," je suis ici 2 ");
 		doActivityServiceManager.addNewFollowToActivity(activityId, followersId);
 
 	}
