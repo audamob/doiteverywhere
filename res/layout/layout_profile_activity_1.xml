@@ -10,14 +10,15 @@
         android:layout_height="match_parent" >
 
         <LinearLayout
+            android:id="@+id/HeaderLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="450dp"
             android:orientation="vertical" >
 
             <RelativeLayout
                 android:id="@+id/layout_image_info"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:layout_margin="10dp" >
 
                 <RelativeLayout
@@ -99,38 +100,34 @@
                 android:layout_height="@dimen/sticky_height" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/sticky"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+      
 
             <TabHost
-                android:id="@+id/swipeytabsProfile"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:id="@+id/sticky"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="#ccc" >
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1.0"
-                    android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:orientation="vertical" >
 
                     <TabWidget
                         android:id="@android:id/tabs"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp" />
 
                     <FrameLayout
                         android:id="@android:id/tabcontent"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:padding="5dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ccc"
+                        android:padding="10dp" />
                 </LinearLayout>
             </TabHost>
-        </LinearLayout>
+       
     </FrameLayout>
 
 </com.audamob.doit.utils.ObservableScrollView>

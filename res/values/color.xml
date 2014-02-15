@@ -23,6 +23,14 @@
 	<color name="flat_pomegranate">#C0392B</color>
 	<color name="flat_silver">#BDC3C7</color>
 	<color name="flat_asbestos">#7F8C8D</color>
+	<color name="flat_clouds_tranparent">#FFFFFFFF</color>
+	<color name="flat_orange_transparent">#AFF39C12</color>
+	<color name="flat_color_bg">#9B7E7B</color>
+	<color name="flat_white">#ffffff</color>
+	<color name="flat_white_2">#D1D1D1</color>
+	<color name="flat_sep">#FFCCCCCC</color>
+	<color name="flat_transparent">#0Dffffff</color>
+	
 	
 	
 </resources>

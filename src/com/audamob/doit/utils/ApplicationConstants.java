@@ -10,6 +10,7 @@ public class ApplicationConstants {
 	
 	//Service API URLs
 	public static final String ACTIVITIES_JSON_URL = "http://audahub.fr/doiteverywhere/recess/index.php/doitAdmin/api/";
+													
 
 
 }

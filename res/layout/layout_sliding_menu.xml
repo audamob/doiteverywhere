@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/flat_midnight_blue" >
+    android:background="@drawable/bg_blurred_3" >
 
     <ScrollView
         android:id="@+id/CustomList"
@@ -18,71 +18,55 @@
                 android:id="@+id/MenuHeaderLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp" >
+                android:layout_marginBottom="70dp"
+                android:layout_marginTop="70dp" >
 
-                <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="@dimen/sliding_menu_profile_picture_height"
-                    android:layout_height="@dimen/sliding_menu_profile_picture_height"
+                <RelativeLayout
+                    android:id="@+id/profile_image_shadow"
+                    android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_3"
+                    android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_3"
                     android:layout_centerHorizontal="true"
-                    android:contentDescription="@string/profile"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher" />
+                    android:background="@drawable/custom_shape_3" >
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_2"
+                        android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_2"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/custom_shape_2" >
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_1"
+                            android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_1"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/custom_shape_1" >
+
+                            <RelativeLayout
+                                android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height"
+                                android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/custom_shape" >
+
+                                <ImageView
+                                    android:id="@+id/profile_image"
+                                    android:layout_width="@dimen/sliding_menu_profile_picture_height"
+                                    android:layout_height="@dimen/sliding_menu_profile_picture_height"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/profile"
+                                    android:scaleType="centerCrop" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/profile_image"
+                    android:layout_below="@+id/profile_image_shadow"
                     android:layout_centerHorizontal="true"
                     android:text="Profile Name"
                     android:textColor="@color/flat_clouds"
                     android:textSize="@dimen/sliding_menu_profile_name_height" />
-
-                <TextView
-                    android:id="@+id/profile_view"
-                    android:layout_width="@dimen/sliding_menu_viewprofile_width"
-                    android:layout_height="@dimen/sliding_menu_viewprofile_height"
-                    android:layout_below="@+id/profile_name"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/text_bg_selector"
-                    android:gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/View_Profile_text"
-                    android:textColor="@color/flat_midnight_blue"
-                    android:textSize="@dimen/sliding_menu_viewprofile_text_size"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/profile_view"
-                    android:layout_marginLeft="30dp" 
-                     android:layout_marginTop="20dp">
-
-                    <ImageView
-                        android:id="@+id/followers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                       
-                        android:src="@drawable/ic_followers" />
-
-                    <TextView
-                        android:id="@+id/followersNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
-                        
-                        android:layout_toRightOf="@+id/followers"
-                        
-                        android:text="@string/Followers_number"
-                        android:textColor="@color/flat_silver"
-                        android:textSize="@dimen/sliding_menu_followNumber_text_size" />
-                </RelativeLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -97,7 +81,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:background="@color/flat_pumpkin"
+                    android:background="@drawable/bg_opacity"
                     android:visibility="invisible" >
                 </RelativeLayout>
 
@@ -142,7 +126,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:background="@color/flat_pumpkin"
+                    android:background="@drawable/bg_opacity"
                     android:visibility="invisible" >
                 </RelativeLayout>
 
@@ -187,7 +171,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:background="@color/flat_pumpkin"
+                    android:background="@drawable/bg_opacity"
                     android:visibility="invisible" >
                 </RelativeLayout>
 
@@ -232,7 +216,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:background="@color/flat_pumpkin"
+                    android:background="@drawable/bg_opacity"
                     android:visibility="visible" >
                 </RelativeLayout>
 
@@ -277,7 +261,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:background="@color/flat_pumpkin"
+                    android:background="@drawable/bg_opacity"
                     android:visibility="invisible" >
                 </RelativeLayout>
 
@@ -298,6 +282,51 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/row_icon"
                     android:text="@string/Settings_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/ItemMenu_5"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_6"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/bg_opacity"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_logout" />
+
+                <TextView
+                    android:id="@+id/row_title_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Logout_Text"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/sliding_menu_item_title_height" />
 

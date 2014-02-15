@@ -40,7 +40,7 @@ public class JSONParser {
 			List<NameValuePair> params) {
 
 		HttpEntity httpEntity;
-
+		Log.e("FOLLOW"," JSON : 1");
 		// Making HTTP request
 		try {
 
@@ -48,20 +48,32 @@ public class JSONParser {
 			if (method == "POST") {
 				// request method is POST
 				// defaultHttpClient
+				Log.e("FOLLOW"," JSON : 2");
 				DefaultHttpClient httpClient = new DefaultHttpClient();
 				HttpPost httpPost = new HttpPost(url);
-				Log.e(" httpPost", httpPost.toString());
+				
 				httpPost.setEntity(new UrlEncodedFormEntity(params));
-
-				HttpResponse httpResponse = httpClient.execute(httpPost);
-				if (httpResponse != null) {
-					httpEntity = httpResponse.getEntity();
-					is = httpEntity.getContent();
-				} else {
-					Log.e("JSON Parser", "httpResponse is null ");
+				
+				try {
+					HttpResponse httpResponse = httpClient.execute(httpPost);
+				} catch (Exception e) {
+					// TODO: handle exception
+					Log.e("FOLLOW"," error catch "+e);
 				}
+				
+//				Log.e("FOLLOW"," JSON : 55");
+//				if (httpResponse != null) {
+//					Log.e("FOLLOW"," JSON : 66");
+//					httpEntity = httpResponse.getEntity();
+//					Log.e("FOLLOW"," JSON : 77");
+//					is = httpEntity.getContent();
+//					Log.e("FOLLOW"," JSON : 4 : "+is);
+//				} else {
+//					Log.e("FOLLOW", "httpResponse is null ");
+//				}
 
 			} else if (method == "PUT") {
+				Log.e("FOLLOW"," JSON : lé lé");
 				// request method is PUT
 				// defaultHttpClient
 				DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -98,10 +110,13 @@ public class JSONParser {
 
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			Log.e("FOLLOW"," JSON : 11");
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			Log.e("FOLLOW"," JSON : 12");
 		} catch (IOException e) {
 			e.printStackTrace();
+			Log.e("FOLLOW"," JSON : 13");
 		}
 
 		try {

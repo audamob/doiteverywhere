@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,9 +18,7 @@ import com.audamob.doit.R;
 import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.ActivityService;
-import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
-import com.facebook.android.Util;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class DoItActivityDetails extends ActivityBase {
@@ -33,6 +33,9 @@ public class DoItActivityDetails extends ActivityBase {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+		StrictMode.setThreadPolicy(policy); 
 		setContentView(R.layout.layout_doit_details);
 		Typeface TODO = Typeface.createFromAsset(getAssets(), "DinDisplayProThin.otf");
 		ActionBar bar = getActionBar();
@@ -62,10 +65,15 @@ public class DoItActivityDetails extends ActivityBase {
 				// TODO Auto-generated method stub
 				ActivityService activityService = new ActivityService(context);
 				try {
-					activityService.addNewFollowToActivity(doitActivity.getDoIdActivity(), CacheReadWriteUtil.restoreAccount(context).getmId());
+					Log.e("FOLLOW"," je suis ici 1");
+					
+					activityService.addNewFollowToActivity(doitActivity.getDoIdActivity(), "0" +
+							"" +
+							"1");//CacheReadWriteUtil.restoreAccount(context).getmId());
 					
 				} catch (Exception e) {
 					// TODO: handle exception
+					Log.e("FOLLOW"," error  : "+e.getMessage());
 				}
 				
 			}

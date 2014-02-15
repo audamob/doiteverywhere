@@ -1,10 +1,9 @@
 <com.audamob.doit.utils.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipeytabs="http://schemas.android.com/apk/res/com.audamob.doit"
+   
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scroll_view"
-    android:background="@color/flat_clouds"
-  >
+    android:background="@color/flat_clouds" >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             <RelativeLayout
                 android:id="@+id/layout_image_info"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:layout_margin="10dp" >
 
                 <RelativeLayout
@@ -98,41 +97,39 @@
                 android:id="@+id/placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sticky_height" />
-
-          
         </LinearLayout>
-          <LinearLayout
-                android:id="@+id/sticky"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-              
-                android:orientation="vertical" >
 
-                <com.audamob.doit.UiComponent.SwipeyTabs
-                    android:id="@+id/swipeytabsProfile"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:background="@color/flat_clouds"
-                    swipeytabs:bottomBarColor="@color/flat_orange"
-                    swipeytabs:tabIndicatorHeight="1dip" />
+        <LinearLayout
+            android:id="@+id/sticky"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
+            <com.audamob.doit.UiComponent.TabPageIndicator
+                android:id="@+id/swipeytabsProfile"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#ccc"
+                
+             />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
 
-                        <android.support.v4.view.ViewPager
-                            android:id="@+id/viewpagerProfile"
-                            android:layout_width="fill_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="0dip" />
-                    </RelativeLayout>
-                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpagerProfile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="0dip" />
+                </RelativeLayout>
             </LinearLayout>
+        </LinearLayout>
     </FrameLayout>
 
 </com.audamob.doit.utils.ObservableScrollView>
