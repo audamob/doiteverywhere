@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
@@ -11,12 +11,11 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
 import com.audamob.doit.R;
-import com.audamob.doit.UiComponent.TabPageIndicator;
-import com.audamob.doit.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapterA;
 import com.audamob.doit.utils.LayoutResizerUtil;
 import com.audamob.doit.utils.ObservableScrollView;
+import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.view.uiComponent.TabPageIndicator;
 
 public class ProfileActivity extends ActivityBase implements
 		ObservableScrollView.Callbacks {

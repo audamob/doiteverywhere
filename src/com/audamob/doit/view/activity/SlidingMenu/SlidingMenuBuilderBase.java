@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenu;
+package com.audamob.doit.view.activity.SlidingMenu;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.audamob.doit.R;
-import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.SlidingMenuListItem;
+import com.audamob.doit.view.activity.ProfileActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**

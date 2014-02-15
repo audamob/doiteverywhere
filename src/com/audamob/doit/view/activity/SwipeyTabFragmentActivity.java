@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
@@ -9,10 +9,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.audamob.doit.R;
-import com.audamob.doit.UiComponent.SwipeyTabs;
-import com.audamob.doit.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderConcrete;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
+import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.view.activity.SlidingMenu.SlidingMenuBuilderConcrete;
+import com.audamob.doit.view.uiComponent.SwipeyTabs;
 
 public class MainContainerActivity extends ActivityBase {
 

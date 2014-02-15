@@ -1,24 +1,23 @@
-package com.audamob.doit.dialog;
+package com.audamob.doit.view.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-public class AboutDialog {
+public class ValidationDialog {
 
-	public AboutDialog(Context context) {
-		// Comportement du bouton "Paramètres"
+	public ValidationDialog(Context context, String message, String title) {
+
 		AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-		alertDialog.setTitle("ABOUT US");
-		alertDialog.setMessage("EVENT ORGANIZER\n" + "VERSION : 1.0 \n"
-				+ "DEVELOPER : AudaSoft \n" + "CONTACT : contact@audasoft.fr");
+		alertDialog.setTitle(title);
+		alertDialog.setMessage(message);
 
 		alertDialog.setButton("CLOSE", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				// here you can add functions
 			}
 		});
-		//alertDialog.setIcon(R.drawable.info_ation_bar);
+		//alertDialog.setIcon(R.drawable.facemash_icon);
 		//alertDialog.show();
 	}
 }

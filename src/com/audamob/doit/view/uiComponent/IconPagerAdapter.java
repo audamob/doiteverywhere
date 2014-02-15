@@ -1,4 +1,4 @@
-package com.audamob.doit.UiComponent;
+package com.audamob.doit.view.uiComponent;
 
 public interface IconPagerAdapter {
     /**

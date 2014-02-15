@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -15,10 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.ActivityService;
+import com.audamob.doit.service.FollowService;
 import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class DoItActivityDetails extends ActivityBase {
@@ -63,13 +64,14 @@ public class DoItActivityDetails extends ActivityBase {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ActivityService activityService = new ActivityService(context);
+				FollowService followService = new FollowService(context);
 				try {
 					Log.e("FOLLOW"," je suis ici 1");
 					
-					activityService.addNewFollowToActivity(doitActivity.getDoIdActivity(), "0" +
+					followService.addNewFollowToActivity(doitActivity.getDoIdActivity(), "0" +
 							"" +
-							"1");//CacheReadWriteUtil.restoreAccount(context).getmId());
+							"1");
+					//CacheReadWriteUtil.restoreAccount(context).getmId());
 					
 				} catch (Exception e) {
 					// TODO: handle exception

@@ -1,4 +1,4 @@
-package com.audamob.doit.activity.SlidingMenu;
+package com.audamob.doit.view.activity.SlidingMenu;
 
 import com.audamob.doit.R;
 

@@ -1,12 +1,12 @@
-package com.audamob.doit.activity.SlidingMenu;
+package com.audamob.doit.view.activity.SlidingMenu;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.ListView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.SlidingMenuListItem;
+import com.audamob.doit.view.activity.ProfileActivity;
 
 /**
  * @author Andrius Baruckis http://www.baruckis.com

@@ -44,19 +44,9 @@ public class ActivityService {
 
 	}
 
-	public void getActivitiesByCreteria() {
+	public void getActivitiesByCreteria(String[] criteria) {
 
 	}
 
-	/**
-	 * Add New Follow to the selected Activity
-	 * @param activityId
-	 * @param followersId
-	 */
-	public void addNewFollowToActivity(String activityId, String followersId) {
-		Log.e("FOLLOW"," je suis ici 2 ");
-		doActivityServiceManager.addNewFollowToActivity(activityId, followersId);
-
-	}
 
 }

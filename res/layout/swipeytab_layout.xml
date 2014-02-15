@@ -9,7 +9,7 @@
 
  
 
-    <com.audamob.doit.UiComponent.SwipeyTabs
+    <com.audamob.doit.view.uiComponent.SwipeyTabs
         android:id="@+id/swipeytabs"
         android:layout_width="fill_parent"
         android:layout_height="40dp"

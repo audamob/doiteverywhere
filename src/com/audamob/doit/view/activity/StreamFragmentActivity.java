@@ -1,4 +1,4 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 import java.io.FileInputStream;
 
@@ -15,10 +15,14 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.audamob.doit.R;
+import com.audamob.doit.adapter.DoItActivitiesListAdapter;
+import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.model.User;
+import com.audamob.doit.service.ActivityService;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.R.string;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -51,20 +55,24 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import android.util.*;
 
-public class SettingsFragmentActivity extends Fragment {
+public class StreamFragmentActivity extends Fragment {
 
-	EditText SearchEdit, SearchEditAlbum;
 
-	ListView ListVideo;
-
+	ListView doListDoItActivities;
+	Activity doActivity;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.layout_settings_fragment,
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.layout_stream_fragment,
 				null);
 		final String title = getArguments().getString("title");
-
+		
+		doActivity=getActivity();
+	     doListDoItActivities=(ListView)root.findViewById(R.id.listdoitactivities);
+	     
+		new ActivityService(doActivity,doListDoItActivities);
+		
 		return root;
 
 	}

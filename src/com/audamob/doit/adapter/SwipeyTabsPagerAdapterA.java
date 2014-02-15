@@ -6,19 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
 
-import com.audamob.doit.R;
-
-import com.audamob.doit.UiComponent.IconPagerAdapter;
-import com.audamob.doit.UiComponent.TabPageIndicator;
-import com.audamob.doit.activity.FollowingFragmentActivity;
-import com.audamob.doit.activity.SettingsFragmentActivity;
-import com.audamob.doit.activity.StreamFragmentActivity;
-import com.audamob.doit.activity.SwipeyTabFragmentActivity;
+import com.audamob.doit.view.activity.FollowingFragmentActivity;
+import com.audamob.doit.view.activity.SettingsFragmentActivity;
+import com.audamob.doit.view.activity.StreamFragmentActivity;
+import com.audamob.doit.view.activity.SwipeyTabFragmentActivity;
+import com.audamob.doit.view.uiComponent.IconPagerAdapter;
 
 public class SwipeyTabsPagerAdapterA extends FragmentStatePagerAdapter implements IconPagerAdapter {
 	private String[] TabTitles;

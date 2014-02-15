@@ -1,11 +1,11 @@
-package com.audamob.doit.UiComponent;
+package com.audamob.doit.view.uiComponent;
 
 
 import com.audamob.doit.R;
 import com.audamob.doit.R.drawable;
-import com.audamob.doit.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.activity.SlidingMenu.SlidingMenuBuilderBase;
 import com.audamob.doit.adapter.SwipeyTabsAdapter;
+import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
+import com.audamob.doit.view.activity.SlidingMenu.SlidingMenuBuilderBase;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;

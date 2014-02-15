@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Text;
 
-import com.audamob.doit.activity.DoItActivityDetails;
-import com.audamob.doit.activity.ProfileActivity;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.view.activity.DoItActivityDetails;
+import com.audamob.doit.view.activity.ProfileActivity;
 
 import android.app.Activity;
 import android.content.Context;

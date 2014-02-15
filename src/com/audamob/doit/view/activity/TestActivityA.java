@@ -1,17 +1,17 @@
-package com.audamob.doit.activity;
+package com.audamob.doit.view.activity;
 
 
 import android.app.Activity;
 import android.os.Bundle;
 import com.audamob.doit.R;
 
-public class TestActivity extends Activity{
+public class TestActivityA extends Activity{
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test);
+		setContentView(R.layout.layout_stream_fragment);
 	}
 }

@@ -1,4 +1,4 @@
-package com.audamob.doit.UiComponent;
+package com.audamob.doit.view.uiComponent;
 
 import android.content.Context;
 import android.content.res.TypedArray;

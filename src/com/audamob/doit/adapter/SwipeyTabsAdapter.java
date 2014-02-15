@@ -1,6 +1,6 @@
 package com.audamob.doit.adapter;
 
-import com.audamob.doit.UiComponent.SwipeyTabs;
+import com.audamob.doit.view.uiComponent.SwipeyTabs;
 
 import android.support.v4.view.PagerAdapter;
 import android.widget.TextView;

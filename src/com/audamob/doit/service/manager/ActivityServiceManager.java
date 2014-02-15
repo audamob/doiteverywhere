@@ -205,39 +205,7 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 		// End Get Activities from Json File
 	}
 
-	/**
-	 * Add New Follower
-	 * 
-	 * @param args
-	 * @return
-	 */
-	public String addNewFollowToActivity(String... args) {
-		String idActivity = args[0];
-		String idFollowers = args[1];
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair(TAG_ID, idActivity));
-		params.add(new BasicNameValuePair(TAG_FOLLOWERS, idFollowers));
-		JSONParser parser = new JSONParser();
-		JSONObject json = parser.makeHttpRequest(
-				ApplicationConstants.ACTIVITIES_JSON_URL + "/activity"
-						+ idActivity, "PUT", params);
-
-		try {
-			Integer success = json.getInt("");
-			if (success == 1) {
-				// successfully updated
-				// send result code 100 to notify about activity update
-			} else {
-				// failed to update activity
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-
-	}
-
+	
 	/**
 	 * Before starting background thread Show Progress Dialog
 	 * */
@@ -256,11 +224,11 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	 * */
 	protected String doInBackground(String... args) {
 
-//		setActivities(getActivitiesFromJsonFile(ApplicationConstants.ACTIVITIES_JSON_URL
-//				+ this.fileName));
+		setActivities(getActivitiesFromJsonFile(ApplicationConstants.ACTIVITIES_JSON_URL
+				+ this.fileName));
 		
 		//FIXME : TMP jusquau correction du problème de l'API de service
-		setActivities(getActivitiesFromMockFile("activity.json"));
+		//setActivities(getActivitiesFromMockFile("activity.json"));
 		return null;
 	}
 
