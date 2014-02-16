@@ -25,7 +25,7 @@
     <string name="Followers_number"> Followers</string>
     <string name="Suggestion_Text"> Suggestions</string>
     <string name="Categorie_Text"> Categories</string>
-    <string name="Suggestion_Text"> Suggestion</string>
+   
     <string name="Details_Text"> Details</string>
     <string name="Posts_Text"> Posts</string>
     <string name="Follow"> Follow</string>
@@ -85,7 +85,7 @@
     <string name="textview_left_label_for_xml">Swipe with the finger to slide out menu from the left side.</string>
     <string name="textview_top_left_label_for_class">Press on the icon to show or hide sliding out menu.</string>
     <string name="textview_left_label_for_class">Swipe with the finger to slide out menu from the left side.</string>
-    <string name="empty_string"></string>
+ 
 
     <!-- MENU -->
     <string name="menu_github_short">GitHub</string>

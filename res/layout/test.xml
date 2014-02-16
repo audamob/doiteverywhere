@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/flat_midnight_blue" >
+
+    <ScrollView
+        android:id="@+id/CustomList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideInset"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/MenuHeaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/sliding_menu_profile_picture_height"
+                    android:layout_height="@dimen/sliding_menu_profile_picture_height"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/profile"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:text="Profile Name"
+                    android:textColor="@color/flat_clouds"
+                    android:textSize="@dimen/sliding_menu_profile_name_height" />
+
+                <TextView
+                    android:id="@+id/profile_view"
+                    android:layout_width="@dimen/sliding_menu_viewprofile_width"
+                    android:layout_height="@dimen/sliding_menu_viewprofile_height"
+                    android:layout_below="@+id/profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/text_bg_selector"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/View_Profile_text"
+                    android:textColor="@color/flat_midnight_blue"
+                    android:textSize="@dimen/sliding_menu_viewprofile_text_size"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_view"
+                    android:layout_marginLeft="30dp" 
+                     android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/followers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                       
+                        android:src="@drawable/ic_followers" />
+
+                    <TextView
+                        android:id="@+id/followersNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        
+                        android:layout_toRightOf="@+id/followers"
+                        
+                        android:text="@string/Followers_number"
+                        android:textColor="@color/flat_silver"
+                        android:textSize="@dimen/sliding_menu_followNumber_text_size" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/MenuHeaderLayout"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_1"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/flat_pumpkin"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_stream" />
+
+                <TextView
+                    android:id="@+id/row_title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Stream_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/ItemMenu_1"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_2"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/flat_pumpkin"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_nearby" />
+
+                <TextView
+                    android:id="@+id/row_title_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Nearby_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/ItemMenu_2"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_3"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/flat_pumpkin"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_interested" />
+
+                <TextView
+                    android:id="@+id/row_title_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Interested_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/ItemMenu_3"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_4"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/flat_pumpkin"
+                    android:visibility="visible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_explore" />
+
+                <TextView
+                    android:id="@+id/row_title_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Explore_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ItemMenu_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sliding_menu_item_height"
+                android:layout_below="@+id/ItemMenu_4"
+                android:background="@drawable/item_sliding_menu_bg_selector" >
+
+                <RelativeLayout
+                    android:id="@+id/selector_5"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/flat_pumpkin"
+                    android:visibility="invisible" >
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/row_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_settings" />
+
+                <TextView
+                    android:id="@+id/row_title_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/row_icon"
+                    android:text="@string/Settings_text"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/sliding_menu_item_title_height" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/divider_bg" >
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+   
+
+</RelativeLayout>
