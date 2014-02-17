@@ -41,5 +41,12 @@
      
       <dimen name="list_padding_size">5dp</dimen>	 
     <dimen name="list_padding_top_size">5dp</dimen>
-     <dimen name="list_item_bottom_info_height">40dp</dimen>
+     <dimen name="list_item_bottom_info_height">30dp</dimen>
+     <dimen name="list_item_bottom_info_margin_top">5dp</dimen>
+     <dimen name="list_item_title_height">20sp</dimen>
+      <dimen name="list_item_button_doit_title_height">14sp</dimen>
+       <dimen name="list_item_content_height">14sp</dimen>
+       <dimen name="layout_profile_segment_1_height">200dp</dimen>
+     
+     
 </resources>

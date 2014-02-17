@@ -58,9 +58,9 @@ public class AuthenticationActivity extends Activity implements
 		setContentView(R.layout.layout_authentfication_activity);
 
 		
-		 Intent intent = new Intent(AuthenticationActivity.this,
-		 MainContainerActivity.class); startActivity(intent); this.finish();
-		
+//		 Intent intent = new Intent(AuthenticationActivity.this,
+//		 MainContainerActivity.class); startActivity(intent); this.finish();
+//		
 			//Get the preferences of this current AuthenticatioNActivity
 		mPrefs = getPreferences(MODE_PRIVATE);
 		MainActivity_activity = this;

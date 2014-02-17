@@ -43,9 +43,9 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingBottom="@dimen/list_item_bottom_info_margin_top"
+                    android:paddingLeft="@dimen/list_item_bottom_info_margin_top"
+                    android:paddingRight="@dimen/list_item_bottom_info_margin_top"
                     android:paddingTop="5dp" >
 
                     <RelativeLayout
@@ -60,7 +60,7 @@
                             android:lines="1"
                             android:text="aaaaa"
                             android:textColor="@color/flat_action_bar"
-                            android:textSize="25sp" />
+                            android:textSize="@dimen/list_item_title_height" />
 
                         <TextView
                             android:id="@+id/category"
@@ -80,7 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@+id/LayoutTitle"
-                        android:layout_marginTop="15dp" >
+                        android:layout_marginTop="@dimen/list_item_bottom_info_margin_top" >
 
                         <TextView
                             android:id="@+id/Content"
@@ -89,7 +89,7 @@
                             android:lines="3"
                             android:text=""
                             android:textColor="@color/flat_clouds"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/list_item_content_height" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -97,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/list_item_bottom_info_height"
                         android:layout_below="@+id/Layoutcontent"
-                        android:layout_marginTop="20dp" >
+                        android:layout_marginTop="@dimen/list_item_bottom_info_margin_top" >
 
                         <RelativeLayout
                             android:id="@+id/sep_h"
@@ -111,13 +111,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_below="@+id/sep_h"
-                            android:layout_marginTop="10dp" >
+                            android:layout_marginTop="@dimen/list_item_bottom_info_margin_top" >
 
                             <RelativeLayout
                                 android:layout_width="0px"
                                 android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                 >
+                                android:layout_weight="2" >
 
                                 <RelativeLayout
                                     android:id="@+id/layout_nbrfollowers"
@@ -181,14 +180,12 @@
                                     android:id="@+id/category"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
                                     android:layout_marginLeft="0dp"
-                                   
                                     android:text="@string/Follow"
                                     android:textColor="@color/flat_white"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"
-                                    android:layout_centerInParent="true" 
-                                    />
+                                    android:textSize="@dimen/list_item_button_doit_title_height"
+                                    android:textStyle="bold" />
                             </RelativeLayout>
                         </LinearLayout>
                     </RelativeLayout>
