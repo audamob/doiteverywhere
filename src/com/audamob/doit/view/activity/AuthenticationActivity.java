@@ -64,6 +64,12 @@ public class AuthenticationActivity extends Activity implements
 //		 Intent intent = new Intent(AuthenticationActivity.this,
 //		 MainContainerActivity.class); startActivity(intent); this.finish();
 //		
+<<<<<<< HEAD
+=======
+			//Get the preferences of this current AuthenticatioNActivity
+		mPrefs = getPreferences(MODE_PRIVATE);
+		MainActivity_activity = this;
+>>>>>>> branch 'master-r01' of https://houssem.benslama@code.google.com/p/doiteverywhere/
 		/**
 		 * Google +implementation
 		 */
