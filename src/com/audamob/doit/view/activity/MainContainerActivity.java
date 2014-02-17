@@ -1,18 +1,15 @@
 package com.audamob.doit.view.activity;
 
-import android.app.ActionBar;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 import com.audamob.doit.R;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.view.activity.SlidingMenu.SlidingMenuBuilderConcrete;
-import com.audamob.doit.view.uiComponent.SwipeyTabs;
+import com.viewpagerindicator.TabPageIndicator;
 
 public class MainContainerActivity extends ActivityBase {
 
@@ -40,11 +37,14 @@ public class MainContainerActivity extends ActivityBase {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		ActionBar bar = getActionBar();
-		bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(
-				R.color.flat_clouds)));
+
+		/*
+		 * ActionBar bar = getActionBar(); bar.setBackgroundDrawable(new
+		 * ColorDrawable(getResources().getColor( R.color.flat_action_bar)));
+		 */
+		// bar.setH
 		activity = this;
-		setContentView(R.layout.swipeytab_layout);
+		setContentView(R.layout.layout_main_container);
 		ChangeCurrentFragment(2);
 
 	}
@@ -70,9 +70,10 @@ public class MainContainerActivity extends ActivityBase {
 			String[] tab_2 = {
 					activity.getResources().getString(R.string.Nearby_text),
 					activity.getResources().getString(R.string.To_Do_text),
-					activity.getResources().getString(R.string.Done_text),
 					activity.getResources()
-							.getString(R.string.In_Progress_text) };
+							.getString(R.string.In_Progress_text),
+					activity.getResources().getString(R.string.Done_text) };
+
 			return tab_2;
 
 		}
@@ -80,32 +81,14 @@ public class MainContainerActivity extends ActivityBase {
 	}
 
 	public static void ChangeCurrentFragment(int i) {
-		SwipeyTabs mTabs;
-		ViewPager mViewPager;
-
-		FragmentManager fragmentManager;
-		mViewPager = (ViewPager) activity.findViewById(R.id.viewpager);
-		mTabs = (SwipeyTabs) activity.findViewById(R.id.swipeytabs);
-		fragmentManager = activity.getSupportFragmentManager();
-
-		try {
-			mViewPager.removeAllViews();
-		} catch (Exception e) {
-		}
-
-		String[] TITLES = CreateTableString(i);
-		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(activity,
-				fragmentManager, TITLES, mViewPager, i);
-		mViewPager.setAdapter(adapter);
-		mTabs.setAdapter(adapter);
-		mViewPager.setOnPageChangeListener(mTabs);
+		ViewPager pager = (ViewPager) activity.findViewById(R.id.pager);
 		switch (i) {
 		case 3:
-			mViewPager.setCurrentItem(1);
+			pager.setCurrentItem(1);
 			break;
 
 		default:
-			mViewPager.setCurrentItem(0);
+			pager.setCurrentItem(0);
 			break;
 		}
 
@@ -122,14 +105,31 @@ public class MainContainerActivity extends ActivityBase {
 			break;
 		}
 
+		FragmentManager fragmentManager;
+		fragmentManager = activity.getSupportFragmentManager();
+
+		try {
+			pager.removeAllViews();
+		} catch (Exception e) {
+		}
+
+		String[] TITLES = CreateTableString(i);
+		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(activity,
+				fragmentManager, TITLES, pager, i);
+
+		pager.setAdapter(adapter);
+
+		TabPageIndicator indicator = (TabPageIndicator) activity
+				.findViewById(R.id.indicator);
+		indicator.setViewPager(pager);
+
 	}
 
 	public static void ShowHeaderTabs(Boolean b) {
 		if (b) {
-			activity.findViewById(R.id.swipeytabs).setVisibility(View.VISIBLE);
+			activity.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
 		} else {
-			activity.findViewById(R.id.swipeytabs)
-					.setVisibility(View.INVISIBLE);
+			activity.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
 		}
 	}
 

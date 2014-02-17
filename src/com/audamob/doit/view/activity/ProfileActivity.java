@@ -15,7 +15,7 @@ import com.audamob.doit.adapter.SwipeyTabsPagerAdapterA;
 import com.audamob.doit.utils.LayoutResizerUtil;
 import com.audamob.doit.utils.ObservableScrollView;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
-import com.audamob.doit.view.uiComponent.TabPageIndicator;
+import com.viewpagerindicator.TabPageIndicator;
 
 public class ProfileActivity extends ActivityBase implements
 		ObservableScrollView.Callbacks {

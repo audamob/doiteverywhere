@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_activity_height_item"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="@dimen/list_padding_size"
+    android:paddingRight="@dimen/list_padding_size"
     android:paddingTop="15dp" >
 
     <RelativeLayout
@@ -59,7 +59,7 @@
                             android:layout_height="wrap_content"
                             android:lines="1"
                             android:text="aaaaa"
-                            android:textColor="@color/flat_asbestos"
+                            android:textColor="@color/flat_action_bar"
                             android:textSize="25sp" />
 
                         <TextView
@@ -95,7 +95,7 @@
                     <RelativeLayout
                         android:id="@+id/Layoutdetails"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/list_item_bottom_info_height"
                         android:layout_below="@+id/Layoutcontent"
                         android:layout_marginTop="20dp" >
 

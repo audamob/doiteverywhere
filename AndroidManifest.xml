@@ -40,17 +40,17 @@
             android:name="com.audamob.doit.view.activity.MainContainerActivity"
             android:label="@string/second_title"
             android:logo="@drawable/ic_action_sliding_menu"
-            android:theme="@style/CustomUpIndicatorTheme" />
+            android:theme="@style/myTheme" />
         <activity
             android:name="com.audamob.doit.view.activity.ProfileActivity"
             android:label="@string/Profile_title"
             android:logo="@drawable/ic_action_back"
-            android:theme="@style/CustomUpIndicatorTheme" />
+          android:theme="@style/myTheme" />
           <activity
             android:name="com.audamob.doit.view.activity.DoItActivityDetails"
             android:label="@string/Details_Text"
             android:logo="@drawable/ic_action_back"
-            android:theme="@style/CustomUpIndicatorTheme" />
+            android:theme="@style/myTheme" />
             <activity
             android:name="com.audamob.doit.view.activity.TestActivity"
            />
