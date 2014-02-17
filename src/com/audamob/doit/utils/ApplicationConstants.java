@@ -11,6 +11,8 @@ public class ApplicationConstants {
 	//Service API URLs
 	public static final String ACTIVITIES_JSON_URL = "http://audahub.fr/doiteverywhere/recess/index.php/doitAdmin/api/";
 													
-
+	public static final String GOOGLE_IMG_BASE_URL = "https://plus.google.com/s2/photos/profile/";
+	
+	public static final String FACEBOOK_BASE_URL = "http://graph.facebook.com/";
 
 }

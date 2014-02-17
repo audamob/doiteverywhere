@@ -64,12 +64,7 @@ public class AuthenticationActivity extends Activity implements
 //		 Intent intent = new Intent(AuthenticationActivity.this,
 //		 MainContainerActivity.class); startActivity(intent); this.finish();
 //		
-<<<<<<< HEAD
-=======
-			//Get the preferences of this current AuthenticatioNActivity
-		mPrefs = getPreferences(MODE_PRIVATE);
-		MainActivity_activity = this;
->>>>>>> branch 'master-r01' of https://houssem.benslama@code.google.com/p/doiteverywhere/
+
 		/**
 		 * Google +implementation
 		 */
@@ -89,7 +84,7 @@ public class AuthenticationActivity extends Activity implements
 		MainActivity_activity = this;
 		facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
 
-		// Instanciate Facebook And Google Connect Manager
+		// Instanciate Facebook Manager
 		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
 				MainActivity_activity,facebook );
 

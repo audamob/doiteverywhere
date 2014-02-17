@@ -1,37 +1,35 @@
 package com.audamob.doit.utils;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources.Theme;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class ImageLoaderUtil {
 
 	ImageView mImageView;
 	Context mContext;
 	String mStringUrl;
+	String mStringBaseUrl;
 	Bitmap mBitmap_profile,mBitmap_activity;
 	
     String mUserID;
-	public ImageLoaderUtil(ImageView imageview, Context context, String url,String userID) {
+	public ImageLoaderUtil(ImageView imageview, Context context, String baseUrl, String url,String userID) {
 		// TODO Auto-generated constructor stub
 		mImageView = imageview;
 		mContext = context;
 		mStringUrl = url;
 		mUserID=userID;
+		mStringBaseUrl = baseUrl;
+		
 		
 		ThreadLoadProfilePicture ThreadLoader_profile = new ThreadLoadProfilePicture(handlerLoad);
 		ThreadLoader_profile.start();
@@ -83,7 +81,7 @@ public class ImageLoaderUtil {
 
 		public void run() {
 			//
-			Bitmap bm = getUserPic(mStringUrl,
+			Bitmap bm = getUserPic(mStringBaseUrl,mStringUrl,
 					mImageView.getLayoutParams().width,
 					mImageView.getLayoutParams().height,
 					mUserID);
@@ -96,14 +94,17 @@ public class ImageLoaderUtil {
 
 		}
 
-		public Bitmap getUserPic(String url, int width, int height,
+		public Bitmap getUserPic(String baseUrl,String url, int width, int height,
 				String userID) {
 			String imageURL;
 			Bitmap bitmap = null;
 			int measuredWidth = width;
 			int measuredHieght = height;
 			
-			imageURL = "https://plus.google.com/s2/photos/profile/" + userID
+//			imageURL = "https://plus.google.com/s2/photos/profile/" + userID
+//					+ "?width=" + measuredWidth + "&height=" + measuredHieght;
+			
+			imageURL = baseUrl + userID
 					+ "?width=" + measuredWidth + "&height=" + measuredHieght;
 
 			try {

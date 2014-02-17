@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.model.SlidingMenuListItem;
 import com.audamob.doit.model.User;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
@@ -105,7 +106,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 		}
 		if (ac != null) {
 			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
-					getActivity(), ac.getImageUrl(), ac.getUserId());
+					getActivity(), ApplicationConstants.FACEBOOK_BASE_URL,ac.getImageUrl(), ac.getUserId());
 		
 			profile_name.setText(ac.getProfileName());
 		}

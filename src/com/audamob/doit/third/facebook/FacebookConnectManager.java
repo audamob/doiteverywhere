@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
-import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.facebook.android.AsyncFacebookRunner;
@@ -92,7 +91,6 @@ public class FacebookConnectManager extends Activity implements
 						public void onComplete(Bundle values) {
 							// Function to handle complete event
 							// Edit Preferences and update facebook acess_token
-							Log.d("FACEBOOK", "onComplete : ");
 							editor.putString("access_token",
 									facebook.getAccessToken());
 							Log.d("FACEBOOK", "facebook.getAccessToken() : "+facebook.getAccessToken());
@@ -105,21 +103,8 @@ public class FacebookConnectManager extends Activity implements
 
 							Log.d("finish - Complete","finish - Complete");
 
-							User account = getProfileInformation();
-							try {
-								CacheReadWriteUtil.saveAccount(account, mainActivity);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							getProfileInformation();
 							
-							//Starting MainActivity
-							Intent intent = new Intent(mainActivity,
-									MainContainerActivity.class);
-							mainActivity.startActivity(intent);
-							
-							//Kill the Authentication Activity
-							mainActivity.finish();
 						}
 
 						@Override
@@ -169,6 +154,12 @@ public class FacebookConnectManager extends Activity implements
 					Log.d("FACEBOOK","name :"+name);
 
 					account.setmDisplayName(name);
+					Log.d("FACEBOOK","account name :"+account.getProfileName());
+					
+					account.setmImageUrl("");
+					
+//					String imageURL = "http://graph.facebook.com/" + profile.getString("id") + "/picture?width="
+//							+ measuredWidth + "&height=" + measuredHieght;
 
 					// getting email of the user
 					final String email = profile.getString("email");
@@ -177,9 +168,21 @@ public class FacebookConnectManager extends Activity implements
 
 						@Override
 						public void run() {
-//							Toast.makeText(getApplicationContext(),
-//									"Name: " + name + "\nEmail: " + email,
-//									Toast.LENGTH_LONG).show();
+							try {
+								CacheReadWriteUtil.saveAccount(account, mainActivity);
+								
+								//Starting MainActivity
+								Intent intent = new Intent(mainActivity,
+										MainContainerActivity.class);
+								mainActivity.startActivity(intent);
+								
+								//Kill the Authentication Activity
+								mainActivity.finish();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
 						}
 
 					});

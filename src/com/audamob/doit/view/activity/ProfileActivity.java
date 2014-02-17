@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.model.User;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.utils.LayoutResizerUtil;
@@ -76,7 +77,7 @@ public class ProfileActivity extends ActivityBase implements
 
 		try {
 			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, this,
-					ac.getImageUrl(), ac.getUserId());
+					ApplicationConstants.FACEBOOK_BASE_URL,ac.getImageUrl(), ac.getUserId());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -26,6 +26,13 @@
          	        android:scaleType="centerCrop"
          	          android:adjustViewBounds="true"
          	    />
+         	<ImageView 
+         	      android:layout_width="match_parent"
+         	        android:layout_height="match_parent"
+         	       android:background="@drawable/bg_opacity"
+         	        android:scaleType="centerCrop"
+         	          android:adjustViewBounds="true"
+         	    />
                 <RelativeLayout
                     android:id="@+id/profile_image_shadow"
                     android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_3"
@@ -67,6 +74,7 @@
 				    android:layout_height="match_parent"
 				       android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/profile_image_shadow"
+                    android:layout_centerHorizontal="true"
 				    >
 				    <RelativeLayout
                     android:id="@+id/layout_2"
