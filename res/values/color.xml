@@ -30,7 +30,7 @@
 	<color name="flat_white_2">#D1D1D1</color>
 	<color name="flat_sep">#FFCCCCCC</color>
 	<color name="flat_transparent">#0Dffffff</color>
-	
+	<color name="flat_action_bar">#333333</color>
 	
 	
 </resources>

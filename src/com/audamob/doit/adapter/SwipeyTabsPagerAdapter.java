@@ -101,5 +101,10 @@ public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 
 		return view;
 	}
+	 
+	@Override
+     public CharSequence getPageTitle(int position) {
+         return TabTitles[position % TabTitles.length].toUpperCase();
+     }
 
 }

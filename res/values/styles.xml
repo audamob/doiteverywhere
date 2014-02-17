@@ -1,17 +1,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-      <!--
+    <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -19,8 +16,7 @@
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -35,28 +31,51 @@
 
     <style name="CustomUpIndicatorTheme" parent="AppAlternativeTheme">
         <item name="android:homeAsUpIndicator">@drawable/ic_up_indicator</item>
-       
-        
+        <item name="android:height">400dp</item>
+        <item name="android:textColor">@color/flat_clouds</item>
+        <item name="android:actionBarSize">@dimen/action_bar_height</item>
     </style>
 
+    <style name="myTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/myTheme.ActionBar</item>
+        <item name="android:actionMenuTextColor">@color/flat_clouds</item>
+        <item name="android:actionBarSize">@dimen/action_bar_height</item>
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+    </style>
 
-    
+    <style name="myTheme.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/flat_action_bar</item>
+        <item name="android:titleTextStyle">@style/myTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="myTheme.ActionBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/flat_clouds</item>
+        <item name="android:textSize">@dimen/action_bar_size_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/custom_tab_indicator</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:textColor">@color/flat_action_bar</item>
+        <item name="android:textSize">@dimen/swipey_tabs_size_text</item>
+        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
+        <item name="android:dividerPadding">10dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+    </style>
+
     <style name="AppTheme" parent="android:Theme.Holo">
-    
-    <item name="circularProgressBarStyle">@style/CircularProgressBar</item>
-    
-    
-    
-    
-    
-
+        <item name="circularProgressBarStyle">@style/CircularProgressBar</item>
     </style>
-    
-    
-    
-    
-    
-    
+
     <style name="Item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">300dp</item>
@@ -73,7 +92,6 @@
         <item name="android:gravity">center</item>
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
         <item name="android:textAllCaps">true</item>
-      
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>
@@ -85,5 +103,5 @@
     <style name="Item.Bottom.Alt">
         <item name="android:background">@color/flat_silver</item>
     </style>
-    
+
 </resources>

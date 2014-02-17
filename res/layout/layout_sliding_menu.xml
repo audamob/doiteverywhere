@@ -18,8 +18,8 @@
                 android:id="@+id/MenuHeaderLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="70dp"
-                android:layout_marginTop="70dp" >
+                android:layout_marginBottom="@dimen/sliding_menu_profile_picture_margin_height"
+                android:layout_marginTop="@dimen/sliding_menu_profile_picture_margin_height" >
 
                 <RelativeLayout
                     android:id="@+id/profile_image_shadow"
