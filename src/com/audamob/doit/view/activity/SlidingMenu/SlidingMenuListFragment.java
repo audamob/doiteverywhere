@@ -106,7 +106,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 			e.printStackTrace();
 		}
 		if (ac != null) {
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,null,
 					getActivity(), ac.getImageUrl(), ac.getUserId());
 		
 			profile_name.setText(ac.getProfileName());

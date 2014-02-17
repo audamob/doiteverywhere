@@ -21,10 +21,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
+import com.audamob.doit.adapter.DragViewListener;
 import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
@@ -57,7 +59,11 @@ public class AuthenticationActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_authentfication_activity);
 
-		
+		RelativeLayout dragLayout=(RelativeLayout)findViewById(R.id.Test);
+		dragLayout.setOnTouchListener(new DragViewListener(this, dragLayout, (MarginLayoutParams)dragLayout.getLayoutParams()));
+		/**
+		 * Skiper la screen d'athentification
+		 */
 //		 Intent intent = new Intent(AuthenticationActivity.this,
 //		 MainContainerActivity.class); startActivity(intent); this.finish();
 //		
@@ -67,7 +73,7 @@ public class AuthenticationActivity extends Activity implements
 		/**
 		 * Google +implementation
 		 */
-
+		
 		mPlusClient = new PlusClient.Builder(this, this, this).setActions(
 				MomentUtil.ACTIONS).build();
 		/*

@@ -1,42 +1,44 @@
 package com.audamob.doit.utils;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources.Theme;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.audamob.doit.R;
 
 public class ImageLoaderUtil {
 
-	ImageView mImageView;
+	ImageView mImageView,mImageViewBlurred;
 	Context mContext;
 	String mStringUrl;
 	Bitmap mBitmap_profile,mBitmap_activity;
+	Bitmap mBitmapBlurred;
 	
     String mUserID;
-	public ImageLoaderUtil(ImageView imageview, Context context, String url,String userID) {
+	public ImageLoaderUtil(ImageView imageview,ImageView blurred, Context context, String url,String userID) {
 		// TODO Auto-generated constructor stub
 		mImageView = imageview;
 		mContext = context;
 		mStringUrl = url;
 		mUserID=userID;
+		mImageViewBlurred=blurred;
 		
 		ThreadLoadProfilePicture ThreadLoader_profile = new ThreadLoadProfilePicture(handlerLoad);
 		ThreadLoader_profile.start();
 	}
-
+	public Bitmap getImageBlurred(){
+		
+		return mBitmapBlurred;
+	}
 	public ImageLoaderUtil(ImageView imageActivity, Activity activity,
 			String imageUrl) {
 		mImageView = imageActivity;
@@ -51,9 +53,20 @@ public class ImageLoaderUtil {
 
 		public void handleMessage(Message msg) {
 			try {
+
 				RoundedAvatarDrawable rAvatar=new RoundedAvatarDrawable(mBitmap_profile);
-			
+				
+					
 				mImageView.setImageDrawable(rAvatar);
+				
+				if(mImageViewBlurred!=null){
+
+					Bitmap bm = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_followers);
+					Log.d("DoItEvryWhere","niveau de code avant blurred");
+					mImageViewBlurred.setImageBitmap(GraphicsUtil.fastblur(mBitmap_profile, 40));
+				}
+				
+				Log.d("DoItEvryWhere","niveau de code apres blurred");
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

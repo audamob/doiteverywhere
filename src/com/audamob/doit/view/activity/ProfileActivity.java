@@ -21,7 +21,6 @@ import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.utils.LayoutResizerUtil;
 import com.audamob.doit.utils.ObservableScrollView;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class ProfileActivity extends ActivityBase implements
@@ -55,58 +54,57 @@ public class ProfileActivity extends ActivityBase implements
 					}
 				});
 
-		 ImageView im = (ImageView) findViewById(R.id.profile_image);
-		
-		 User ac = null;
-		 try {
-		 ac = CacheReadWriteUtil.restoreAccount(this);
-		 } catch (ClassNotFoundException e) { // TODO Auto-generated catch
-		
-		 e.printStackTrace();
-		 } catch (IOException e) { // TODO Auto-generated
-		 e.printStackTrace();
-		 }
-		
-		 try {
-		 ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, this,
-		 ac.getImageUrl(), ac.getUserId());
-		 } catch (Exception e) {
-		 // TODO: handle exception
-		 }
-
-		
-//		  UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
-//		  im.getLayoutParams().height, im, ac.getImageUrl());
-//		  
-		 
-
-		 Typeface TODO = Typeface.createFromAsset(getAssets(),
-		 "DinDisplayProThin.otf");
-		 TextView AccountName, AccountAge, AccountLocation,
-		 AccountOrganisation;
-		 AccountName = (TextView) findViewById(R.id.profile_name_p);
-		 AccountAge = (TextView) findViewById(R.id.profile_age_p);
-		 AccountLocation = (TextView) findViewById(R.id.profile_location_p);
-		
-		 AccountOrganisation = (TextView)
-		 findViewById(R.id.profile_Activity_p);
-		 try {
-		
-		 AccountName.setText(ac.getProfileName() + ",");
-		 AccountAge.setText(ac.getProfileBirthday());
-		 AccountLocation.setText(ac.getProfileLocation());
-		
-		 AccountOrganisation.setText(ac.getPosteOrganisation());
-		 AccountAge.setTypeface(TODO);
-		 AccountLocation.setTypeface(TODO);
-		
-		 AccountOrganisation.setTypeface(TODO);
-		 } catch (Exception e) {
-		 // TODO: handle exception
-		 }
-
+		CreateUiProfile();
 		CreateProfileTab(6);
 
+	}
+
+	public void CreateUiProfile() {
+		ImageView im = (ImageView) findViewById(R.id.profile_image);
+
+		User ac = null;
+		try {
+			ac = CacheReadWriteUtil.restoreAccount(this);
+		} catch (ClassNotFoundException e) { // TODO Auto-generated catch
+
+			e.printStackTrace();
+		} catch (IOException e) { // TODO Auto-generated
+			e.printStackTrace();
+		}
+		ImageView bgInfo = (ImageView) findViewById(R.id._image_info);
+		try {
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, bgInfo,
+					this, ac.getImageUrl(), ac.getUserId());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		// UrlImageViewHelper.setUrlDrawableCustom(bgInfo.getLayoutParams().width,
+		// bgInfo.getLayoutParams().height, bgInfo, ac.getImageUrl());
+		//
+
+		Typeface TODO = Typeface.createFromAsset(getAssets(),
+				"DinDisplayProThin.otf");
+		TextView AccountName, AccountAge, AccountLocation, AccountOrganisation;
+		AccountName = (TextView) findViewById(R.id.profile_name_p);
+		AccountAge = (TextView) findViewById(R.id.profile_age_p);
+		AccountLocation = (TextView) findViewById(R.id.profile_location_p);
+
+		AccountOrganisation = (TextView) findViewById(R.id.profile_Activity_p);
+		try {
+
+			AccountName.setText(ac.getProfileName() + ",");
+			AccountAge.setText(ac.getProfileBirthday());
+			AccountLocation.setText(ac.getProfileLocation());
+
+			AccountOrganisation.setText(ac.getPosteOrganisation());
+			AccountAge.setTypeface(TODO);
+			AccountLocation.setTypeface(TODO);
+
+			AccountOrganisation.setTypeface(TODO);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public void CreateProfileTab(int i) {
