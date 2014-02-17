@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.utils.ApplicationConstants;
+import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
@@ -42,9 +44,9 @@ public class FacebookConnectManager extends Activity implements
 	 * @param mPrefsFromAuthentificationActivity
 	 * @param mainActivity_activity
 	 */
-	public FacebookConnectManager(SharedPreferences mPrefsFromAuthentificationActivity, Activity mainActivity_activity) {
-		facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
-		mAsyncRunner = new AsyncFacebookRunner(facebook);
+	public FacebookConnectManager(SharedPreferences mPrefsFromAuthentificationActivity, Activity mainActivity_activity,Facebook fb) {
+		this.facebook = fb;
+		this.mAsyncRunner = new AsyncFacebookRunner(facebook);
 		this.mPrefs = mPrefsFromAuthentificationActivity;
 		this.mainActivity = mainActivity_activity;
 	}
@@ -57,25 +59,32 @@ public class FacebookConnectManager extends Activity implements
 
 		String access_token = this.mPrefs.getString("access_token", null);
 		long expires = this.mPrefs.getLong("access_expires", 0);
-		editor = this.mPrefs.edit();
+		this.editor = this.mPrefs.edit();
 		
 		if (access_token != null) {
-			facebook.setAccessToken(access_token);
-
+			this.facebook.setAccessToken(access_token);
 			Log.d("FB Sessions", "" + facebook.isSessionValid());
 		}
 
 		if (expires != 0) {
-			facebook.setAccessExpires(expires);
+			this.facebook.setAccessExpires(expires);
 		}
+		if(this.facebook.isSessionValid())
+			logout();
+		
+		if (!this.facebook.isSessionValid()) {
+			Log.d("FACEBOOK", "not isSessionValid");
+			Log.d("FACEBOOK", this.mainActivity.toString());
+			Log.d("FACEBOOK", "editor : "+editor.toString());
+			Log.d("FACEBOOK", "this.mPrefs : "+this.mPrefs.toString());
 
-		if (!facebook.isSessionValid()) {
-			facebook.authorize(this.mainActivity,
+			this.facebook.authorize(this.mainActivity,
 					new String[] { "email", "publish_stream" },
 					new DialogListener() {
 
 						@Override
 						public void onCancel() {
+							Log.d("FACEBOOK", "onCancel : ");
 							// Function to handle cancel event
 						}
 
@@ -83,18 +92,31 @@ public class FacebookConnectManager extends Activity implements
 						public void onComplete(Bundle values) {
 							// Function to handle complete event
 							// Edit Preferences and update facebook acess_token
-							
+							Log.d("FACEBOOK", "onComplete : ");
 							editor.putString("access_token",
 									facebook.getAccessToken());
+							Log.d("FACEBOOK", "facebook.getAccessToken() : "+facebook.getAccessToken());
+
 							editor.putLong("access_expires",
 									facebook.getAccessExpires());
+							Log.d("FACEBOOK", "facebook.getAccessExpires() : "+facebook.getAccessExpires());
+
 							editor.commit();
-							
+
 							Log.d("finish - Complete","finish - Complete");
+
+							User account = getProfileInformation();
+							try {
+								CacheReadWriteUtil.saveAccount(account, mainActivity);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
 							//Starting MainActivity
 							Intent intent = new Intent(mainActivity,
 									MainContainerActivity.class);
-							startActivity(intent);
+							mainActivity.startActivity(intent);
 							
 							//Kill the Authentication Activity
 							mainActivity.finish();
@@ -103,12 +125,14 @@ public class FacebookConnectManager extends Activity implements
 						@Override
 						public void onError(DialogError error) {
 							// Function to handle error
+							Log.d("FACEBOOK", "onError : ");
 
 						}
 
 						@Override
 						public void onFacebookError(FacebookError fberror) {
 							// Function to handle Facebook errors
+							Log.d("FACEBOOK", "onFacebookError : ");
 
 						}
 
@@ -119,7 +143,7 @@ public class FacebookConnectManager extends Activity implements
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		facebook.authorizeCallback(requestCode, resultCode, data);
+		this.facebook.authorizeCallback(requestCode, resultCode, data);
 	}
 
 	/**
@@ -127,11 +151,14 @@ public class FacebookConnectManager extends Activity implements
 	 * */
 	@Override
 	public User getProfileInformation() {
+		Log.d("FACEBOOK","getProfileInformation");
 		final User account = new User();
+		Log.d("FACEBOOK","mAsyncRunner: "+mAsyncRunner.toString());
 		mAsyncRunner.request("me", new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {
-				Log.d("Profile", response);
+				Log.d("FACEBOOK","mAsyncRunner onComplete : "+mAsyncRunner.toString());
+				Log.d("FACEBOOK","Profile : "+response);
 				String json = response;
 				try {
 					// Facebook Profile JSON data
@@ -139,6 +166,8 @@ public class FacebookConnectManager extends Activity implements
 
 					// getting name of the user
 					final String name = profile.getString("name");
+					Log.d("FACEBOOK","name :"+name);
+
 					account.setmDisplayName(name);
 
 					// getting email of the user
@@ -148,9 +177,9 @@ public class FacebookConnectManager extends Activity implements
 
 						@Override
 						public void run() {
-							Toast.makeText(getApplicationContext(),
-									"Name: " + name + "\nEmail: " + email,
-									Toast.LENGTH_LONG).show();
+//							Toast.makeText(getApplicationContext(),
+//									"Name: " + name + "\nEmail: " + email,
+//									Toast.LENGTH_LONG).show();
 						}
 
 					});
@@ -211,10 +240,11 @@ public class FacebookConnectManager extends Activity implements
 	/**
 	 * Function to show Access Tokens
 	 * */
-	public void showAccessTokens() {
+	@Override
+	public void showAccessTokens(Context context) {
 		String access_token = facebook.getAccessToken();
 
-		Toast.makeText(getApplicationContext(),
+		Toast.makeText(context,
 				"Access Token: " + access_token, Toast.LENGTH_LONG).show();
 	}
 

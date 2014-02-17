@@ -3,7 +3,6 @@ package com.audamob.doit.view.activity.SlidingMenu;
 import java.io.IOException;
 import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -17,13 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.model.User;
 import com.audamob.doit.model.SlidingMenuListItem;
+import com.audamob.doit.model.User;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.audamob.doit.view.activity.ProfileActivity;
-import com.audamob.doit.view.activity.StreamFragmentActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**

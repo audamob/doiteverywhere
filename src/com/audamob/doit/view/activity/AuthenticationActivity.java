@@ -29,7 +29,9 @@ import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
+import com.facebook.android.Facebook;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.plus.PlusClient;
@@ -50,6 +52,7 @@ public class AuthenticationActivity extends Activity implements
 	private ObjectAnimator mProgressBarAnimator;
 	RelativeLayout Login_Layout, Progress_Layout;
 	TextView Text_Loading;
+	public Facebook facebook;
 	
 	
 	@Override
@@ -58,43 +61,32 @@ public class AuthenticationActivity extends Activity implements
 		setContentView(R.layout.layout_authentfication_activity);
 
 		
-		 Intent intent = new Intent(AuthenticationActivity.this,
-		 MainContainerActivity.class); startActivity(intent); this.finish();
+//		 Intent intent = new Intent(AuthenticationActivity.this,
+//		 MainContainerActivity.class); startActivity(intent); this.finish();
 		
-			//Get the preferences of this current AuthenticatioNActivity
-		mPrefs = getPreferences(MODE_PRIVATE);
-		MainActivity_activity = this;
+		
 		/**
 		 * Google +implementation
 		 */
 
 		mPlusClient = new PlusClient.Builder(this, this, this).setActions(
 				MomentUtil.ACTIONS).build();
-		/*
-		 * mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-		 * mSignInButton.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub int available = GooglePlayServicesUtil
-		 * .isGooglePlayServicesAvailable(MainActivity_activity); if (available
-		 * != ConnectionResult.SUCCESS) {
-		 * showDialog(DIALOG_GET_GOOGLE_PLAY_SERVICES); return; }
-		 * 
-		 * try {
-		 * 
-		 * mConnectionResult.startResolutionForResult(MainActivity_activity,
-		 * REQUEST_CODE_SIGN_IN); } catch (IntentSender.SendIntentException e) {
-		 * // Fetch a new result to start. mPlusClient.connect(); } } });
-		 */
+	
+		
 		/***
-		 * Google +implementation
+		 * Facebook implementation
 		 */
 
 		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
+		
+		 //Get the preferences of this current AuthenticatioNActivity
+		mPrefs = getPreferences(MODE_PRIVATE);
+		MainActivity_activity = this;
+		facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
 
-	// Instanciate Facebook And Google Connect Manager
+		// Instanciate Facebook And Google Connect Manager
 		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
-				MainActivity_activity);
+				MainActivity_activity,facebook );
 
 		/**
 		 * Login button Click event
@@ -103,23 +95,11 @@ public class AuthenticationActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				Log.d("Image Button", "button Clicked");
 				facebookAbstractConnectManager.login();
-				
-				//if connected 
-				User account = facebookAbstractConnectManager.getProfileInformation();
-				try {
-					CacheReadWriteUtil.saveAccount(account, MainActivity_activity);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
 		});
-		/**
-		 * Getting facebook Profile info
-		 * */
-
+		
+		
 		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
 		mSignInButton.setOnClickListener(new OnClickListener() {
 
@@ -173,6 +153,7 @@ public class AuthenticationActivity extends Activity implements
 		public void onAnimationStart(final Animator animation) {
 		}
 	};
+	
 	/***
 	 * Google+ Implementation
 	 */
@@ -235,6 +216,9 @@ public class AuthenticationActivity extends Activity implements
 				mPlusClient.connect();
 			}
 		}
+		
+		facebook.authorizeCallback(requestCode, resultCode, data);
+
 	}
 
 	@Override
