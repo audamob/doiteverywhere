@@ -63,7 +63,7 @@ public class AuthenticationActivity extends Activity implements
 		
 //		 Intent intent = new Intent(AuthenticationActivity.this,
 //		 MainContainerActivity.class); startActivity(intent); this.finish();
-		
+//		
 		/**
 		 * Google +implementation
 		 */

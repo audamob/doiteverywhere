@@ -73,11 +73,34 @@ public class ProfileActivity extends ActivityBase implements
 		 } catch (Exception e) {
 		 // TODO: handle exception
 		 }
+		 ImageView im = (ImageView) findViewById(R.id.profile_image);
+		
+		 User ac = null;
+		 try {
+		 ac = CacheReadWriteUtil.restoreAccount(this);
+		 } catch (ClassNotFoundException e) { // TODO Auto-generated catch
+		
+		 e.printStackTrace();
+		 } catch (IOException e) { // TODO Auto-generated
+		 e.printStackTrace();
+		 }
+		
+		 try {
+		 ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, this,
+		 ac.getImageUrl(), ac.getUserId());
+		 } catch (Exception e) {
+		 // TODO: handle exception
+		 }
 
 		
 		  UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
 		  im.getLayoutParams().height, im, ac.getImageUrl());
 		  
+		 
+		
+//		  UrlImageViewHelper.setUrlDrawableCustom(im.getLayoutParams().width,
+//		  im.getLayoutParams().height, im, ac.getImageUrl());
+//		  
 		 
 
 		 Typeface TODO = Typeface.createFromAsset(getAssets(),
