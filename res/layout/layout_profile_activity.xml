@@ -1,9 +1,9 @@
 <com.audamob.doit.utils.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-   
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/flat_clouds" >
+    android:background="@drawable/bg_blurred_3" >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -17,20 +17,44 @@
             <RelativeLayout
                 android:id="@+id/layout_image_info"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="@dimen/layout_profile_segment_1_height"
                 android:layout_margin="10dp" >
-
+         
                 <RelativeLayout
-                    android:id="@+id/layout_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:id="@+id/profile_image_shadow"
+                    android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_3"
+                    android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_3"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/custom_shape_3" >
 
-                    <ImageView
-                        android:id="@+id/profile_picture"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop" />
+                    <RelativeLayout
+                        android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_2"
+                        android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_2"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/custom_shape_2" >
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height_1"
+                            android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height_1"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/custom_shape_1" >
+
+                            <RelativeLayout
+                                android:layout_width="@dimen/sliding_menu_profile_picture_shadow_height"
+                                android:layout_height="@dimen/sliding_menu_profile_picture_shadow_height"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/custom_shape" >
+
+                                <ImageView
+                                    android:id="@+id/profile_image"
+                                    android:layout_width="@dimen/sliding_menu_profile_picture_height"
+                                    android:layout_height="@dimen/sliding_menu_profile_picture_height"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/profile"
+                                    android:scaleType="centerCrop" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -39,13 +63,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/layout_1" >
-
+                    android:layout_toRightOf="@+id/profile_image_shadow" >
+  
                     <TextView
                         android:id="@+id/profile_name_p"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/flat_asbestos"
+                        android:textColor="@color/flat_clouds"
                         android:textSize="17dp" />
 
                     <TextView
@@ -53,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/profile_name_p"
-                        android:textColor="@color/flat_asbestos"
+                        android:textColor="@color/flat_clouds"
                         android:textSize="15dp" />
                 </RelativeLayout>
 
@@ -63,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_2"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/layout_1" >
+                    android:layout_toRightOf="@+id/profile_image_shadow" >
 
                     <TextView
                         android:id="@+id/profile_Activity_p"
@@ -80,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_3"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/layout_1" >
+                    android:layout_toRightOf="@+id/profile_image_shadow">
 
                     <TextView
                         android:id="@+id/profile_location_p"
@@ -105,13 +129,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.audamob.doit.view.uiComponent.TabPageIndicator
-                android:id="@+id/swipeytabsProfile"
+            <com.viewpagerindicator.TabPageIndicator
+                android:id="@+id/indicatorProfile"
                 android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:background="#ccc"
-                
-             />
+                android:layout_height="@dimen/swipey_tabs_height"
+                android:background="@drawable/bg_opacity" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
