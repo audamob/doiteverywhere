@@ -3,7 +3,6 @@ package com.audamob.doit.view.activity.SlidingMenu;
 import java.io.IOException;
 import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -17,13 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.model.User;
 import com.audamob.doit.model.SlidingMenuListItem;
+import com.audamob.doit.model.User;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.audamob.doit.view.activity.ProfileActivity;
-import com.audamob.doit.view.activity.StreamFragmentActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
@@ -106,8 +105,11 @@ public class SlidingMenuListFragment extends ListFragment implements
 			e.printStackTrace();
 		}
 		if (ac != null) {
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,null,
-					getActivity(), ac.getImageUrl(), ac.getUserId());
+		
+			String baseUrl = getBaseUrl(ac);
+
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(ac.getmUserType(),im,null,
+					getActivity(), baseUrl,ac.getImageUrl(), ac.getUserId());
 		
 			profile_name.setText(ac.getProfileName());
 		}
@@ -126,6 +128,17 @@ public class SlidingMenuListFragment extends ListFragment implements
 			}
 		});
 
+	}
+
+	private String getBaseUrl(User ac) {
+		//Determiner la base url selon le type de user 
+		String baseUrl  = "";
+		if(ac.getmUserType() == 0)
+			baseUrl =  ApplicationConstants.FACEBOOK_IMG_BASE_URL;
+		else if(ac.getmUserType() == 1)
+			baseUrl = ApplicationConstants.GOOGLE_IMG_BASE_URL;
+		//Fin de calcul de baseUrl en fonction de Type de user
+		return baseUrl;
 	}
 
 	public void UI_CreateMenuListView() {

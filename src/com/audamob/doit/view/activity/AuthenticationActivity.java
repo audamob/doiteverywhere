@@ -31,7 +31,9 @@ import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
 import com.audamob.doit.third.facebook.FacebookConnectManager;
 import com.audamob.doit.third.googleplus.MomentUtil;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
+import com.facebook.android.Facebook;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.plus.PlusClient;
@@ -42,9 +44,9 @@ public class AuthenticationActivity extends Activity implements
 		PlusClient.ConnectionCallbacks, PlusClient.OnConnectionFailedListener,
 		PlusClient.OnAccessRevokedListener {
 
-	// Buttons
+	// Variables Declarations
 	RelativeLayout btnFbLogin;
-    private SharedPreferences mPrefs;
+	private SharedPreferences mPrefs;
 	AbstractConnectManager facebookAbstractConnectManager;
 	AbstractConnectManager googleAbstractConnectManager;
 	Activity MainActivity_activity;
@@ -52,8 +54,8 @@ public class AuthenticationActivity extends Activity implements
 	private ObjectAnimator mProgressBarAnimator;
 	RelativeLayout Login_Layout, Progress_Layout;
 	TextView Text_Loading;
-	
-	
+	public Facebook facebook;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,70 +63,66 @@ public class AuthenticationActivity extends Activity implements
 
 		RelativeLayout dragLayout=(RelativeLayout)findViewById(R.id.Test);
 		dragLayout.setOnTouchListener(new DragViewListener(this, dragLayout, (MarginLayoutParams)dragLayout.getLayoutParams()));
-		/**
-		 * Skiper la screen d'athentification
-		 */
-//		 Intent intent = new Intent(AuthenticationActivity.this,
-//		 MainContainerActivity.class); startActivity(intent); this.finish();
-//		
+		
+
 			//Get the preferences of this current AuthenticatioNActivity
 		mPrefs = getPreferences(MODE_PRIVATE);
 		MainActivity_activity = this;
 		/**
-		 * Google +implementation
+		 * Skiper la screen d'athentification
 		 */
+		// TODO : JUST FOR TEST !
+		// Intent intent = new Intent(AuthenticationActivity.this,
+		// MainContainerActivity.class); startActivity(intent); this.finish();
+		//
 		
-		mPlusClient = new PlusClient.Builder(this, this, this).setActions(
-				MomentUtil.ACTIONS).build();
-		/*
-		 * mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-		 * mSignInButton.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub int available = GooglePlayServicesUtil
-		 * .isGooglePlayServicesAvailable(MainActivity_activity); if (available
-		 * != ConnectionResult.SUCCESS) {
-		 * showDialog(DIALOG_GET_GOOGLE_PLAY_SERVICES); return; }
-		 * 
-		 * try {
-		 * 
-		 * mConnectionResult.startResolutionForResult(MainActivity_activity,
-		 * REQUEST_CODE_SIGN_IN); } catch (IntentSender.SendIntentException e) {
-		 * // Fetch a new result to start. mPlusClient.connect(); } } });
-		 */
 		/***
-		 * Google +implementation
+		 * *********************************************************************
+		 * Facebook implementation
+		 * *********************************************************************
 		 */
 
 		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
+		// Get the preferences of this current AuthenticatioNActivity
+		mPrefs = getPreferences(MODE_PRIVATE);
+		MainActivity_activity = this;
 
-	// Instanciate Facebook And Google Connect Manager
-		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
-				MainActivity_activity);
+		if (facebook == null) {
+			facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
+			// Instanciate Facebook Manager
+			facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
+					MainActivity_activity, facebook);
+			/**
+			 * Login button Click event
+			 * */
+			btnFbLogin.setOnClickListener(new View.OnClickListener() {
 
-		/**
-		 * Login button Click event
-		 * */
-		btnFbLogin.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Log.d("Image Button", "button Clicked");
-				facebookAbstractConnectManager.login();
-				
-				//if connected 
-				User account = facebookAbstractConnectManager.getProfileInformation();
-				try {
-					CacheReadWriteUtil.saveAccount(account, MainActivity_activity);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				@Override
+				public void onClick(View v) {
+					facebookAbstractConnectManager.login();
 				}
+			});
+		} else {
+			// Si la session facebook est déja ouverte, on SKipe l'écran
+			// d'authentification
+			// et on passe directement au MainContainerActivity
+			if (facebook.isSessionValid()) {
+				Intent intent = new Intent(AuthenticationActivity.this,
+						MainContainerActivity.class);
+				startActivity(intent);
+				this.finish();
 			}
-		});
+		}
+
+		
 		/**
-		 * Getting facebook Profile info
-		 * */
+		 * *******************************************************************
+		 * Google + implementation
+		 * *******************************************************************
+		 */
+
+		mPlusClient = new PlusClient.Builder(this, this, this).setActions(
+				MomentUtil.ACTIONS).build();
 
 		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
 		mSignInButton.setOnClickListener(new OnClickListener() {
@@ -149,6 +147,7 @@ public class AuthenticationActivity extends Activity implements
 				}
 			}
 		});
+		
 		Login_Layout = (RelativeLayout) findViewById(R.id.Login_layout);
 		Text_Loading = (TextView) findViewById(R.id.text_loading);
 		Progress_Layout = (RelativeLayout) findViewById(R.id.Progress_Layout);
@@ -179,6 +178,7 @@ public class AuthenticationActivity extends Activity implements
 		public void onAnimationStart(final Animator animation) {
 		}
 	};
+
 	/***
 	 * Google+ Implementation
 	 */
@@ -241,6 +241,9 @@ public class AuthenticationActivity extends Activity implements
 				mPlusClient.connect();
 			}
 		}
+
+		facebook.authorizeCallback(requestCode, resultCode, data);
+
 	}
 
 	@Override
@@ -254,7 +257,9 @@ public class AuthenticationActivity extends Activity implements
 		String currentPersonName = mPlusClient.getCurrentPerson() != null ? mPlusClient
 				.getCurrentPerson().getDisplayName()
 				: getString(R.string.unknown_person);
+				
 		CreateAccountGoogle();
+		
 		Intent intent = new Intent(AuthenticationActivity.this,
 				MainContainerActivity.class);
 		startActivity(intent);
@@ -282,8 +287,7 @@ public class AuthenticationActivity extends Activity implements
 			String Language = "";
 			String Organisation = "";
 			try {
-				Log.d("Account",""+mPlusClient.getCurrentPerson()
-						.toString());
+				Log.d("Account", "" + mPlusClient.getCurrentPerson().toString());
 				JSONObject json = new JSONObject(mPlusClient.getCurrentPerson()
 						.toString());
 				JSONArray j = json.getJSONArray("placesLived");
@@ -296,7 +300,7 @@ public class AuthenticationActivity extends Activity implements
 						.getJSONObject((jOrganisations.length() - 1));
 				Organisation = JSONOrgatnisation.getString("title") + " : "
 						+ JSONOrgatnisation.getString("name");
-			
+
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -309,7 +313,7 @@ public class AuthenticationActivity extends Activity implements
 			String mBirthday = mPlusClient.getCurrentPerson().getBirthday();
 
 			Person_Account = new User(mId, mDisplayName, mageUrl, mBirthday,
-					Location, Organisation, Gender, Language);
+					Location, Organisation, Gender, Language,1);
 
 			try {
 				CacheReadWriteUtil.saveAccount(Person_Account, this);
