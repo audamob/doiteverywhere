@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
@@ -35,7 +34,6 @@ public class ProfileActivity extends ActivityBase implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_profile_activity);
 		mObservableScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
@@ -68,7 +66,7 @@ public class ProfileActivity extends ActivityBase implements
 		User ac = null;
 		try {
 			ac = CacheReadWriteUtil.restoreAccount(this);
-		} catch (ClassNotFoundException e) { // TODO Auto-generated catch
+		} catch (ClassNotFoundException e) { 
 
 			e.printStackTrace();
 		} catch (IOException e) { // TODO Auto-generated
@@ -76,8 +74,10 @@ public class ProfileActivity extends ActivityBase implements
 		}
 
 		try {
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, this,
-					ApplicationConstants.FACEBOOK_BASE_URL,ac.getImageUrl(), ac.getUserId());
+			String baseUrl = getBaseUrl(ac);
+			
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(ac.getmUserType(),im, this,
+					baseUrl,ac.getImageUrl(), ac.getUserId());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -109,6 +109,17 @@ public class ProfileActivity extends ActivityBase implements
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	private String getBaseUrl(User ac) {
+		//Determiner la base url selon le type de user 
+		String baseUrl  = "";
+		if(ac.getmUserType() == 0)
+			baseUrl =  ApplicationConstants.FACEBOOK_IMG_BASE_URL;
+		else if(ac.getmUserType() == 1)
+			baseUrl = ApplicationConstants.GOOGLE_IMG_BASE_URL;
+		//Fin de calcul de baseUrl en fonction de Type de user
+		return baseUrl;
 	}
 
 	public void CreateProfileTab(int i) {

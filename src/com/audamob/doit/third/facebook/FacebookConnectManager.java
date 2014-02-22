@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.facebook.android.AsyncFacebookRunner;
@@ -62,7 +63,6 @@ public class FacebookConnectManager extends Activity implements
 		
 		if (access_token != null) {
 			this.facebook.setAccessToken(access_token);
-			Log.d("FB Sessions", "" + facebook.isSessionValid());
 		}
 
 		if (expires != 0) {
@@ -73,9 +73,6 @@ public class FacebookConnectManager extends Activity implements
 		
 		if (!this.facebook.isSessionValid()) {
 			Log.d("FACEBOOK", "not isSessionValid");
-			Log.d("FACEBOOK", this.mainActivity.toString());
-			Log.d("FACEBOOK", "editor : "+editor.toString());
-			Log.d("FACEBOOK", "this.mPrefs : "+this.mPrefs.toString());
 
 			this.facebook.authorize(this.mainActivity,
 					new String[] { "email", "publish_stream" },
@@ -103,6 +100,7 @@ public class FacebookConnectManager extends Activity implements
 
 							Log.d("finish - Complete","finish - Complete");
 
+							//Une fois connecté, on récupére les infos de l'utilisateur 
 							getProfileInformation();
 							
 						}
@@ -137,33 +135,52 @@ public class FacebookConnectManager extends Activity implements
 	@Override
 	public User getProfileInformation() {
 		Log.d("FACEBOOK","getProfileInformation");
-		final User account = new User();
-		Log.d("FACEBOOK","mAsyncRunner: "+mAsyncRunner.toString());
 		mAsyncRunner.request("me", new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {
-				Log.d("FACEBOOK","mAsyncRunner onComplete : "+mAsyncRunner.toString());
+				final User account;				
 				Log.d("FACEBOOK","Profile : "+response);
 				String json = response;
 				try {
 					// Facebook Profile JSON data
 					JSONObject profile = new JSONObject(json);
 
-					// getting name of the user
+					// getting infos of the user
+					final String id = profile.getString("id");
+					Log.d("FACEBOOK","id :"+id);
+					
 					final String name = profile.getString("name");
 					Log.d("FACEBOOK","name :"+name);
-
-					account.setmDisplayName(name);
-					Log.d("FACEBOOK","account name :"+account.getProfileName());
 					
-					account.setmImageUrl("");
+					final String gender = profile.getString("gender");
+					Log.d("FACEBOOK","gender :"+gender);
 					
-//					String imageURL = "http://graph.facebook.com/" + profile.getString("id") + "/picture?width="
-//							+ measuredWidth + "&height=" + measuredHieght;
+					// getting location
+					final String locale = profile.getString("location");
+					JSONObject localeJson = new JSONObject(locale);
+					final String location = localeJson.getString("name");
+					Log.d("FACEBOOK","location :"+location);
+					
+					// getting work employer name
+					final String work = profile.getString("work");
+					Log.d("FACEBOOK","work :"+work);
+					JSONObject workJson = new JSONObject(work);
+					final String employer = workJson.getString("employer");
+					Log.d("FACEBOOK","employer :"+employer);
+					JSONObject employerJson = new JSONObject(employer);
+					final String employerName = employerJson.getString("name");
+					Log.d("FACEBOOK","employerName :"+employerName);
 
-					// getting email of the user
-					final String email = profile.getString("email");
+					final String email = profile.getString("email");					
+					Log.d("FACEBOOK","email :"+email);
 
+					String profilePicture = ApplicationConstants.FACEBOOK_IMG_BASE_URL
+							+ id + "/picture?width=200&height=200";
+					
+					//Set informations in account
+					account = new User(id, name, profilePicture, "",
+							location, employerName, gender, "language",0);
+					
 					runOnUiThread(new Runnable() {
 
 						@Override
@@ -178,6 +195,7 @@ public class FacebookConnectManager extends Activity implements
 								
 								//Kill the Authentication Activity
 								mainActivity.finish();
+								
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

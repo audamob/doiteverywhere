@@ -42,9 +42,9 @@ public class AuthenticationActivity extends Activity implements
 		PlusClient.ConnectionCallbacks, PlusClient.OnConnectionFailedListener,
 		PlusClient.OnAccessRevokedListener {
 
-	// Buttons
+	// Variables Declarations
 	RelativeLayout btnFbLogin;
-    private SharedPreferences mPrefs;
+	private SharedPreferences mPrefs;
 	AbstractConnectManager facebookAbstractConnectManager;
 	AbstractConnectManager googleAbstractConnectManager;
 	Activity MainActivity_activity;
@@ -53,53 +53,65 @@ public class AuthenticationActivity extends Activity implements
 	RelativeLayout Login_Layout, Progress_Layout;
 	TextView Text_Loading;
 	public Facebook facebook;
-	
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_authentfication_activity);
 
-		
-//		 Intent intent = new Intent(AuthenticationActivity.this,
-//		 MainContainerActivity.class); startActivity(intent); this.finish();
-//		
+		// TODO : JUST FOR TEST !
+		// Intent intent = new Intent(AuthenticationActivity.this,
+		// MainContainerActivity.class); startActivity(intent); this.finish();
+		//
 
+		/***
+		 * *********************************************************************
+		 * Facebook implementation
+		 * *********************************************************************
+		 */
+
+		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
+		// Get the preferences of this current AuthenticatioNActivity
+		mPrefs = getPreferences(MODE_PRIVATE);
+		MainActivity_activity = this;
+
+		if (facebook == null) {
+			facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
+			// Instanciate Facebook Manager
+			facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
+					MainActivity_activity, facebook);
+			/**
+			 * Login button Click event
+			 * */
+			btnFbLogin.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					facebookAbstractConnectManager.login();
+				}
+			});
+		} else {
+			// Si la session facebook est déja ouverte, on SKipe l'écran
+			// d'authentification
+			// et on passe directement au MainContainerActivity
+			if (facebook.isSessionValid()) {
+				Intent intent = new Intent(AuthenticationActivity.this,
+						MainContainerActivity.class);
+				startActivity(intent);
+				this.finish();
+			}
+		}
+
+		
 		/**
-		 * Google +implementation
+		 * *******************************************************************
+		 * Google + implementation
+		 * *******************************************************************
 		 */
 
 		mPlusClient = new PlusClient.Builder(this, this, this).setActions(
 				MomentUtil.ACTIONS).build();
-	
-		
-		/***
-		 * Facebook implementation
-		 */
 
-		btnFbLogin = (RelativeLayout) findViewById(R.id.FB_Login);
-		
-		 //Get the preferences of this current AuthenticatioNActivity
-		mPrefs = getPreferences(MODE_PRIVATE);
-		MainActivity_activity = this;
-		facebook = new Facebook(ApplicationConstants.FACEBOOK_APP_ID);
-
-		// Instanciate Facebook Manager
-		facebookAbstractConnectManager = new FacebookConnectManager(mPrefs,
-				MainActivity_activity,facebook );
-
-		/**
-		 * Login button Click event
-		 * */
-		btnFbLogin.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				facebookAbstractConnectManager.login();
-			}
-		});
-		
-		
 		mSignInButton = (RelativeLayout) findViewById(R.id.GP_Login);
 		mSignInButton.setOnClickListener(new OnClickListener() {
 
@@ -123,6 +135,7 @@ public class AuthenticationActivity extends Activity implements
 				}
 			}
 		});
+		
 		Login_Layout = (RelativeLayout) findViewById(R.id.Login_layout);
 		Text_Loading = (TextView) findViewById(R.id.text_loading);
 		Progress_Layout = (RelativeLayout) findViewById(R.id.Progress_Layout);
@@ -153,7 +166,7 @@ public class AuthenticationActivity extends Activity implements
 		public void onAnimationStart(final Animator animation) {
 		}
 	};
-	
+
 	/***
 	 * Google+ Implementation
 	 */
@@ -216,7 +229,7 @@ public class AuthenticationActivity extends Activity implements
 				mPlusClient.connect();
 			}
 		}
-		
+
 		facebook.authorizeCallback(requestCode, resultCode, data);
 
 	}
@@ -232,7 +245,9 @@ public class AuthenticationActivity extends Activity implements
 		String currentPersonName = mPlusClient.getCurrentPerson() != null ? mPlusClient
 				.getCurrentPerson().getDisplayName()
 				: getString(R.string.unknown_person);
+				
 		CreateAccountGoogle();
+		
 		Intent intent = new Intent(AuthenticationActivity.this,
 				MainContainerActivity.class);
 		startActivity(intent);
@@ -260,8 +275,7 @@ public class AuthenticationActivity extends Activity implements
 			String Language = "";
 			String Organisation = "";
 			try {
-				Log.d("Account",""+mPlusClient.getCurrentPerson()
-						.toString());
+				Log.d("Account", "" + mPlusClient.getCurrentPerson().toString());
 				JSONObject json = new JSONObject(mPlusClient.getCurrentPerson()
 						.toString());
 				JSONArray j = json.getJSONArray("placesLived");
@@ -274,7 +288,7 @@ public class AuthenticationActivity extends Activity implements
 						.getJSONObject((jOrganisations.length() - 1));
 				Organisation = JSONOrgatnisation.getString("title") + " : "
 						+ JSONOrgatnisation.getString("name");
-			
+
 			} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -287,7 +301,7 @@ public class AuthenticationActivity extends Activity implements
 			String mBirthday = mPlusClient.getCurrentPerson().getBirthday();
 
 			Person_Account = new User(mId, mDisplayName, mageUrl, mBirthday,
-					Location, Organisation, Gender, Language);
+					Location, Organisation, Gender, Language,1);
 
 			try {
 				CacheReadWriteUtil.saveAccount(Person_Account, this);

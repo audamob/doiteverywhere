@@ -37,7 +37,7 @@ public class FollowServiceManager {
 		params.add(new BasicNameValuePair(TAG_FOLLOWER, idFollowers));
 		JSONParser parser = new JSONParser();
 		JSONObject json = parser.makeHttpRequest(
-				ApplicationConstants.ACTIVITIES_JSON_URL + "/activity"
+				ApplicationConstants.SERVICES_API_URL + "/activity"
 						+ idActivity, "PUT", params);
 
 		try {

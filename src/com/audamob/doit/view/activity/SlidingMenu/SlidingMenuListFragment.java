@@ -105,8 +105,11 @@ public class SlidingMenuListFragment extends ListFragment implements
 			e.printStackTrace();
 		}
 		if (ac != null) {
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im,
-					getActivity(), ApplicationConstants.FACEBOOK_BASE_URL,ac.getImageUrl(), ac.getUserId());
+			
+			String baseUrl = getBaseUrl(ac);
+
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(ac.getmUserType(),im,
+					getActivity(), baseUrl,ac.getImageUrl(), ac.getUserId());
 		
 			profile_name.setText(ac.getProfileName());
 		}
@@ -125,6 +128,17 @@ public class SlidingMenuListFragment extends ListFragment implements
 			}
 		});
 
+	}
+
+	private String getBaseUrl(User ac) {
+		//Determiner la base url selon le type de user 
+		String baseUrl  = "";
+		if(ac.getmUserType() == 0)
+			baseUrl =  ApplicationConstants.FACEBOOK_IMG_BASE_URL;
+		else if(ac.getmUserType() == 1)
+			baseUrl = ApplicationConstants.GOOGLE_IMG_BASE_URL;
+		//Fin de calcul de baseUrl en fonction de Type de user
+		return baseUrl;
 	}
 
 	public void UI_CreateMenuListView() {

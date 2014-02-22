@@ -224,7 +224,7 @@ public class ActivityServiceManager extends AsyncTask<String, String, String> {
 	 * */
 	protected String doInBackground(String... args) {
 
-		setActivities(getActivitiesFromJsonFile(ApplicationConstants.ACTIVITIES_JSON_URL
+		setActivities(getActivitiesFromJsonFile(ApplicationConstants.SERVICES_API_URL
 				+ this.fileName));
 		
 		//FIXME : TMP jusquau correction du problème de l'API de service

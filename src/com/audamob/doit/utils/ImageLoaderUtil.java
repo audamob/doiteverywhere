@@ -19,19 +19,21 @@ public class ImageLoaderUtil {
 	Context mContext;
 	String mStringUrl;
 	String mStringBaseUrl;
-	Bitmap mBitmap_profile,mBitmap_activity;
-	
-    String mUserID;
-	public ImageLoaderUtil(ImageView imageview, Context context, String baseUrl, String url,String userID) {
-		// TODO Auto-generated constructor stub
+	Bitmap mBitmap_profile, mBitmap_activity;
+	int mUserType;
+	String mUserID;
+
+	public ImageLoaderUtil(int userType, ImageView imageview, Context context,
+			String baseUrl, String url, String userID) {
 		mImageView = imageview;
+		mUserType = userType;
 		mContext = context;
 		mStringUrl = url;
-		mUserID=userID;
+		mUserID = userID;
 		mStringBaseUrl = baseUrl;
-		
-		
-		ThreadLoadProfilePicture ThreadLoader_profile = new ThreadLoadProfilePicture(handlerLoad);
+
+		ThreadLoadProfilePicture ThreadLoader_profile = new ThreadLoadProfilePicture(
+				handlerLoad);
 		ThreadLoader_profile.start();
 	}
 
@@ -40,17 +42,18 @@ public class ImageLoaderUtil {
 		mImageView = imageActivity;
 		mContext = activity;
 		mStringUrl = imageUrl;
-		ThreadLoadActivityPicture ThreadLoader_Activity = new ThreadLoadActivityPicture(handlerLoad_Activity);
+		ThreadLoadActivityPicture ThreadLoader_Activity = new ThreadLoadActivityPicture(
+				handlerLoad_Activity);
 		ThreadLoader_Activity.start();
-		// TODO Auto-generated constructor stub
 	}
 
 	final Handler handlerLoad = new Handler() {
 
 		public void handleMessage(Message msg) {
 			try {
-				RoundedAvatarDrawable rAvatar=new RoundedAvatarDrawable(mBitmap_profile);
-			
+				RoundedAvatarDrawable rAvatar = new RoundedAvatarDrawable(
+						mBitmap_profile);
+
 				mImageView.setImageDrawable(rAvatar);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -62,8 +65,9 @@ public class ImageLoaderUtil {
 
 		public void handleMessage(Message msg) {
 			try {
-				RoundedAvatarDrawable rAvatar=new RoundedAvatarDrawable(mBitmap_activity);
-				
+				RoundedAvatarDrawable rAvatar = new RoundedAvatarDrawable(
+						mBitmap_activity);
+
 				mImageView.setImageDrawable(rAvatar);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -80,13 +84,11 @@ public class ImageLoaderUtil {
 		}
 
 		public void run() {
-			//
-			Bitmap bm = getUserPic(mStringBaseUrl,mStringUrl,
+			Bitmap bm = getUserPic(mStringBaseUrl, mStringUrl,
 					mImageView.getLayoutParams().width,
-					mImageView.getLayoutParams().height,
-					mUserID);
+					mImageView.getLayoutParams().height, mUserID);
 			mBitmap_profile = bm;
-        
+
 			Message msg = mHandler.obtainMessage();
 			Bundle b = new Bundle();
 			msg.setData(b);
@@ -94,26 +96,26 @@ public class ImageLoaderUtil {
 
 		}
 
-		public Bitmap getUserPic(String baseUrl,String url, int width, int height,
-				String userID) {
+		public Bitmap getUserPic(String baseUrl, String url, int width,
+				int height, String userID) {
 			String imageURL;
 			Bitmap bitmap = null;
 			int measuredWidth = width;
 			int measuredHieght = height;
 			
-//			imageURL = "https://plus.google.com/s2/photos/profile/" + userID
-//					+ "?width=" + measuredWidth + "&height=" + measuredHieght;
-			
-			imageURL = baseUrl + userID
-					+ "?width=" + measuredWidth + "&height=" + measuredHieght;
+			String suffixUrl = "";
+			if (mUserType == 0) {
+				suffixUrl = "/picture";
+			}
+			Log.d("FACEBOOK", "userType : " + mUserType);
+
+			imageURL = baseUrl + userID + suffixUrl + "?width=" + measuredWidth
+					+ "&height=" + measuredHieght;
+			Log.d("FACEBOOK", "imageURL : " + imageURL);
 
 			try {
 				bitmap = BitmapFactory.decodeStream((InputStream) new URL(
 						imageURL).getContent());
-				
-			//	bitmap=GraphicsUtil.getRoundedBitmap(bitmap);
-				/*bitmap = GraphicsUtil.GetBitmapClippedCircle(bitmap);
-				bitmap = GraphicsUtil.addRoundedBorder(bitmap);*/
 			} catch (Exception e) {
 				Log.d("TAG", "Loading Picture FAILED");
 				e.printStackTrace();
@@ -130,13 +132,12 @@ public class ImageLoaderUtil {
 		}
 
 		public void run() {
-			
+
 			Bitmap bm = getUserPic(mStringUrl,
 					mImageView.getLayoutParams().width,
-					mImageView.getLayoutParams().height,
-					mUserID);
+					mImageView.getLayoutParams().height, mUserID);
 			mBitmap_activity = bm;
-    		Message msg = mHandler.obtainMessage();
+			Message msg = mHandler.obtainMessage();
 			Bundle b = new Bundle();
 			msg.setData(b);
 			mHandler.sendMessage(msg);
@@ -145,9 +146,9 @@ public class ImageLoaderUtil {
 
 		public Bitmap getUserPic(String url, int width, int height,
 				String userID) {
-			String imageURL=url;
+			String imageURL = url;
 			Bitmap bitmap = null;
-			
+
 			try {
 				bitmap = BitmapFactory.decodeStream((InputStream) new URL(
 						imageURL).getContent());
