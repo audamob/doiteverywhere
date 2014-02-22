@@ -36,7 +36,7 @@ public class SlidingMenuListFragment extends ListFragment implements
 	protected List<SlidingMenuListItem> slidingMenuList;
 	private SlidingMenuBuilderBase slidingMenuBuilderBase;
 	SlidingMenu menu;
-
+     
 	public SlidingMenuListFragment(SlidingMenu menu) {
 		// TODO Auto-generated constructor stub
 		this.menu = menu;
