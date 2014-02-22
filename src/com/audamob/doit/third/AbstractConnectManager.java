@@ -1,5 +1,8 @@
 package com.audamob.doit.third;
 
+import android.content.Context;
+import android.view.View.OnClickListener;
+
 import com.audamob.doit.model.User;
 
 public interface AbstractConnectManager {
@@ -11,5 +14,7 @@ public interface AbstractConnectManager {
 	void postToWall();
 
 	void logout();
+	
+	void showAccessTokens(Context context);
 
 }

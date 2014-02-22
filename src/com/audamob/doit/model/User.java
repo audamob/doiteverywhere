@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-	String mId;
-	String mDisplayName;
-	String mImageUrl;
-	String mBirthday;
-	String mCurrentLocation;
-
-	String PosteOrganisation;
-	String Gender;
-	String Language;
+	private String mId;
+	private String mDisplayName;
+	private String mImageUrl;
+	private String mBirthday;
+	private String mCurrentLocation;
+	private int mUserType;
+	private String mPosteOrganisation;
+	private String mGender;
+	private String mLanguage;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -59,43 +59,43 @@ public class User implements Serializable {
 	}
 
 	public void setPosteOrganisation(String posteOrganisation) {
-		PosteOrganisation = posteOrganisation;
+		mPosteOrganisation = posteOrganisation;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		mGender = gender;
 	}
 
 	public void setLanguage(String language) {
-		Language = language;
+		mLanguage = language;
 	}
 
 	public User(String id, String displayname, String image,
 			String birthday, String currentlocation, String postOrganisation,
-			String Gender, String Language) {
+			String Gender, String Language,int userType) {
 		// TODO Auto-generated constructor stub
 		this.mId = id;
 		this.mDisplayName = displayname;
 		this.mImageUrl = image;
 		this.mBirthday = birthday;
 		this.mCurrentLocation = currentlocation;
-
-		this.PosteOrganisation = postOrganisation;
-		this.Gender = Gender;
-		this.Language = Language;
+		this.mUserType = userType; // 0 : Facebook User , 1 : Google User
+		this.mPosteOrganisation = postOrganisation;
+		this.mGender = Gender;
+		this.mLanguage = Language;
 
 	}
 
 	public String getLanguage() {
-		return this.Language;
+		return this.mLanguage;
 	}
 
 	public String getGender() {
-		return this.Gender;
+		return this.mGender;
 	}
 
 	public String getPosteOrganisation() {
-		return this.PosteOrganisation;
+		return this.mPosteOrganisation;
 	}
 
 	public String getUserId() {
@@ -116,6 +116,14 @@ public class User implements Serializable {
 
 	public String getProfileLocation() {
 		return mCurrentLocation;
+	}
+
+	public int getmUserType() {
+		return mUserType;
+	}
+
+	public void setmUserType(int mUserType) {
+		this.mUserType = mUserType;
 	}
 
 }

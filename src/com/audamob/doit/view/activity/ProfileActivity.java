@@ -16,11 +16,13 @@ import android.widget.TextView;
 import com.audamob.doit.R;
 import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.model.User;
+import com.audamob.doit.utils.ApplicationConstants;
 import com.audamob.doit.utils.CacheReadWriteUtil;
 import com.audamob.doit.utils.ImageLoaderUtil;
 import com.audamob.doit.utils.LayoutResizerUtil;
 import com.audamob.doit.utils.ObservableScrollView;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class ProfileActivity extends ActivityBase implements
@@ -32,7 +34,6 @@ public class ProfileActivity extends ActivityBase implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_profile_activity);
 		mObservableScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
@@ -71,17 +72,22 @@ public class ProfileActivity extends ActivityBase implements
 		} catch (IOException e) { // TODO Auto-generated
 			e.printStackTrace();
 		}
+		
 		ImageView bgInfo = (ImageView) findViewById(R.id._image_info);
 		try {
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(im, bgInfo,
-					this, ac.getImageUrl(), ac.getUserId());
+			String baseUrl = getBaseUrl(ac);
+			
+			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(ac.getmUserType(),im, bgInfo, this,
+					baseUrl,ac.getImageUrl(), ac.getUserId());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		// UrlImageViewHelper.setUrlDrawableCustom(bgInfo.getLayoutParams().width,
-		// bgInfo.getLayoutParams().height, bgInfo, ac.getImageUrl());
-		//
+		
+		
+		UrlImageViewHelper.setUrlDrawableCustom(bgInfo.getLayoutParams().width,
+		bgInfo.getLayoutParams().height, bgInfo, ac.getImageUrl());
+		
 
 		Typeface TODO = Typeface.createFromAsset(getAssets(),
 				"DinDisplayProThin.otf");
@@ -105,6 +111,16 @@ public class ProfileActivity extends ActivityBase implements
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+private String getBaseUrl(User ac) {
+		//Determiner la base url selon le type de user 
+		String baseUrl  = "";
+		if(ac.getmUserType() == 0)
+			baseUrl =  ApplicationConstants.FACEBOOK_IMG_BASE_URL;
+		else if(ac.getmUserType() == 1)
+			baseUrl = ApplicationConstants.GOOGLE_IMG_BASE_URL;
+		//Fin de calcul de baseUrl en fonction de Type de user
+		return baseUrl;
 	}
 
 	public void CreateProfileTab(int i) {

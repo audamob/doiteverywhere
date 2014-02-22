@@ -1,6 +1,7 @@
 package com.audamob.doit.third.googleplus;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.audamob.doit.model.User;
 import com.audamob.doit.third.AbstractConnectManager;
@@ -29,6 +30,12 @@ public class GooglePlusConnectManager extends Activity implements
 
 	@Override
 	public void logout() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showAccessTokens(Context context) {
 		// TODO Auto-generated method stub
 		
 	}
