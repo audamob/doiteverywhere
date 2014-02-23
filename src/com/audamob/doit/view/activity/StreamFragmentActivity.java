@@ -15,10 +15,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.audamob.doit.R;
-import com.audamob.doit.adapter.DoItActivitiesListAdapter;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.model.User;
 import com.audamob.doit.service.ActivityService;
+import com.audamob.doit.tool.adapter.DoItActivitiesListAdapter;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.R.string;

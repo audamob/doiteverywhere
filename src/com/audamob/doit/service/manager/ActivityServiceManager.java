@@ -19,10 +19,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.audamob.doit.adapter.DoItActivitiesListAdapter;
 import com.audamob.doit.model.DoItActivity;
-import com.audamob.doit.utils.ApplicationConstants;
-import com.audamob.doit.utils.JSONParser;
+import com.audamob.doit.tool.adapter.DoItActivitiesListAdapter;
+import com.audamob.doit.tool.utils.ApplicationConstants;
+import com.audamob.doit.tool.utils.json.JSONParser;
 
 public class ActivityServiceManager extends AsyncTask<String, String, String> {
 

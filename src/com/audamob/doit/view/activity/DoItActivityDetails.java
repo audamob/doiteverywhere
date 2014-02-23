@@ -18,7 +18,7 @@ import com.audamob.doit.R;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.ActivityService;
 import com.audamob.doit.service.FollowService;
-import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.tool.utils.net.ImageLoaderUtil;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 

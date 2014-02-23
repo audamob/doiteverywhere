@@ -1,4 +1,4 @@
-package com.audamob.doit.adapter;
+package com.audamob.doit.tool.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.audamob.doit.R;
+import com.audamob.doit.tool.utils.view.SwipeyTabs;
 import com.audamob.doit.view.activity.FollowingFragmentActivity;
 import com.audamob.doit.view.activity.SettingsFragmentActivity;
 import com.audamob.doit.view.activity.StreamFragmentActivity;
 import com.audamob.doit.view.activity.SwipeyTabFragmentActivity;
-import com.audamob.doit.view.uiComponent.SwipeyTabs;
 
 public class SwipeyTabsPagerAdapter extends FragmentStatePagerAdapter implements
 		SwipeyTabsAdapter {

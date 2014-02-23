@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.audamob.doit.R;
-import com.audamob.doit.adapter.DoItActivitiesListAdapter;
 import com.audamob.doit.model.DoItActivity;
 import com.audamob.doit.service.ActivityService;
+import com.audamob.doit.tool.adapter.DoItActivitiesListAdapter;
 
 public class SwipeyTabFragmentActivity extends Fragment {
 

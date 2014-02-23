@@ -1,4 +1,4 @@
-package com.audamob.doit.third.facebook;
+package com.audamob.doit.third.authentification.facebook;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.audamob.doit.model.User;
-import com.audamob.doit.third.AbstractConnectManager;
-import com.audamob.doit.utils.ApplicationConstants;
-import com.audamob.doit.utils.CacheReadWriteUtil;
+import com.audamob.doit.third.authentification.AbstractConnectManager;
+import com.audamob.doit.tool.utils.ApplicationConstants;
+import com.audamob.doit.tool.utils.cache.CacheReadWriteUtil;
 import com.audamob.doit.view.activity.MainContainerActivity;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;

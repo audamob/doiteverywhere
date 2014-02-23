@@ -1,10 +1,10 @@
-package com.audamob.doit.third.googleplus;
+package com.audamob.doit.third.authentification.googleplus;
 
 import android.app.Activity;
 import android.content.Context;
 
 import com.audamob.doit.model.User;
-import com.audamob.doit.third.AbstractConnectManager;
+import com.audamob.doit.third.authentification.AbstractConnectManager;
 
 public class GooglePlusConnectManager extends Activity implements
 		AbstractConnectManager {

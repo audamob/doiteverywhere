@@ -5,7 +5,7 @@
  * Un Listener personalisé permet de drag and drop a view
  */
 
-package com.audamob.doit.adapter;
+package com.audamob.doit.tool.listener;
 
 import android.app.Activity;
 import android.util.Log;
@@ -17,7 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.RelativeLayout;
 
-import com.audamob.doit.utils.LayoutResizerUtil;
+import com.audamob.doit.tool.utils.view.LayoutResizerUtil;
 
 
 

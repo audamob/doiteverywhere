@@ -10,8 +10,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 
-import com.audamob.doit.utils.ApplicationConstants;
-import com.audamob.doit.utils.JSONParser;
+import com.audamob.doit.tool.utils.ApplicationConstants;
+import com.audamob.doit.tool.utils.json.JSONParser;
 
 public class FollowServiceManager {
 

@@ -1,4 +1,4 @@
-package com.audamob.doit.adapter;
+package com.audamob.doit.tool.adapter;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.audamob.doit.R;
 import com.audamob.doit.model.DoItActivity;
-import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.tool.utils.net.ImageLoaderUtil;
 
 public class DoItActivitiesGridAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;

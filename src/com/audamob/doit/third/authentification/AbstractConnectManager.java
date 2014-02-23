@@ -1,4 +1,4 @@
-package com.audamob.doit.third;
+package com.audamob.doit.third.authentification;
 
 import android.content.Context;
 import android.view.View.OnClickListener;

@@ -1,11 +1,11 @@
-package com.audamob.doit.adapter;
+package com.audamob.doit.tool.adapter;
 
 import java.util.ArrayList;
 
 import org.w3c.dom.Text;
 
 import com.audamob.doit.model.DoItActivity;
-import com.audamob.doit.utils.ImageLoaderUtil;
+import com.audamob.doit.tool.utils.net.ImageLoaderUtil;
 import com.audamob.doit.view.activity.DoItActivityDetails;
 import com.audamob.doit.view.activity.ProfileActivity;
 

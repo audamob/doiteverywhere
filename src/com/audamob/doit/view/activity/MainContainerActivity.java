@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.audamob.doit.R;
-import com.audamob.doit.adapter.SwipeyTabsPagerAdapter;
+import com.audamob.doit.tool.adapter.SwipeyTabsPagerAdapter;
 import com.audamob.doit.view.activity.SlidingMenu.ActivityBase;
 import com.audamob.doit.view.activity.SlidingMenu.SlidingMenuBuilderConcrete;
 import com.viewpagerindicator.TabPageIndicator;

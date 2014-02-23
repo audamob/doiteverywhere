@@ -1,4 +1,4 @@
-<com.audamob.doit.utils.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.audamob.doit.tool.utils.view.ObservableScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll_view"
     android:layout_width="match_parent"
@@ -174,4 +174,4 @@
         </LinearLayout>
     </FrameLayout>
 
-</com.audamob.doit.utils.ObservableScrollView>
+</com.audamob.doit.tool.utils.view.ObservableScrollView>

@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.audamob.doit.R;
-import com.audamob.doit.adapter.DragViewListener;
+import com.audamob.doit.tool.listener.DragViewListener;
 
 public class SettingsFragmentActivity extends Fragment {
 

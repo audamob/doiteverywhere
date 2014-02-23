@@ -1,4 +1,4 @@
-package com.audamob.doit.utils;
+package com.audamob.doit.tool.utils.cache;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package com.audamob.doit.utils;
+package com.audamob.doit.tool.utils.net;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -14,6 +14,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.audamob.doit.R;
+import com.audamob.doit.tool.utils.view.GraphicsUtil;
+import com.audamob.doit.tool.utils.view.RoundedAvatarDrawable;
 
 public class ImageLoaderUtil {
 
