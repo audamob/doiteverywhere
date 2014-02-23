@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author : AUDAMOB
+ *
+ * Un Listener personalisé permet de drag and drop a view
+ */
+
 package com.audamob.doit.adapter;
 
 import android.app.Activity;
@@ -13,16 +20,7 @@ import android.widget.RelativeLayout;
 import com.audamob.doit.utils.LayoutResizerUtil;
 
 
-/**
- * 
- * @author Aymen
- *
- * Un Listener personalisé permet de drag and drop view
- */
-/**
- * @author Aymen
- *
- */
+
 public class DragViewListener implements View.OnTouchListener {
 	private Activity activity;
 	private boolean isActionDown;
@@ -69,10 +67,10 @@ public class DragViewListener implements View.OnTouchListener {
 		            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
 		            layoutParams.leftMargin = X - dx;
 		            layoutParams.topMargin = Y - dy;
-		            layoutParams.rightMargin = -350;
-		            layoutParams.bottomMargin = -350;
+		            layoutParams.rightMargin = -400;
+		            layoutParams.bottomMargin = -400;
 		          
-		            int deltaangle=lastMarginLeft- layoutParams.leftMargin;
+		            int deltaangle=lastMarginLeft - (layoutParams.leftMargin + (layoutParams.width / 2)) ;
 		            view.setLayoutParams(layoutParams);
 		            /**
 		             * Rotate View pour chaque variation de position
@@ -89,28 +87,10 @@ public class DragViewListener implements View.OnTouchListener {
 	
 	
 	/**
-	 * Rotate View when draging
+	 * 
+	 * @param deltaX : variation de position de view sur l'axe (OX)
+	 * @return angle de rotation
 	 */
-	private void RotateView(View _view,float dangle){
-		
-
-		AnimationSet animSet = new AnimationSet(true);
-		animSet.setInterpolator(new DecelerateInterpolator());
-		animSet.setFillAfter(true);
-		animSet.setFillEnabled(true);
-
-		final RotateAnimation animRotate = new RotateAnimation(view.getRotation(), dangle,
-		    RotateAnimation.RELATIVE_TO_SELF, 0.5f, 
-		    RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-
-		animRotate.setDuration(3000);
-		animRotate.setFillAfter(true);
-		animSet.addAnimation(animRotate);
-
-		_view.startAnimation(animSet);
-		lastAngleDeRotation=lastAngleDeRotation+dangle;
-	}
-	
 	private float getRotationDegree(int deltaX){
 		Log.e("DragViewListener","deltaX : "+deltaX);
 		//récuperation de largeur de screen
@@ -122,6 +102,6 @@ public class DragViewListener implements View.OnTouchListener {
 		//Calcul d'angle de rotation de View
 		float angleDeRotation=pourcentage*360;
 		
-		return (float)angleDeRotation/15;
+		return (float)angleDeRotation/100;
 	}
 }

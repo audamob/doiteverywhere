@@ -55,12 +55,12 @@ public class ProfileActivity extends ActivityBase implements
 					}
 				});
 
-		CreateUiProfile();
-		CreateProfileTab(6);
+		createUiProfile();
+		createProfileTab(6);
 
 	}
 
-	public void CreateUiProfile() {
+	public void createUiProfile() {
 		ImageView im = (ImageView) findViewById(R.id.profile_image);
 
 		User ac = null;
@@ -72,22 +72,20 @@ public class ProfileActivity extends ActivityBase implements
 		} catch (IOException e) { // TODO Auto-generated
 			e.printStackTrace();
 		}
-		
+
 		ImageView bgInfo = (ImageView) findViewById(R.id._image_info);
 		try {
 			String baseUrl = getBaseUrl(ac);
-			
-			ImageLoaderUtil imLoaderUtil = new ImageLoaderUtil(ac.getmUserType(),im, bgInfo, this,
-					baseUrl,ac.getImageUrl(), ac.getUserId());
+
+			new ImageLoaderUtil(
+					ac.getmUserType(), im, bgInfo, this, baseUrl,
+					ac.getImageUrl(), ac.getUserId());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		
-		
-		UrlImageViewHelper.setUrlDrawableCustom(bgInfo.getLayoutParams().width,
-		bgInfo.getLayoutParams().height, bgInfo, ac.getImageUrl());
-		
+//		UrlImageViewHelper.setUrlDrawableCustom(bgInfo.getLayoutParams().width,
+//				bgInfo.getLayoutParams().height, bgInfo, ac.getImageUrl());
 
 		Typeface TODO = Typeface.createFromAsset(getAssets(),
 				"DinDisplayProThin.otf");
@@ -112,18 +110,20 @@ public class ProfileActivity extends ActivityBase implements
 			// TODO: handle exception
 		}
 	}
-private String getBaseUrl(User ac) {
-		//Determiner la base url selon le type de user 
-		String baseUrl  = "";
-		if(ac.getmUserType() == 0)
-			baseUrl =  ApplicationConstants.FACEBOOK_IMG_BASE_URL;
-		else if(ac.getmUserType() == 1)
+
+		
+	private String getBaseUrl(User ac) {
+		// Determiner la base url selon le type de user
+		String baseUrl = "";
+		if (ac.getmUserType() == 0)
+			baseUrl = ApplicationConstants.FACEBOOK_IMG_BASE_URL;
+		else if (ac.getmUserType() == 1)
 			baseUrl = ApplicationConstants.GOOGLE_IMG_BASE_URL;
-		//Fin de calcul de baseUrl en fonction de Type de user
+		// Fin de calcul de baseUrl en fonction de Type de user
 		return baseUrl;
 	}
 
-	public void CreateProfileTab(int i) {
+	public void createProfileTab(int i) {
 
 		ViewPager pager = (ViewPager) findViewById(R.id.viewpagerProfile);
 		FragmentManager fragmentManager;
