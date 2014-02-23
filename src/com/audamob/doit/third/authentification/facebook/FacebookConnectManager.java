@@ -138,7 +138,12 @@ public class FacebookConnectManager extends Activity implements
 		mAsyncRunner.request("me", new RequestListener() {
 			@Override
 			public void onComplete(String response, Object state) {
-				final User account;				
+				final User account;	
+				String name = "";
+				String location = "";
+				String gender = "";
+				String email = "";
+				
 				Log.d("FACEBOOK","Profile : "+response);
 				String json = response;
 				try {
@@ -149,37 +154,40 @@ public class FacebookConnectManager extends Activity implements
 					final String id = profile.getString("id");
 					Log.d("FACEBOOK","id :"+id);
 					
-					final String name = profile.getString("name");
-					Log.d("FACEBOOK","name :"+name);
-					
-					final String gender = profile.getString("gender");
-					Log.d("FACEBOOK","gender :"+gender);
-					
-					// getting location
-					final String locale = profile.getString("location");
-					JSONObject localeJson = new JSONObject(locale);
-					final String location = localeJson.getString("name");
-					Log.d("FACEBOOK","location :"+location);
-					
-					// getting work employer name
-					final String work = profile.getString("work");
-					Log.d("FACEBOOK","work :"+work);
-					JSONObject workJson = new JSONObject(work);
-					final String employer = workJson.getString("employer");
-					Log.d("FACEBOOK","employer :"+employer);
-					JSONObject employerJson = new JSONObject(employer);
-					final String employerName = employerJson.getString("name");
-					Log.d("FACEBOOK","employerName :"+employerName);
-
-					final String email = profile.getString("email");					
-					Log.d("FACEBOOK","email :"+email);
-
+					if(!profile.isNull("name")){
+						name = profile.getString("name");
+						Log.d("FACEBOOK","name :"+name);
+					}
+					if(!profile.isNull("gender")){
+						gender = profile.getString("gender");
+						Log.d("FACEBOOK","gender :"+gender);
+					}
+					if(!profile.isNull("location")){
+						final String locale = profile.getString("location");
+						JSONObject localeJson = new JSONObject(locale);
+						location = localeJson.getString("name");
+						Log.d("FACEBOOK","location :"+location);
+					}
+					/*if(!profile.isNull("work")){
+						final String work = profile.getString("work");
+						Log.d("FACEBOOK","work :"+work);
+						JSONObject workJson = new JSONObject(work);
+						final String employer = workJson.getString("employer");
+						Log.d("FACEBOOK","employer :"+employer);
+						JSONObject employerJson = new JSONObject(employer);
+						final String employerName = employerJson.getString("name");
+						Log.d("FACEBOOK","employerName :"+employerName);
+					}*/
+					if(!profile.isNull("email")){
+						email = profile.getString("email");					
+						Log.d("FACEBOOK","email :"+email);
+					}
 					String profilePicture = ApplicationConstants.FACEBOOK_IMG_BASE_URL
 							+ id + "/picture?width=200&height=200";
 					
 					//Set informations in account
 					account = new User(id, name, profilePicture, "",
-							location, employerName, gender, "language",0);
+							location, "", gender, "language",0);
 					
 					runOnUiThread(new Runnable() {
 
