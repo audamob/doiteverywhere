@@ -1,0 +1,1 @@
+Activities to do everywhere
